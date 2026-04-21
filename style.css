@@ -842,3 +842,8 @@ h3 { font-size: 1.3rem; }
   h1 { font-size: 2rem; }
   h2 { font-size: 1.6rem; }
 }
+
+.logo-soc { color: #00d4ff; font-family: 'Space Mono'; font-weight: 700; font-size: 1.4rem; }
+.logo-root { color: #ffffff; font-family: 'Space Mono'; font-weight: 400; font-size: 1.4rem; letter-spacing: 4px; }
+.logo-cursor { color: #ffd700; animation: blink 1s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
