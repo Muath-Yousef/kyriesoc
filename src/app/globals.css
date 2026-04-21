@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Fonts */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Custom Colors */
+  --color-cyan-glow: rgba(0, 240, 255, 0.15);
+  --color-gold-glow: rgba(251, 191, 36, 0.15);
+}
+
+:root {
+  --background: #05050A;
+  --foreground: #e0e0e8;
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}

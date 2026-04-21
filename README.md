@@ -1,39 +1,36 @@
-# KYRIE SOC
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-**Enterprise Security, Automated for Your Business**
+## Getting Started
 
-Managed cybersecurity services for businesses in Jordan & UAE.
+First, run the development server:
 
-## 🌐 Live Site
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-[https://muath-yousef.github.io/kyriesoc/](https://muath-yousef.github.io/kyriesoc/)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Pages
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-- **Home** — Hero, trust bar, how it works, services preview
-- **Services** — 4 pricing tiers with comparison table
-- **Free Scan** — Lead generation form for free security assessment
-- **About** — Mission, founder, technology stack, privacy commitment
-- **Contact** — Contact info + form
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Technology
+## Learn More
 
-- Pure HTML + CSS (no frameworks)
-- Google Fonts: Syne + Space Mono
-- FormSubmit.co for form handling
-- GitHub Pages hosting
+To learn more about Next.js, take a look at the following resources:
 
-## Design
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-- Dark theme: `#0a0a0f` background
-- Cyan accent: `#00d4ff`
-- Gold accent: `#ffd700`
-- Mobile responsive with hamburger menu
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Powered By
+## Deploy on Vercel
 
-[Synapse SOC Engine](https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory)
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
----
-
-© 2026 KYRIE SOC — Cybersecurity Services for Jordan & UAE
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
