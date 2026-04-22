@@ -10,20 +10,38 @@
   --font-mono: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   /* Custom Colors */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: rgba(255, 255, 255, 0.08);
   --color-cyan-glow: rgba(0, 240, 255, 0.15);
   --color-gold-glow: rgba(251, 191, 36, 0.15);
 }
 
 :root {
   --background: #05050A;
-  --foreground: #e0e0e8;
+  --foreground: #F8FAFC;
 }
 
 @layer base {
   * {
-    @apply border-white/10;
+    @apply border-border;
   }
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground font-sans selection:bg-[#00f0ff]/30 selection:text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/10;
+  }
+  .glass-dark {
+    @apply bg-black/60 backdrop-blur-xl border border-white/5;
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+  }
+  .text-glow-gold {
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
   }
 }
