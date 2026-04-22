@@ -1,92 +1,141 @@
-import type { Metadata } from 'next';
-import { Inter, Space_Mono } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { Inter, Space_Mono } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
-const spaceMono = Space_Mono({ 
-  weight: ['400', '700'], 
-  subsets: ['latin'], 
-  variable: '--font-mono' 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  variable: "--font-mono",
 });
 
 export const metadata: Metadata = {
-  title: 'SOC Root — Enterprise Security',
-  description: 'Automated cybersecurity for Jordan & UAE businesses. Enterprise-grade managed security at SMB prices.',
+  title: "SOC Root — Enterprise Cybersecurity Platform",
+  description:
+    "Military-grade automated cybersecurity for Jordan & UAE businesses. Continuous pentesting, SIEM monitoring, NCA ECC compliance — at SMB prices.",
+  keywords: "cybersecurity, SOC, SIEM, pentesting, NCA ECC, ISO 27001, Jordan, UAE",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
-      <body className="bg-[#05050A] text-gray-100 font-sans antialiased min-h-screen selection:bg-[#00f0ff] selection:text-black">
-        {/* Navigation Bar */}
-        <nav className="fixed top-0 left-0 right-0 h-20 bg-[#05050A]/80 backdrop-blur-xl border-b border-white/5 z-50 flex items-center">
-          <div className="container mx-auto px-6 w-full flex items-center justify-between">
-            <a href="/" className="font-mono text-xl flex items-center gap-1 group">
-              <span className="text-[#00f0ff] font-bold">SOC</span>
-              <span className="text-white tracking-widest">ROOT</span>
-              <span className="text-amber-400 animate-pulse">_</span>
+      <body className="bg-[#0c0c0c] text-[#f5f5f4] font-sans antialiased min-h-screen">
+        {/* Navigation */}
+        <nav className="fixed top-0 left-0 right-0 z-50 h-[72px] border-b border-emerald-500/10 bg-[#0c0c0c]/80 backdrop-blur-xl">
+          <div className="container mx-auto px-6 h-full flex items-center justify-between">
+            {/* Logo */}
+            <a href="/" className="flex items-center gap-2 group">
+              <span className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c0c0c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </span>
+              <span className="font-bold text-lg tracking-tight">
+                <span className="text-emerald-400">SOC</span>
+                <span className="text-white"> Root</span>
+              </span>
             </a>
-            
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium">
-              <a href="/" className="text-gray-400 hover:text-[#00f0ff] transition-colors relative group">
-                Home
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00f0ff] transition-all group-hover:w-full"></span>
-              </a>
-              <a href="/services" className="text-gray-400 hover:text-[#00f0ff] transition-colors relative group">
-                Services
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00f0ff] transition-all group-hover:w-full"></span>
-              </a>
-              <a href="/training" className="text-gray-400 hover:text-[#00f0ff] transition-colors relative group">
-                Training
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#00f0ff] transition-all group-hover:w-full"></span>
-              </a>
-              <a href="/portal/login" className="text-amber-400 hover:text-amber-300 transition-colors relative group font-mono">
-                Client Portal 🔒
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-400 transition-all group-hover:w-full"></span>
-              </a>
+
+            {/* Nav Links */}
+            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400">
+              {[
+                { href: "/", label: "Home" },
+                { href: "/services", label: "Services" },
+                { href: "/about", label: "About" },
+                { href: "/training", label: "Training" },
+                { href: "/contact", label: "Contact" },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="hover:text-emerald-400 transition-colors relative group"
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-emerald-400 transition-all duration-300 group-hover:w-full" />
+                </a>
+              ))}
             </div>
 
-            <a href="/scan" className="hidden md:inline-flex bg-gradient-to-r from-amber-400 to-amber-500 text-black font-bold uppercase tracking-wider text-xs px-6 py-2.5 rounded hover:scale-105 transition-transform shadow-[0_0_20px_rgba(251,191,36,0.3)] hover:shadow-[0_0_25px_rgba(251,191,36,0.5)]">
-              Free Scan
-            </a>
+            {/* CTA */}
+            <div className="flex items-center gap-3">
+              <a
+                href="/portal/login"
+                className="hidden md:inline-block text-sm text-neutral-400 hover:text-white transition-colors"
+              >
+                Sign In
+              </a>
+              <a
+                href="/scan"
+                className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] tracking-wide"
+              >
+                Free Scan
+              </a>
+            </div>
           </div>
         </nav>
 
-        {/* Padding for fixing nav overlap */}
-        <main className="pt-20">
-          {children}
-        </main>
+        <main className="pt-[72px] relative z-10">{children}</main>
 
-        <footer className="border-t border-white/5 py-12 mt-20 relative overflow-hidden">
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[#00f0ff]/30 to-transparent"></div>
-          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-8 text-sm text-gray-500">
-            <div>
-              <div className="font-mono text-lg mb-2 flex items-center gap-1 opacity-80">
-                <span className="text-[#00f0ff] font-bold">SOC</span>
-                <span className="text-white tracking-widest">ROOT</span>
+        {/* Footer */}
+        <footer className="relative z-10 border-t border-emerald-500/10 py-16 mt-24">
+          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent" />
+          <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-4 gap-12 mb-16">
+              {/* Brand */}
+              <div className="md:col-span-2">
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c0c0c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                  </span>
+                  <span className="font-bold text-lg">
+                    <span className="text-emerald-400">SOC</span>
+                    <span className="text-white"> Root</span>
+                  </span>
+                </div>
+                <p className="text-neutral-500 text-sm leading-relaxed max-w-sm">
+                  Democratizing enterprise-grade cybersecurity for Jordan & UAE businesses. Powered by automation, AI, and open-source intelligence.
+                </p>
+                <div className="flex gap-4 mt-6">
+                  <span className="text-xs font-mono text-neutral-600 bg-white/5 px-3 py-1.5 rounded border border-white/5">NCA ECC 2.0</span>
+                  <span className="text-xs font-mono text-neutral-600 bg-white/5 px-3 py-1.5 rounded border border-white/5">ISO 27001</span>
+                </div>
               </div>
-              <p className="max-w-xs">Enterprise cybersecurity, automated for your business. Serving Jordan & UAE.</p>
+
+              {/* Services */}
+              <div>
+                <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-5">Services</p>
+                <ul className="space-y-3">
+                  {["Threat Scanning", "Managed SOC", "Compliance", "Training"].map((s) => (
+                    <li key={s}>
+                      <a href="/services" className="text-sm text-neutral-400 hover:text-emerald-400 transition-colors">{s}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Company */}
+              <div>
+                <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-5">Company</p>
+                <ul className="space-y-3">
+                  {[
+                    { label: "About", href: "/about" },
+                    { label: "Contact", href: "/contact" },
+                    { label: "Portal", href: "/portal/login" },
+                  ].map((s) => (
+                    <li key={s.label}>
+                      <a href={s.href} className="text-sm text-neutral-400 hover:text-emerald-400 transition-colors">{s.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-            <div className="flex md:justify-end gap-12">
-              <ul className="flex flex-col gap-2">
-                <li className="font-mono text-white tracking-wider mb-2">SERVICES</li>
-                <li><a href="/services" className="hover:text-[#00f0ff]">Packages</a></li>
-                <li><a href="/scan" className="hover:text-[#00f0ff]">Free Assessment</a></li>
-              </ul>
-              <ul className="flex flex-col gap-2">
-                <li className="font-mono text-white tracking-wider mb-2">COMPANY</li>
-                <li><a href="/training" className="hover:text-[#00f0ff]">Training</a></li>
-                <li><a href="/portal/login" className="hover:text-[#00f0ff]">Portal</a></li>
-              </ul>
+
+            <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600">
+              <p>© 2026 SOC Root — All rights reserved.</p>
+              <p>Engineered by <span className="text-emerald-500">Muath Yousef</span> · Serving Jordan & UAE</p>
             </div>
-          </div>
-          <div className="container mx-auto px-6 mt-12 pt-8 border-t border-white/5 text-xs text-gray-600 flex justify-between">
-            <p>&copy; 2026 SOC Root — All rights reserved.</p>
-            <p>Built by Muath Yousef</p>
           </div>
         </footer>
       </body>

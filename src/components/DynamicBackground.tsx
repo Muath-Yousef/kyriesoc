@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useRef } from "react";
 
 export default function DynamicBackground() {
@@ -8,146 +7,93 @@ export default function DynamicBackground() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    let width = window.innerWidth;
-    let height = window.innerHeight;
-    canvas.width = width;
-    canvas.height = height;
+    let animId: number;
+    let W = window.innerWidth;
+    let H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
 
-    const handleResize = () => {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-    };
-    window.addEventListener("resize", handleResize);
+    // Mesh nodes
+    const NODES = 55;
+    const nodes = Array.from({ length: NODES }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      r: Math.random() * 1.6 + 0.6,
+    }));
 
-    // Particles Data
-    const numParticles = 80;
-    const particles: any[] = [];
-    for (let i = 0; i < numParticles; i++) {
-        particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            radius: Math.random() * 1.5 + 0.5,
-            vx: (Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) * 0.5,
-            alpha: Math.random() * 0.5 + 0.1
-        });
+    const CONNECT_DIST = 160;
+    const PRIMARY = "16, 185, 129"; // emerald
+
+    function draw() {
+      ctx!.clearRect(0, 0, W, H);
+
+      // Subtle radial gradient base
+      const grad = ctx!.createRadialGradient(W * 0.5, H * 0.4, 0, W * 0.5, H * 0.4, W * 0.7);
+      grad.addColorStop(0, "rgba(16,185,129,0.04)");
+      grad.addColorStop(1, "rgba(0,0,0,0)");
+      ctx!.fillStyle = grad;
+      ctx!.fillRect(0, 0, W, H);
+
+      // Update + draw nodes
+      for (const n of nodes) {
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+
+        ctx!.beginPath();
+        ctx!.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx!.fillStyle = `rgba(${PRIMARY}, 0.5)`;
+        ctx!.fill();
+      }
+
+      // Connections
+      for (let i = 0; i < NODES; i++) {
+        for (let j = i + 1; j < NODES; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < CONNECT_DIST) {
+            const alpha = (1 - dist / CONNECT_DIST) * 0.18;
+            ctx!.beginPath();
+            ctx!.strokeStyle = `rgba(${PRIMARY}, ${alpha})`;
+            ctx!.lineWidth = 0.7;
+            ctx!.moveTo(nodes[i].x, nodes[i].y);
+            ctx!.lineTo(nodes[j].x, nodes[j].y);
+            ctx!.stroke();
+          }
+        }
+      }
+
+      animId = requestAnimationFrame(draw);
     }
-
-    // Radar Data
-    let angle = 0;
-
-    let animationId: number;
-
-    const draw = () => {
-      // Clear with slight trailing effect
-      ctx.fillStyle = "rgba(5, 5, 10, 0.2)";
-      ctx.fillRect(0, 0, width, height);
-
-      // Draw Grid
-      ctx.strokeStyle = "rgba(0, 240, 255, 0.03)";
-      ctx.lineWidth = 1;
-      const gridSize = 50;
-      ctx.beginPath();
-      for (let x = 0; x <= width; x += gridSize) {
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-      }
-      for (let y = 0; y <= height; y += gridSize) {
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-      }
-      ctx.stroke();
-
-      // Draw radar sweep from center
-      const cx = width / 2;
-      const cy = height / 2;
-      const radius = Math.max(width, height) / 1.5;
-
-      // Radar conic gradient
-      const gradient = ctx.createConicGradient(angle, cx, cy);
-      gradient.addColorStop(0, "rgba(0, 240, 255, 0)");
-      gradient.addColorStop(0.8, "rgba(0, 240, 255, 0.02)");
-      gradient.addColorStop(1, "rgba(0, 240, 255, 0.15)");
-      
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius, angle, angle + Math.PI / 4);
-      ctx.lineTo(cx, cy);
-      ctx.closePath();
-      ctx.fill();
-
-      // Draw radar scan line
-      ctx.strokeStyle = "rgba(0, 240, 255, 0.5)";
-      ctx.beginPath();
-      ctx.moveTo(cx, cy);
-      ctx.lineTo(cx + Math.cos(angle + Math.PI / 4) * radius, cy + Math.sin(angle + Math.PI / 4) * radius);
-      ctx.stroke();
-
-      // Update angle
-      angle += 0.01;
-
-      // Draw and update particles
-      particles.forEach(p => {
-          p.x += p.vx;
-          p.y += p.vy;
-
-          if (p.x < 0) p.x = width;
-          if (p.x > width) p.x = 0;
-          if (p.y < 0) p.y = height;
-          if (p.y > height) p.y = 0;
-
-          // Check radar intersection for "ping" glow effect
-          const dx = p.x - cx;
-          const dy = p.y - cy;
-          let pAngle = Math.atan2(dy, dx);
-          if (pAngle < 0) pAngle += Math.PI * 2;
-          
-          let sweepAngle = (angle + Math.PI / 4) % (Math.PI * 2);
-          let tailAngle = angle % (Math.PI * 2);
-          
-          let inRadar = false;
-          if (sweepAngle > tailAngle) {
-              inRadar = pAngle >= tailAngle && pAngle <= sweepAngle;
-          } else {
-              inRadar = pAngle >= tailAngle || pAngle <= sweepAngle;
-          }
-
-          let drawAlpha = p.alpha;
-          if (inRadar) {
-              drawAlpha = 0.8;
-              ctx.shadowBlur = 10;
-              ctx.shadowColor = "#00f0ff";
-          } else {
-              ctx.shadowBlur = 0;
-          }
-
-          ctx.fillStyle = `rgba(0, 240, 255, ${drawAlpha})`;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fill();
-      });
-
-      animationId = requestAnimationFrame(draw);
-    };
 
     draw();
 
+    const onResize = () => {
+      W = window.innerWidth;
+      H = window.innerHeight;
+      canvas.width = W;
+      canvas.height = H;
+    };
+    window.addEventListener("resize", onResize);
+
     return () => {
-      window.removeEventListener("resize", handleResize);
-      cancelAnimationFrame(animationId);
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      className="fixed inset-0 pointer-events-none z-0 opacity-40 mix-blend-screen"
+    <canvas
+      ref={canvasRef}
+      className="fixed inset-0 w-full h-full pointer-events-none z-0"
+      aria-hidden="true"
     />
   );
 }

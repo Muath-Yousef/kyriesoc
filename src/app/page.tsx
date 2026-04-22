@@ -1,215 +1,380 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Shield, Mail, Activity, Eye, Terminal, Lock, LockOpen, Server, Globe2 } from "lucide-react";
-import AmbientAudio from "@/components/AmbientAudio";
+import { motion, type Variants } from "framer-motion";
 import DynamicBackground from "@/components/DynamicBackground";
 
+const CAPABILITIES = [
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+      </svg>
+    ),
+    title: "Continuous Subdomain Discovery",
+    desc: "Passive intelligence gathering across WHOIS, DNS logs, and certificate transparency streams. Attack surface mapped in real-time.",
+    tag: "RECON",
+  },
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+    title: "Automated Penetration Testing",
+    desc: "Nuclei-driven vulnerability scanning simulating real-world attacker methodologies against every exposed endpoint.",
+    tag: "PENTEST",
+  },
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 12 2.1 9.1" /><path d="m12 2 3.6 7.2" />
+      </svg>
+    ),
+    title: "LLM Triage & Analysis",
+    desc: "Machine learning model evaluates raw findings, eliminating false positives instantly and prioritizing critical CVEs.",
+    tag: "AI",
+  },
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      </svg>
+    ),
+    title: "SOAR Automated Remediation",
+    desc: "API layer communicates with Cloudflare WAF and IAM policies to null-route threats before they escalate.",
+    tag: "SOAR",
+  },
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <rect width="20" height="14" x="2" y="3" rx="2" /><path d="M8 21h8m-4-4v4" />
+      </svg>
+    ),
+    title: "24/7 SIEM Monitoring",
+    desc: "Wazuh-powered security information and event management with Telegram real-time alerting to your team.",
+    tag: "SIEM",
+  },
+  {
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" />
+      </svg>
+    ),
+    title: "Security Awareness Training",
+    desc: "3-chapter employee cybersecurity course with quizzes and verifiable certificates. NCA ECC staff-training aligned.",
+    tag: "TRAINING",
+  },
+];
+
+const TECH_STACK = {
+  "Offensive": ["Nuclei", "Subfinder", "Amass", "Nmap", "Burp Suite"],
+  "Defensive": ["Wazuh SIEM", "Cloudflare WAF", "SOAR Engine", "TheHive"],
+  "Compliance": ["NCA ECC 2.0", "ISO 27001", "PDPL", "CIS Controls"],
+  "Automation": ["Python", "Docker", "Ansible", "GitHub Actions"],
+};
+
+const STATS = [
+  { value: "24/7", label: "Monitoring" },
+  { value: "NCA ECC", label: "Compliant" },
+  { value: "ISO 27001", label: "Aligned" },
+  { value: "4+", label: "Service Plans" },
+];
+
+const TIMELINE = [
+  { phase: "Phase 1", title: "External Recon", desc: "Subdomain enumeration, port scanning, and attack surface mapping across your entire digital footprint." },
+  { phase: "Phase 2", title: "Vulnerability Assessment", desc: "Nuclei templates identify CVEs, misconfigurations, and exposed credentials across all discovered endpoints." },
+  { phase: "Phase 3", title: "LLM Triage", desc: "AI model filters noise, ranks threats by severity, and prepares a structured incident report." },
+  { phase: "Phase 4", title: "SOAR Remediation", desc: "Automated response — WAF rules, IP blocklists, and access policy updates executed without human delay." },
+];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" as const } }),
+};
+
 export default function Home() {
-  const [systemActive, setSystemActive] = useState(false);
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
 
-  // Simulated live threat logs
   useEffect(() => {
-    if (!systemActive) return;
-
     const logs = [
-      "[SYS] Initializing SOC Root Neural Engine...",
-      "[NCA_ECC] Compliance metrics synchronized.",
-      "[WAF] Blocking brute-force attack from 192.168.44.112",
-      "[SIEM] Analyzing anomalous payload on port 443",
-      "[DNS] Safelisting *.asas4edu.net domains",
+      "[RECON] Discovered 14 new subdomains for target scope.",
+      "[NUCLEI] CVE-2024-1234 HIGH detected on api.target.com:443",
+      "[LLM] False-positive filtered — CVE-2023-5678 benign in this context.",
+      "[SOAR] Cloudflare WAF rule #7821 deployed. Threat null-routed.",
+      "[SIEM] Brute-force cluster from 185.220.x.x blocked at perimeter.",
+      "[NCA-ECC] Compliance score: 94.8% — no critical gaps detected.",
       "[SOAR] Auto-remediation policy #441 executed successfully.",
-      "[WAF] Null-routing malicious traffic cluster..."
     ];
-
     let i = 0;
     const interval = setInterval(() => {
-      setTerminalLines(prev => [...prev.slice(-4), logs[i % logs.length]]);
+      setTerminalLines((prev) => [...prev.slice(-5), logs[i % logs.length]]);
       i++;
-    }, 2500);
-
+    }, 2200);
     return () => clearInterval(interval);
-  }, [systemActive]);
+  }, []);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#05050A] text-gray-200 overflow-x-hidden selection:bg-[#00f0ff]/30">
-      <AmbientAudio isActive={systemActive} />
+    <div className="relative overflow-x-hidden">
       <DynamicBackground />
 
-      <AnimatePresence>
-        {!systemActive && (
-          <motion.div 
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-[#05050A] backdrop-blur-3xl"
-          >
-            <div className="text-center">
-              <Lock className="w-16 h-16 text-[#00f0ff] mx-auto mb-6 animate-pulse opacity-80" />
-              <h1 className="text-2xl font-mono tracking-widest text-white mb-8 border-b border-white/10 pb-4">UNAUTHORIZED ACCESS RESTRICTED</h1>
-              <button 
-                onClick={() => setSystemActive(true)}
-                className="group relative px-8 py-4 bg-transparent font-mono text-[#00f0ff] uppercase tracking-[0.2em] transition-all hover:text-black overflow-hidden border border-[#00f0ff]/40"
+      {/* ─── HERO ─── */}
+      <section className="relative min-h-[calc(100vh-72px)] flex items-center">
+        <div className="container mx-auto px-6 py-24">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-emerald-500/30 bg-emerald-500/5"
               >
-                <span className="absolute inset-0 bg-[#00f0ff] w-full h-full -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out z-0"></span>
-                <span className="relative z-10 font-bold">Initialize System Context</span>
-              </button>
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="font-mono text-[11px] text-emerald-400 uppercase tracking-[0.25em]">Defensive Posture · Active</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6"
+              >
+                We Hack You<br />
+                <span className="text-emerald-400">Before They Do.</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+                className="text-lg text-neutral-400 leading-relaxed max-w-xl mb-10"
+              >
+                SOC Root is a military-grade automated cybersecurity platform. We continuously map, exploit, and harden your digital perimeter — fully aligned with NCA ECC and ISO 27001 compliance standards.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
+                className="flex flex-wrap gap-4"
+              >
+                <a href="/scan" className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-lg transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center gap-2 text-sm uppercase tracking-wider">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  Start Free Scan
+                </a>
+                <a href="/services" className="border border-white/10 hover:border-emerald-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm">
+                  View Services →
+                </a>
+              </motion.div>
+
+              {/* Stats Row */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="grid grid-cols-4 gap-6 mt-14 pt-10 border-t border-white/5"
+              >
+                {STATS.map((s) => (
+                  <div key={s.label}>
+                    <p className="text-xl md:text-2xl font-extrabold text-white">{s.value}</p>
+                    <p className="text-xs text-neutral-500 mt-1">{s.label}</p>
+                  </div>
+                ))}
+              </motion.div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
-      {/* Main Content protected by System state */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: systemActive ? 1 : 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-        className="relative z-10 w-full"
-      >
-        {/* Navigation Mock (if any) */}
-        <header className="absolute top-0 w-full p-6 border-b border-white/5 glass z-50 flex justify-between items-center">
-             <div className="flex items-center gap-3">
-                 <Shield className="w-8 h-8 text-[#00f0ff]" />
-                 <span className="font-bold text-xl tracking-widest text-white">SOC ROOT</span>
-             </div>
-             <nav className="hidden md:flex gap-8 font-mono text-xs uppercase tracking-widest text-gray-400">
-                 <a href="/scan" className="hover:text-[#00f0ff] transition-colors">Threat Scan</a>
-                 <a href="/services" className="hover:text-[#00f0ff] transition-colors">Services</a>
-                 <a href="/about" className="hover:text-[#00f0ff] transition-colors">Intel</a>
-                 <a href="/contact" className="hover:text-[#00f0ff] transition-colors">Comm</a>
-             </nav>
-        </header>
-
-        {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center pt-20">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                
-                {/* Left: Copy */}
-                <div>
-                  <motion.div 
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 1 }}
-                  >
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full glass border-[#00f0ff]/30 shadow-[0_0_15px_rgba(0,240,255,0.1)]">
-                      <span className="w-2 h-2 rounded-full bg-[#00f0ff] animate-pulse"></span>
-                      <span className="font-mono text-[10px] md:text-xs text-[#00f0ff] uppercase tracking-[0.3em] font-bold">Defensive Posture: Active</span>
+            {/* Right: Terminal */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
+              className="hidden lg:block"
+            >
+              <div className="relative">
+                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-emerald-500/20 to-transparent pointer-events-none" />
+                <div className="relative rounded-2xl border border-emerald-500/15 bg-black/60 backdrop-blur-xl overflow-hidden">
+                  {/* Terminal header */}
+                  <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between">
+                    <span className="font-mono text-[11px] text-neutral-500">root@soc-orchestrator:~#</span>
+                    <div className="flex gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 animate-pulse" />
                     </div>
-                  </motion.div>
-                  
-                  <motion.h1 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.2 }}
-                    className="text-5xl md:text-7xl font-bold tracking-tight mb-6 leading-tight text-white"
-                  >
-                    We Hack You <br />
-                    <span className="bg-gradient-to-r from-[#00f0ff] to-amber-400 bg-clip-text text-transparent">
-                      Before They Do.
-                    </span>
-                  </motion.h1>
-                  
-                  <motion.p 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.4 }}
-                    className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed"
-                  >
-                    SOC Root is a military-grade automated cybersecurity platform. We continuously map, exploit, and harden your digital perimeter. Fully aligned with NCA ECC and ISO 27001 compliance standards.
-                  </motion.p>
-                  
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 1.6 }}
-                    className="flex flex-wrap gap-4"
-                  >
-                    <a href="/scan" className="bg-[#00f0ff]/10 text-[#00f0ff] border border-[#00f0ff]/50 px-8 py-4 rounded font-mono uppercase tracking-widest text-sm hover:bg-[#00f0ff] hover:text-black hover:shadow-[0_0_30px_rgba(0,240,255,0.4)] transition-all flex items-center gap-2">
-                        <Terminal className="w-4 h-4" /> Initiate Scan
-                    </a>
-                  </motion.div>
+                  </div>
+                  {/* Terminal body */}
+                  <div className="p-5 font-mono text-xs space-y-2.5 min-h-[280px] flex flex-col justify-end">
+                    {terminalLines.map((line, idx) => (
+                      <motion.div
+                        key={line + idx}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="flex gap-2"
+                      >
+                        <span className="text-emerald-500 shrink-0">›</span>
+                        <span className={
+                          line.includes("HIGH") || line.includes("blocked") || line.includes("Brute")
+                            ? "text-red-400"
+                            : line.includes("SOAR") || line.includes("deployed") || line.includes("executed")
+                            ? "text-emerald-400"
+                            : "text-neutral-400"
+                        }>
+                          {line}
+                        </span>
+                      </motion.div>
+                    ))}
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-emerald-500">›</span>
+                      <span className="w-2 h-3.5 bg-emerald-500/80 animate-pulse rounded-sm" />
+                    </div>
+                  </div>
                 </div>
-
-                {/* Right: Live Terminal Mock */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 1.8 }}
-                    className="hidden lg:block relative"
-                >
-                    <div className="absolute -inset-1 bg-gradient-to-r from-[#00f0ff]/30 to-amber-400/20 rounded-xl blur-lg opacity-50 animate-pulse"></div>
-                    <div className="relative glass-dark rounded-xl border border-white/10 overflow-hidden flex flex-col h-80 shadow-2xl">
-                        {/* Terminal Header */}
-                        <div className="bg-black/80 px-4 py-2 border-b border-white/5 flex items-center justify-between">
-                            <span className="font-mono text-xs text-gray-500">root@soc-orchestrator:~#</span>
-                            <div className="flex gap-2">
-                                <span className="w-2.5 h-2.5 rounded-full bg-red-500/50"></span>
-                                <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/50"></span>
-                                <span className="w-2.5 h-2.5 rounded-full bg-green-500/80 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse"></span>
-                            </div>
-                        </div>
-                        {/* Terminal Body */}
-                        <div className="p-4 font-mono text-sm flex-1 flex flex-col justify-end">
-                            {terminalLines.map((line, idx) => (
-                                <motion.div 
-                                    key={line + idx}
-                                    initial={{ opacity: 0, x: -10 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    className="mb-2"
-                                >
-                                    <span className="text-[#00f0ff] mr-2">&gt;</span>
-                                    <span className={line.includes("Blocking") || line.includes("routing") ? "text-amber-400" : "text-gray-300"}>
-                                        {line}
-                                    </span>
-                                </motion.div>
-                            ))}
-                            <div className="mt-2 flex items-center">
-                                <span className="text-[#00f0ff] mr-2">&gt;</span>
-                                <span className="w-2 h-4 bg-[#00f0ff] animate-pulse"></span>
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-
-            </div>
+              </div>
+            </motion.div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Global Protection Section */}
-        <section className="py-32 relative border-t border-white/5 bg-black/40">
-           <div className="container mx-auto px-6">
-              <div className="text-center mb-16">
-                  <h2 className="font-mono text-[#00f0ff] mb-4 text-xs tracking-[0.3em] uppercase">Architecture</h2>
-                  <h3 className="text-3xl md:text-4xl font-bold text-white">Full Spectrum Defense Engine</h3>
+      {/* ─── CAPABILITIES GRID ─── */}
+      <section className="relative py-28 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Architecture</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Full Spectrum Defense Engine</h2>
+            <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">Six integrated security layers working continuously to eliminate exposure before attackers can exploit it.</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+            {CAPABILITIES.map((cap, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                whileHover={{ y: -4 }}
+                className="group relative p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/25 hover:bg-white/[0.04] transition-all"
+              >
+                <div className="flex items-start justify-between mb-5">
+                  <div className="w-11 h-11 rounded-lg border border-white/5 bg-black/60 flex items-center justify-center text-emerald-500 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 transition-all">
+                    {cap.icon}
+                  </div>
+                  <span className="text-[10px] font-mono text-neutral-600 border border-white/5 px-2 py-0.5 rounded tracking-widest">
+                    {cap.tag}
+                  </span>
+                </div>
+                <h3 className="font-bold text-white mb-2">{cap.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{cap.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── HOW IT WORKS (timeline) ─── */}
+      <section className="relative py-28 border-t border-white/5 bg-black/20">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Process</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">How SOC Root Works</h2>
+          </div>
+
+          <div className="max-w-3xl mx-auto space-y-6">
+            {TIMELINE.map((step, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="flex gap-6"
+              >
+                <div className="flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-full border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center shrink-0">
+                    <span className="text-emerald-400 font-mono text-xs font-bold">{i + 1}</span>
+                  </div>
+                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-emerald-500/30 to-transparent" />}
+                </div>
+                <div className="pb-8">
+                  <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">{step.phase}</span>
+                  <h3 className="font-bold text-white text-lg mt-1 mb-2">{step.title}</h3>
+                  <p className="text-neutral-500 text-sm leading-relaxed">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TECH STACK ─── */}
+      <section className="relative py-28 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Stack</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Tools & Technologies</h2>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            {Object.entries(TECH_STACK).map(([category, tools]) => (
+              <div key={category}>
+                <p className="text-xs font-mono text-neutral-600 uppercase tracking-widest mb-4">{category}</p>
+                <div className="flex flex-wrap gap-2">
+                  {tools.map((t) => (
+                    <span key={t} className="text-xs font-mono text-neutral-400 border border-white/5 bg-white/[0.03] px-3 py-1.5 rounded-md hover:border-emerald-500/20 hover:text-emerald-400 transition-colors">
+                      {t}
+                    </span>
+                  ))}
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-                 {[
-                  { title: "Continuous Subdomain Discovery", desc: "Passive intelligence gathering across WHOIS, DNS logs, and cert transparency.", icon: <Globe2 className="w-6 h-6 text-[#00f0ff]" /> },
-                  { title: "Automated Penetration Testing", desc: "Nuclei-driven vulnerability scanning simulating real-world attacker methodologies.", icon: <Shield className="w-6 h-6 text-[#00f0ff]" /> },
-                  { title: "LLM Triage & Analysis", desc: "Machine learning model evaluates raw findings, eliminating false positives instantly.", icon: <Server className="w-6 h-6 text-[#00f0ff]" /> },
-                  { title: "SOAR Automated Remediation", desc: "API layer communicates with Cloudflare WAF and IAM policies to null-route threats.", icon: <Activity className="w-6 h-6 text-[#00f0ff]" /> },
-                 ].map((mod, idx) => (
-                    <motion.div 
-                        key={idx}
-                        whileHover={{ y: -5 }}
-                        className="glass p-6 rounded-xl border-white/5 hover:border-[#00f0ff]/30 transition-all group"
-                    >
-                        <div className="w-12 h-12 bg-black rounded-lg border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#00f0ff]/10 group-hover:border-[#00f0ff]/30 transition-colors shadow-inner">
-                            {mod.icon}
-                        </div>
-                        <h4 className="text-lg font-bold text-white mb-2">{mod.title}</h4>
-                        <p className="text-gray-400 text-sm leading-relaxed">{mod.desc}</p>
-                    </motion.div>
-                 ))}
+      {/* ─── DUAL CTA ─── */}
+      <section className="relative py-28 border-t border-white/5 bg-black/20">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Free Scan CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 overflow-hidden group hover:border-emerald-500/40 transition-all"
+            >
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all" />
+              <div className="relative">
+                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest border border-emerald-500/30 px-2.5 py-1 rounded-full">Free Trial</span>
+                <h3 className="text-2xl font-extrabold text-white mt-4 mb-3">Start Your Free Security Scan</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6">One free external reconnaissance and vulnerability scan per company. Requires business email verification.</p>
+                <a href="/scan" className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] text-sm">
+                  Initialize Scan →
+                </a>
               </div>
-           </div>
-        </section>
+            </motion.div>
 
-      </motion.div>
+            {/* Training CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="relative p-8 rounded-2xl border border-white/8 bg-white/[0.02] overflow-hidden group hover:border-white/15 transition-all"
+            >
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all" />
+              <div className="relative">
+                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest border border-white/10 px-2.5 py-1 rounded-full">Awareness Training</span>
+                <h3 className="text-2xl font-extrabold text-white mt-4 mb-3">Train Your Team Against Threats</h3>
+                <p className="text-neutral-400 text-sm leading-relaxed mb-6">3-chapter security awareness course for employees. 100% pass-rate quizzes and verifiable completion certificates.</p>
+                <a href="/training" className="inline-flex items-center gap-2 border border-white/10 hover:border-white/25 text-neutral-300 hover:text-white font-medium px-6 py-3 rounded-lg transition-all text-sm">
+                  Start Training →
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
