@@ -8,58 +8,135 @@ import DynamicBackground from "@/components/DynamicBackground";
 const PLAN_DATA = {
   starter: {
     name: "Starter",
-    tagline: "Essential external defense",
+    tagline: "Your first line of external defense — deployed in 24 hours",
     monthlyPrice: null,
     annualPrice: 190,
     annualSavings: 0,
-    protectsFrom: ["Website defacement", "Domain hijacking", "Basic vulnerability exploitation"],
+    protectsFrom: [
+      "Website defacement & domain hijacking",
+      "Known vulnerability exploitation",
+      "Exposed credentials & misconfigured servers"
+    ],
     features: [
-      { name: "Continuous External Scanning", desc: "We constantly check your public assets for known vulnerabilities." },
-      { name: "Monthly Security Report", desc: "A specialist-reviewed summary of what we found and how to fix it." }
+      {
+        name: "Continuous External Attack Surface Scanning",
+        desc: "We run automated scans against your public-facing assets 24/7, detecting new vulnerabilities as they're published — not weeks later when attackers find them first."
+      },
+      {
+        name: "Monthly Specialist-Reviewed Report",
+        desc: "Not just raw scanner output. A human analyst reviews findings, removes false positives, and gives you a ranked action list written in plain business language — no technical degree required."
+      },
+      {
+        name: "Free Onboarding Security Assessment",
+        desc: "Your engagement starts with a comprehensive baseline scan so we know exactly what we're protecting from day one."
+      }
     ],
     compliance: null
   },
   guard: {
     name: "Guard",
-    tagline: "Active internal & external defense",
+    tagline: "Active defense inside and outside your perimeter",
     monthlyPrice: 160,
     annualPrice: 1600,
     annualSavings: 320,
-    protectsFrom: ["Email impersonation", "Website defacement", "Data theft", "Malware infections"],
+    protectsFrom: [
+      "Email impersonation & phishing campaigns",
+      "Insider threats & compromised credentials",
+      "Malware, ransomware & lateral movement",
+      "Data exfiltration & unauthorized access"
+    ],
     features: [
-      { name: "Everything in Starter", desc: "All the continuous external monitoring features." },
-      { name: "SIEM Log Monitoring", desc: "We aggregate and analyze logs from your systems to spot hidden threats." },
-      { name: "Incident Response", desc: "Our analysts investigate alerts and provide immediate remediation steps." }
+      {
+        name: "Everything in Starter",
+        desc: "All continuous external monitoring, monthly reports, and baseline assessment."
+      },
+      {
+        name: "SIEM Log Aggregation & Correlation",
+        desc: "We ingest logs from your firewalls, servers, and cloud services into our SIEM engine. Suspicious patterns that would go unnoticed for months get flagged within minutes."
+      },
+      {
+        name: "Analyst-Backed Incident Response",
+        desc: "When we detect a real threat, an analyst investigates it — not a bot. You receive a root cause analysis and concrete remediation steps, not a vague alert."
+      },
+      {
+        name: "Email & Domain Threat Intelligence",
+        desc: "Monitoring for spoofed domains, phishing kits targeting your brand, and dark web mentions of your credentials."
+      }
     ],
     compliance: null
   },
   governance: {
     name: "Governance",
-    tagline: "Complete risk and compliance management",
+    tagline: "Full risk, compliance, and regulatory readiness",
     monthlyPrice: 210,
     annualPrice: 2100,
     annualSavings: 420,
-    protectsFrom: ["Regulatory fines", "Data breaches", "Targeted phishing campaigns"],
-    features: [
-      { name: "Everything in Guard", desc: "Full SIEM and incident response coverage." },
-      { name: "Compliance Mapping", desc: "Continuous state monitoring against regulatory frameworks." },
-      { name: "Employee Training", desc: "Certified security awareness training for your staff." }
+    protectsFrom: [
+      "NCA ECC regulatory penalties",
+      "Audit failures & license risk",
+      "Targeted spear-phishing on executives",
+      "Data breaches with legal liability"
     ],
-    compliance: ["NCA ECC 2.0 controls covered", "Your organization will be prepared for regulatory audits"]
+    features: [
+      {
+        name: "Everything in Guard",
+        desc: "Full SIEM monitoring, incident response, and email threat intelligence."
+      },
+      {
+        name: "NCA ECC 2.0 Compliance Mapping",
+        desc: "We continuously measure your posture against all 23 ECC controls and generate audit-ready evidence packs. When the regulator visits, you're ready."
+      },
+      {
+        name: "Certified Security Awareness Training",
+        desc: "Your employees are your biggest attack surface. Monthly phishing simulations and security training keep them sharp — and keep you compliant with ECC training requirements."
+      },
+      {
+        name: "Quarterly Executive Risk Briefing",
+        desc: "A structured 60-minute session with your C-suite, translating technical risk into board-level business language and ROI context."
+      }
+    ],
+    compliance: [
+      "23 NCA ECC 2.0 controls actively monitored",
+      "Audit-ready evidence packs generated monthly",
+      "Prepared for NCA assessments and regulatory inquiries"
+    ]
   },
   premium: {
     name: "Premium",
-    tagline: "Uncompromised security for high-risk environments",
+    tagline: "Uncompromising protection for high-value, high-risk environments",
     monthlyPrice: 340,
     annualPrice: 3400,
     annualSavings: 680,
-    protectsFrom: ["Advanced Persistent Threats", "Supply chain attacks", "Zero-day exploitation"],
-    features: [
-      { name: "Everything in Governance", desc: "Complete risk, compliance, and active defense." },
-      { name: "Deep Penetration Testing", desc: "Quarterly advanced manual penetration testing by certified experts." },
-      { name: "24/7 Dedicated Analyst", desc: "Direct access to our security team whenever you need them." }
+    protectsFrom: [
+      "Advanced Persistent Threats (APT groups)",
+      "Supply chain & third-party compromises",
+      "Zero-day exploitation",
+      "Nation-state level intrusion campaigns"
     ],
-    compliance: ["NCA ECC 2.0 controls covered", "ISO 27001 domains addressed", "Your organization will be prepared for regulatory audits"]
+    features: [
+      {
+        name: "Everything in Governance",
+        desc: "Complete NCA ECC compliance, SIEM, IR, training, and executive briefings."
+      },
+      {
+        name: "Quarterly Manual Penetration Testing",
+        desc: "Certified ethical hackers simulate real attack scenarios against your infrastructure every quarter. Not automated scans — actual manual exploitation attempts with a full report and remediation walkthrough."
+      },
+      {
+        name: "24/7 Dedicated Senior Analyst",
+        desc: "A named security analyst assigned exclusively to your account. Direct encrypted channel, guaranteed 15-minute response SLA, and priority escalation on all findings."
+      },
+      {
+        name: "ISO 27001 & NCA ECC Dual-Track Compliance",
+        desc: "Full alignment with both frameworks simultaneously — giving you the strongest possible compliance posture for enterprise contracts and international partners."
+      }
+    ],
+    compliance: [
+      "23 NCA ECC 2.0 controls actively monitored",
+      "ISO 27001 Annex A domains addressed",
+      "Dual-framework audit-ready evidence packs",
+      "Prepared for NCA, SAMA, and international regulatory audits"
+    ]
   }
 };
 
