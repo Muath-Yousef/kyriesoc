@@ -1,0 +1,14 @@
+Contact: mailto:security@socroot.com
+Contact: https://wa.me/962777545115
+Expires: 2027-01-01T00:00:00.000Z
+Acknowledgments: https://socroot.com/security.txt
+Preferred-Languages: en, ar
+Canonical: https://socroot.com/.well-known/security.txt
+Policy: https://socroot.com/security-policy
+Scope: *.socroot.com
+
+# SOC Root Responsible Disclosure Policy
+# We take security seriously. If you discover a vulnerability in our
+# infrastructure or applications, please report it responsibly.
+# We commit to a 72-hour initial response and do not pursue legal
+# action against good-faith security researchers.

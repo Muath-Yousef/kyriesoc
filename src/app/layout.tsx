@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import NavClient from "@/components/NavClient";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceMono = Space_Mono({
@@ -21,59 +22,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
       <body className="bg-[#0c0c0c] text-[#f5f5f4] font-sans antialiased min-h-screen">
-        {/* Navigation */}
-        <nav className="fixed top-0 left-0 right-0 z-50 h-[72px] border-b border-emerald-500/10 bg-[#0c0c0c]/80 backdrop-blur-xl">
-          <div className="container mx-auto px-6 h-full flex items-center justify-between">
-            {/* Logo */}
-            <a href="/" className="flex items-center gap-2 group">
-              <span className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c0c0c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-              </span>
-              <span className="font-bold text-lg tracking-tight">
-                <span className="text-emerald-400">SOC</span>
-                <span className="text-white"> Root</span>
-              </span>
-            </a>
-
-            {/* Nav Links */}
-            <div className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-400">
-              {[
-                { href: "/", label: "Home" },
-                { href: "/services", label: "Services" },
-                { href: "/about", label: "About" },
-                { href: "/training", label: "Training" },
-                { href: "/contact", label: "Contact" },
-              ].map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="hover:text-emerald-400 transition-colors relative group"
-                >
-                  {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-emerald-400 transition-all duration-300 group-hover:w-full" />
-                </a>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="flex items-center gap-3">
-              <a
-                href="/portal/login"
-                className="hidden md:inline-block text-sm text-neutral-400 hover:text-white transition-colors"
-              >
-                Sign In
-              </a>
-              <a
-                href="/scan"
-                className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] tracking-wide"
-              >
-                Free Scan
-              </a>
-            </div>
-          </div>
-        </nav>
+        {/* Navigation — client component handles mobile menu */}
+        <NavClient />
 
         <main className="pt-[72px] relative z-10">{children}</main>
 
