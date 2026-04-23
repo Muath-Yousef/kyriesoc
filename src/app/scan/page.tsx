@@ -81,9 +81,9 @@ export default function FreeScan() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
-           company_name: domain, 
+           company_name: target, 
            domain: target, 
-           contact_name: "Security Lead", 
+           contact_name: email.split("@")[0] || "Security Lead", 
            email: email, 
            newsletter: true 
         })
