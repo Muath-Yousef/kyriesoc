@@ -1,0 +1,3 @@
+Contact: security@socroot.com
+Preferred-Languages: en, ar
+Policy: https://socroot.com/security-policy

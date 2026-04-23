@@ -3,13 +3,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Blocked free email providers
-const BLOCKED_DOMAINS = new Set([
-  "gmail.com","yahoo.com","hotmail.com","outlook.com","protonmail.com",
-  "icloud.com","aol.com","mail.com","yandex.com","yandex.ru","zoho.com",
-  "gmx.com","live.com","msn.com","me.com","mac.com","googlemail.com",
-]);
-
 type Step = "gate" | "register" | "verify" | "scan" | "success" | "blocked";
 
 export default function FreeScan() {
@@ -29,7 +22,7 @@ export default function FreeScan() {
     return e.split("@")[1]?.toLowerCase() ?? "";
   }
 
-  function handleRegister(e: React.FormEvent) {
+  async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
     setEmailError("");
     const d = getDomain(email);
@@ -37,43 +30,75 @@ export default function FreeScan() {
       setEmailError("Please enter a valid email address.");
       return;
     }
-    if (BLOCKED_DOMAINS.has(d)) {
-      setEmailError("Free scan requires a company email address. Personal emails (Gmail, Yahoo, etc.) are not accepted.");
-      return;
+    
+    try {
+      const resp = await fetch("https://api.socroot.com/api/send-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+      const data = await resp.json();
+      if (!data.success) {
+        setEmailError(data.message || "Failed to send code.");
+        return;
+      }
+      setDomain(d);
+      setStep("verify");
+    } catch (err) {
+      setEmailError("Network error. Please try again later.");
     }
-    setDomain(d);
-    setStep("verify");
   }
 
-  function handleVerify(e: React.FormEvent) {
+  async function handleVerify(e: React.FormEvent) {
     e.preventDefault();
     setCodeError("");
-    if (verifyCode.trim().toUpperCase() !== MOCK_CODE) {
-      setCodeError("Invalid code. Hint: SOC-2026");
-      return;
+    try {
+      const resp = await fetch("https://api.socroot.com/api/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp: verifyCode.trim() })
+      });
+      const data = await resp.json();
+      if (!data.success) {
+        setCodeError(data.message || "Invalid code.");
+        return;
+      }
+      setStep("scan");
+    } catch (err) {
+      setCodeError("Network error. Please try again later.");
     }
-    // Check if this company domain has already used the free scan
-    const used = JSON.parse(localStorage.getItem("usedFreeScanDomains") ?? "[]") as string[];
-    if (used.includes(domain)) {
-      setStep("blocked");
-      return;
-    }
-    setStep("scan");
   }
 
-  function handleScan(e: React.FormEvent) {
+  async function handleScan(e: React.FormEvent) {
     e.preventDefault();
     setScanError("");
     if (!target.trim()) {
       setScanError("Please enter a target domain or IP.");
       return;
     }
-    // Record domain as having used the free scan
-    const used = JSON.parse(localStorage.getItem("usedFreeScanDomains") ?? "[]") as string[];
-    if (!used.includes(domain)) used.push(domain);
-    localStorage.setItem("usedFreeScanDomains", JSON.stringify(used));
-    setStep("success");
+    try {
+      const resp = await fetch("https://api.socroot.com/api/scan-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+           company_name: domain, 
+           domain: target, 
+           contact_name: "Security Lead", 
+           email: email, 
+           newsletter: true 
+        })
+      });
+      const data = await resp.json();
+      if (!data.success) {
+        setScanError(data.message || "Scan queueing failed.");
+        return;
+      }
+      setStep("success");
+    } catch (err) {
+      setScanError("Network error. Please try again later.");
+    }
   }
+
 
   return (
     <div className="min-h-screen py-20">
@@ -121,7 +146,6 @@ export default function FreeScan() {
                 <ul className="space-y-4">
                   {[
                     { icon: "✦", text: "One free scan per company domain — shared across all employees." },
-                    { icon: "✦", text: "Requires a valid business email — no Gmail, Yahoo, or Outlook." },
                     { icon: "✦", text: "We send a 6-character verification code to your email." },
                     { icon: "✦", text: "Scan is non-intrusive. No sensitive data is collected." },
                   ].map((item, i) => (
@@ -133,7 +157,7 @@ export default function FreeScan() {
                 </ul>
               </div>
               <button onClick={() => setStep("register")} className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-4 rounded-xl transition-all hover:shadow-[0_0_25px_rgba(16,185,129,0.35)] text-sm uppercase tracking-wider">
-                Continue with Company Email →
+                Continue →
               </button>
             </motion.div>
           )}

@@ -6,7 +6,8 @@ import { CheckCircle2 } from "lucide-react";
 
 const PLANS = [
   {
-    name: "Starter Scan",
+    id: "starter",
+    name: "Starter",
     price: 190,
     period: "year",
     desc: "One-time deep vulnerability assessment for small businesses.",
@@ -14,6 +15,7 @@ const PLANS = [
     popular: false,
   },
   {
+    id: "guard",
     name: "Guard",
     price: 160,
     period: "month",
@@ -22,6 +24,7 @@ const PLANS = [
     popular: false,
   },
   {
+    id: "governance",
     name: "Governance",
     price: 210,
     period: "month",
@@ -30,7 +33,8 @@ const PLANS = [
     popular: true,
   },
   {
-    name: "Premium SOC",
+    id: "premium",
+    name: "Premium",
     price: 340,
     period: "month",
     desc: "24/7 Threat Detection, SIEM, and Incident Response.",
@@ -63,12 +67,11 @@ export default function Services() {
       <div className="container mx-auto px-6">
 
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Pricing</p>
+        <div className="text-center max-w-3xl mx-auto mb-20 fade-in group">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Transparent <span className="text-emerald-400">Security Pricing</span>
+            Security That <span className="text-emerald-400">Scales With You</span>
           </h1>
-          <p className="text-neutral-400">Enterprise-grade capabilities scaled efficiently for Jordan & UAE businesses. No hidden fees.</p>
+          <p className="text-neutral-400">Enterprise-grade capabilities scaled efficiently for businesses internationally. No hidden fees.</p>
         </div>
 
         {/* Discount code */}
@@ -129,7 +132,7 @@ export default function Services() {
                   ))}
                 </ul>
 
-                <a href="/contact" className={`w-full py-3 rounded-xl text-center text-sm font-bold transition-all ${
+                <a href={`/plans/${plan.id}`} className={`w-full py-3 rounded-xl text-center text-sm font-bold transition-all block ${
                   plan.popular
                     ? "bg-emerald-500 hover:bg-emerald-400 text-black hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
                     : "bg-white/8 hover:bg-white/15 text-white border border-white/10"

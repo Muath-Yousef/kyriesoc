@@ -14,7 +14,7 @@ export default function LoginPortal() {
 
   const MOCK_CODE = "SOC-2026";
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
 
@@ -22,8 +22,22 @@ export default function LoginPortal() {
       if (!name.trim()) { setError("Please enter your full name."); return; }
       if (!email.includes("@") || !email.includes(".")) { setError("Please enter a valid email."); return; }
       if (password.length < 6) { setError("Password must be at least 6 characters."); return; }
-      // Send verification
-      setVerifyStep(true);
+      
+      try {
+        const resp = await fetch("https://api.socroot.com/api/send-otp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        const data = await resp.json();
+        if (!data.success) {
+          setError(data.message || "Failed to send verification code.");
+          return;
+        }
+        setVerifyStep(true);
+      } catch (err) {
+        setError("Network error. Please try again later.");
+      }
       return;
     }
 
@@ -44,19 +58,37 @@ export default function LoginPortal() {
     window.location.href = "/";
   }
 
-  function handleVerify(e: React.FormEvent) {
+  async function handleVerify(e: React.FormEvent) {
     e.preventDefault();
-    if (verifyCode.trim().toUpperCase() !== MOCK_CODE) {
-      setError("Invalid verification code. Hint: SOC-2026");
-      return;
+    try {
+      const resp = await fetch("https://api.socroot.com/api/verify-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, otp: verifyCode.trim() })
+      });
+      const data = await resp.json();
+      if (!data.success) {
+        setError(data.message || "Invalid verification code.");
+        return;
+      }
+      
+      localStorage.setItem("soc_user", JSON.stringify({ name, email, password }));
+      localStorage.setItem("soc_auth", "true");
+      localStorage.setItem("soc_auth_email", email);
+      localStorage.setItem("soc_auth_name", name);
+      localStorage.setItem("soc_verified", "true");
+      window.location.href = "/training";
+      
+      // Optionally submit to newsletter silently
+      fetch("https://api.socroot.com/api/subscribe-newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, name })
+      }).catch(console.error);
+      
+    } catch (err) {
+      setError("Network error. Please try again later.");
     }
-    // Save account
-    localStorage.setItem("soc_user", JSON.stringify({ name, email, password }));
-    localStorage.setItem("soc_auth", "true");
-    localStorage.setItem("soc_auth_email", email);
-    localStorage.setItem("soc_auth_name", name);
-    localStorage.setItem("soc_verified", "true");
-    window.location.href = "/training";
   }
 
   return (

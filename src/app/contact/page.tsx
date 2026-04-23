@@ -49,9 +49,10 @@ export default function Contact() {
               <h3 className="text-lg font-bold text-emerald-400 mb-6">Direct Channels</h3>
               <ul className="space-y-6">
                 {[
-                  { icon: "✉", title: "Security Operations Center", value: "soc@socroot.com" },
-                  { icon: "☎", title: "Emergency Incident Hotline (Jordan)", value: "+962 7 9876 5432" },
-                  { icon: "☎", title: "Emergency Incident Hotline (UAE)", value: "+971 50 123 4567" },
+                  { icon: "✉", title: "General Inquiries", value: "socroot@outlook.com" },
+                  { icon: "🛠️", title: "Technical Support", value: "support.socroot@gmail.com" },
+                  { icon: "💬", title: "WhatsApp (Fastest Response)", value: "+962 777 545 115" },
+                  { icon: "📡", title: "Telegram", value: "@RootSoc" },
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm shrink-0">

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceMono = Space_Mono({
@@ -10,10 +11,10 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SOC Root — Enterprise Cybersecurity Platform",
+  title: "SOC Root | Enterprise Cybersecurity",
   description:
-    "Military-grade automated cybersecurity for Jordan & UAE businesses. Continuous pentesting, SIEM monitoring, NCA ECC compliance — at SMB prices.",
-  keywords: "cybersecurity, SOC, SIEM, pentesting, NCA ECC, ISO 27001, Jordan, UAE",
+    "Military-grade cybersecurity for businesses internationally. Continuous pentesting, SIEM monitoring, NCA ECC compliance — at SMB prices.",
+  keywords: "cybersecurity, SOC, SIEM, pentesting, NCA ECC, ISO 27001",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -95,7 +96,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   </span>
                 </div>
                 <p className="text-neutral-500 text-sm leading-relaxed max-w-sm">
-                  Democratizing enterprise-grade cybersecurity for Jordan & UAE businesses. Powered by automation, AI, and open-source intelligence.
+                  Democratizing enterprise-grade cybersecurity for businesses internationally. Powered by automation, expert analysis, and open-source intelligence.
                 </p>
                 <div className="flex gap-4 mt-6">
                   <span className="text-xs font-mono text-neutral-600 bg-white/5 px-3 py-1.5 rounded border border-white/5">NCA ECC 2.0</span>
@@ -123,6 +124,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     { label: "About", href: "/about" },
                     { label: "Contact", href: "/contact" },
                     { label: "Portal", href: "/portal/login" },
+                    { label: "Responsible Disclosure Policy", href: "/security.txt" },
+                    { label: "NCA ECC 2.0 Docs", href: "/compliance/nca-ecc" },
+                    { label: "ISO 27001", href: "/compliance/iso-27001" },
                   ].map((s) => (
                     <li key={s.label}>
                       <a href={s.href} className="text-sm text-neutral-400 hover:text-emerald-400 transition-colors">{s.label}</a>
@@ -132,12 +136,42 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </div>
             </div>
 
+            {/* Trust Badges */}
+            <div className="border-t border-white/5 pt-10 mt-4 mb-8">
+              <p className="text-center text-xs font-mono text-neutral-600 uppercase tracking-widest mb-6">Compliance &amp; Trust</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                {[
+                  { icon: "📋", label: "NCA ECC 2.0", sub: "Aligned", href: "/compliance/nca-ecc" },
+                  { icon: "🛡️", label: "ISO 27001", sub: "Framework", href: "/compliance/iso-27001" },
+                  { icon: "🔒", label: "TLS Encrypted", sub: "All Comms", href: null },
+                  { icon: "🔍", label: "Specialist Review", sub: "Every Report", href: null },
+                  { icon: "🚫", label: "Data Privacy", sub: "Never Sold", href: null },
+                  { icon: "⚡", label: "24hr Turnaround", sub: "Max Delivery", href: null },
+                ].map((badge) => (
+                  badge.href
+                    ? <a key={badge.label} href={badge.href} className="flex flex-col items-center gap-1 px-4 py-3 bg-white/[0.03] border border-white/5 rounded-xl hover:border-emerald-500/30 hover:bg-emerald-500/5 transition-all min-w-[90px]">
+                        <span className="text-xl">{badge.icon}</span>
+                        <span className="text-xs font-bold text-neutral-300">{badge.label}</span>
+                        <span className="text-[10px] text-neutral-600">{badge.sub}</span>
+                      </a>
+                    : <div key={badge.label} className="flex flex-col items-center gap-1 px-4 py-3 bg-white/[0.03] border border-white/5 rounded-xl min-w-[90px]">
+                        <span className="text-xl">{badge.icon}</span>
+                        <span className="text-xs font-bold text-neutral-300">{badge.label}</span>
+                        <span className="text-[10px] text-neutral-600">{badge.sub}</span>
+                      </div>
+                ))}
+              </div>
+            </div>
+
             <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600">
               <p>© 2026 SOC Root — All rights reserved.</p>
-              <p>Engineered by <span className="text-emerald-500">Muath Yousef</span> · Serving Jordan & UAE</p>
+              <p>Engineered by <span className="text-emerald-500">Muath Yousef</span> · Serving businesses internationally</p>
             </div>
           </div>
         </footer>
+
+        {/* Floating WhatsApp Button */}
+        <WhatsAppButton />
       </body>
     </html>
   );

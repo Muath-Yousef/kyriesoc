@@ -31,8 +31,8 @@ const CAPABILITIES = [
         <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 12 2.1 9.1" /><path d="m12 2 3.6 7.2" />
       </svg>
     ),
-    title: "LLM Triage & Analysis",
-    desc: "Machine learning model evaluates raw findings, eliminating false positives instantly and prioritizing critical CVEs.",
+    title: "Expert Triage & Analysis",
+    desc: "Advanced detection methodology evaluates raw findings, eliminating false positives instantly and prioritizing critical CVEs.",
     tag: "AI",
   },
   {
@@ -75,10 +75,10 @@ const TECH_STACK = {
 };
 
 const STATS = [
-  { value: "24/7", label: "Monitoring" },
-  { value: "NCA ECC", label: "Compliant" },
-  { value: "ISO 27001", label: "Aligned" },
-  { value: "4+", label: "Service Plans" },
+  { value: "847", label: "Vulnerabilities assessed this year" },
+  { value: "12", label: "Critical findings resolved" },
+  { value: "24", label: "Hour max report turnaround" },
+  { value: "NCA ECC", label: "Compliant Framework" },
 ];
 
 const TIMELINE = [
@@ -166,6 +166,12 @@ export default function Home() {
                 <a href="/services" className="border border-white/10 hover:border-emerald-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm">
                   View Services →
                 </a>
+              </motion.div>
+              
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-6">
+                 <a href="/sample-report.pdf" target="_blank" className="text-emerald-400 text-sm hover:underline flex items-center gap-2 font-mono">
+                   View a sample assessment report →
+                 </a>
               </motion.div>
 
               {/* Stats Row */}

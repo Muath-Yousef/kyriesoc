@@ -23,10 +23,10 @@ export default function About() {
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
             <h2 className="text-3xl font-extrabold mb-5">Our Mission</h2>
             <p className="text-neutral-400 mb-5 leading-relaxed">
-              Most businesses in Jordan and the UAE are exposed to advanced cyber threats simply because enterprise-grade defense systems are priced out of their reach.
+              Most businesses internationally are exposed to advanced cyber threats simply because enterprise-grade defense systems are priced out of their reach.
             </p>
             <p className="text-neutral-400 mb-8 leading-relaxed">
-              SOC Root was built to solve this. By leveraging automation, AI-assisted analysis, and open-source intelligence matrices, we deliver the power of a fully staffed Security Operations Center at a fraction of the cost.
+              SOC Root was built to solve this. By leveraging automation, technology-driven methodology, and open-source intelligence matrices, we deliver the power of a fully staffed Security Operations Center at a fraction of the cost.
             </p>
             <div className="flex flex-wrap gap-2">
               {TECH.map((t) => (
