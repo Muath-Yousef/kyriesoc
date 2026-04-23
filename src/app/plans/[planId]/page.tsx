@@ -349,11 +349,31 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
                 </>
               ) : (
                 <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-emerald-500/20 text-emerald-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">✓</div>
-                  <h3 className="text-xl font-bold text-white">Order Generated</h3>
-                  <p className="text-neutral-400 text-sm">Your Order ID is: <span className="text-emerald-400 font-mono bg-emerald-500/10 px-2 py-1 rounded">{orderInfo.order_id}</span></p>
-                  
-                  <div className="bg-[#1A1A1A] p-4 rounded-xl border border-white/5 text-left space-y-3 my-6">
+                  <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Order Generated Successfully</h3>
+                  <p className="text-neutral-400 text-sm">Save your Order ID — you'll need it to track your service status.</p>
+
+                  {/* Order ID with Copy Button */}
+                  <div className="flex items-center gap-2 bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4">
+                    <div className="flex-1 text-left">
+                      <p className="text-xs text-neutral-500 mb-1">Your Order ID</p>
+                      <p className="text-emerald-400 font-mono font-bold text-lg tracking-wider">{orderInfo.order_id}</p>
+                    </div>
+                    <button
+                      onClick={() => navigator.clipboard?.writeText(orderInfo.order_id)}
+                      className="p-2 rounded-lg hover:bg-emerald-500/10 text-neutral-500 hover:text-emerald-400 transition-all"
+                      title="Copy Order ID"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                    </button>
+                  </div>
+
+                  {/* Payment Instructions */}                  
+                  <div className="bg-[#1A1A1A] p-4 rounded-xl border border-white/5 text-left space-y-3 my-2">
                     <p className="text-xs text-neutral-500 uppercase tracking-widest font-mono border-b border-white/5 pb-2 mb-2">{orderInfo.payment_details?.label || "Payment Instructions"}</p>
                     <p className="text-sm text-white">{orderInfo.payment_details?.instructions}</p>
                     
@@ -381,11 +401,21 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
                       </div>
                     )}
                   </div>
+
+                  <p className="text-xs text-neutral-500">Our team verifies payments within 1 hour. You'll receive a confirmation on WhatsApp or email.</p>
                   
-                  <p className="text-xs text-neutral-500">Please complete the payment to activate your service. Our team will verify the payment within 1 hour.</p>
-                  <button onClick={() => setShowModal(false)} className="w-full bg-white/10 hover:bg-white/20 text-white py-3 rounded-xl transition-all text-sm font-bold">
-                    I've completed the payment →
-                  </button>
+                  <div className="flex flex-col gap-2 pt-1">
+                    <a
+                      href={`/portal/order-status?id=${orderInfo.order_id}`}
+                      className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
+                      Track My Order
+                    </a>
+                    <button onClick={() => setShowModal(false)} className="w-full bg-white/5 hover:bg-white/10 text-neutral-400 py-3 rounded-xl transition-all text-sm">
+                      I've completed the payment → Close
+                    </button>
+                  </div>
                 </div>
               )}
             </motion.div>
