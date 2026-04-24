@@ -146,7 +146,7 @@ export default function About() {
                     LinkedIn
                   </a>
                   <a
-                    href="mailto:socroot@outlook.com"
+                    href="/contact"
                     className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>

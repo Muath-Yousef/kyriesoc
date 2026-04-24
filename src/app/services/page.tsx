@@ -272,7 +272,7 @@ export default function Services() {
             ))}
           </div>
           <p className="text-neutral-700 text-xs mt-6 font-mono">
-            For SWIFT/IBAN details: <a href="mailto:socroot@outlook.com?subject=Payment%20Inquiry" className="text-emerald-500 hover:underline">socroot@outlook.com</a>
+            For SWIFT/IBAN details: <a href="/contact" className="text-emerald-500 hover:underline">Contact Sales Support</a>
           </p>
         </div>
       </div>

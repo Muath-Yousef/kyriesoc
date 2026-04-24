@@ -165,7 +165,7 @@ export default function Terms() {
             <h2 className="text-lg font-bold text-white mb-4">10. Contact</h2>
             <p className="text-neutral-400 text-sm leading-relaxed">
               For any questions regarding these Terms, contact:{" "}
-              <a href="mailto:socroot@outlook.com" className="text-emerald-400 hover:underline">
+              <a href="/contact" className="text-emerald-400 hover:underline">
                 socroot@outlook.com
               </a>{" "}
               with subject line "Terms Inquiry".
@@ -181,7 +181,7 @@ export default function Terms() {
           </p>
           <div className="flex gap-4 text-xs">
             <a href="/privacy" className="text-emerald-500 hover:text-emerald-400 transition-colors">Privacy Policy</a>
-            <a href="/.well-known/security.txt" className="text-neutral-600 hover:text-neutral-400 transition-colors">security.txt</a>
+            <a href="/security" className="text-neutral-600 hover:text-neutral-400 transition-colors">Security Policy</a>
           </div>
         </div>
 

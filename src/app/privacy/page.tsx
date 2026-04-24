@@ -116,7 +116,7 @@ export default function PrivacyPolicy() {
           <div className="mt-6 p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
             <p className="text-sm text-neutral-400 leading-relaxed">
               <strong className="text-emerald-400">Summary:</strong> We collect only what we need to deliver our services. We encrypt everything. We never sell your data. You can request deletion at any time by emailing{" "}
-              <a href="mailto:socroot@outlook.com" className="text-emerald-400 underline underline-offset-2">
+              <a href="/contact" className="text-emerald-400 underline underline-offset-2">
                 socroot@outlook.com
               </a>.
             </p>
@@ -161,7 +161,7 @@ export default function PrivacyPolicy() {
             We take your privacy seriously. Contact our data protection point of contact directly.
           </p>
           <a
-            href="mailto:socroot@outlook.com?subject=Privacy%20Request"
+            href="/contact"
             className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-xl text-sm transition-all"
           >
             Contact Data Controller →

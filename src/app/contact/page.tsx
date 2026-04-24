@@ -285,15 +285,15 @@ export default function Contact() {
               <h3 className="text-base font-bold mb-2">Encrypted Disclosure</h3>
               <p className="text-neutral-500 text-sm mb-4 leading-relaxed">
                 Disclosing a vulnerability or active breach? Reach us via WhatsApp or email — we follow responsible disclosure best practices per our{" "}
-                <a href="/.well-known/security.txt" className="text-emerald-400 hover:underline">
-                  security.txt
+                <a href="/security" className="text-emerald-400 hover:underline">
+                  Security Policy
                 </a>.
               </p>
               <a
-                href="/.well-known/security.txt"
+                href="/security"
                 className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors border border-emerald-500/20 px-3 py-2 rounded-lg"
               >
-                View security.txt →
+                View Security Policy →
               </a>
             </div>
           </div>

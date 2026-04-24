@@ -19,7 +19,7 @@ const COMPANY_LINKS = [
   { label: "NCA ECC 2.0 Docs", href: "/compliance/nca-ecc" },
   { label: "Privacy Policy", href: "/privacy" },
   { label: "Terms of Service", href: "/terms" },
-  { label: "Security Policy", href: "/.well-known/security.txt" },
+  { label: "Security Policy", href: "/security" },
 ];
 const TRUST_BADGES = [
   { icon: "📋", label: "NCA ECC 2.0", sub: "Aligned", href: "/compliance/nca-ecc" },
