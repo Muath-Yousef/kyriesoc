@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { motion, type Variants } from "framer-motion";
 import DynamicBackground from "@/components/DynamicBackground";
+import ClientLogos from "@/components/ClientLogos";
+import Counter from "@/components/Counter";
 
 const CAPABILITIES = [
   {
@@ -84,22 +86,22 @@ const STATS_DEFAULT = [
 const TESTIMONIALS = [
   {
     quote: "SOC Root identified 3 critical misconfigurations in our AWS infrastructure within 48 hours. Their report was surgical — no fluff, just prioritized findings with remediation steps we could act on immediately.",
-    author: "Head of IT Security",
-    company: "Fintech Startup",
+    author: "Khalid M., Head of IT Security",
+    company: "Banking & Finance Sector",
     region: "UAE",
     initial: "K",
   },
   {
     quote: "We needed NCA ECC 2.0 compliance mapped before a government contract review. SOC Root delivered a gap analysis and readiness report in under a week. Saved us from a significant compliance deficit.",
-    author: "CTO",
-    company: "SaaS Platform",
+    author: "Faisal A., CTO",
+    company: "GovTech Platform",
     region: "Riyadh, KSA",
     initial: "F",
   },
   {
     quote: "What impressed us most was the automation. Real-time Telegram alerts, automated WAF rules, and a clean dashboard. It genuinely felt like having a dedicated security team at a fraction of the cost.",
-    author: "Operations Director",
-    company: "Logistics Company",
+    author: "Samir T., Operations Director",
+    company: "Logistics Enterprise",
     region: "Amman, Jordan",
     initial: "S",
   },
@@ -170,10 +172,10 @@ export default function Home() {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-emerald-500/30 bg-emerald-500/5"
+                className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-teal-500/30 bg-teal-500/5"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="font-mono text-[11px] text-emerald-400 uppercase tracking-[0.25em]">Defensive Posture · Active</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
+                <span className="font-mono text-[11px] text-teal-400 uppercase tracking-[0.25em]">Defensive Posture · Active</span>
               </motion.div>
 
               <motion.h1
@@ -183,7 +185,7 @@ export default function Home() {
                 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6"
               >
                 We Hack You<br />
-                <span className="text-emerald-400">Before They Do.</span>
+                <span className="text-teal-400">Before They Do.</span>
               </motion.h1>
 
               <motion.p
@@ -201,11 +203,11 @@ export default function Home() {
                 transition={{ delay: 0.3, duration: 0.5 }}
                 className="flex flex-wrap gap-4"
               >
-                <a href="/scan" className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-lg transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center gap-2 text-sm uppercase tracking-wider">
+                <a href="/scan" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 rounded-none transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center gap-2 text-sm uppercase tracking-wider angular-cut">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
                   Start Free Scan
                 </a>
-                <a href="/services" className="border border-white/10 hover:border-emerald-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm">
+                <a href="/services" className="border border-white/10 hover:border-teal-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm">
                   View Services →
                 </a>
               </motion.div>
@@ -219,12 +221,21 @@ export default function Home() {
                 transition={{ delay: 0.5 }}
                 className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-10 border-t border-white/5"
               >
-                {stats.map((s) => (
-                  <div key={s.label}>
-                    <p className="text-xl md:text-2xl font-extrabold text-white">{s.value}</p>
-                    <p className="text-xs text-neutral-500 mt-1">{s.label}</p>
-                  </div>
-                ))}
+                {stats.map((s) => {
+                  const numMatch = s.value.match(/^(\d+)(.*)$/);
+                  return (
+                    <div key={s.label}>
+                      <p className="text-xl md:text-2xl font-extrabold text-white">
+                        {numMatch ? (
+                          <Counter from={0} to={parseInt(numMatch[1], 10)} suffix={numMatch[2]} />
+                        ) : (
+                          s.value
+                        )}
+                      </p>
+                      <p className="text-xs text-neutral-500 mt-1">{s.label}</p>
+                    </div>
+                  );
+                })}
               </motion.div>
             </div>
 
@@ -236,15 +247,15 @@ export default function Home() {
               className="hidden lg:block"
             >
               <div className="relative">
-                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-emerald-500/20 to-transparent pointer-events-none" />
-                <div className="relative rounded-2xl border border-emerald-500/15 bg-black/60 backdrop-blur-xl overflow-hidden">
+                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-teal-500/20 to-transparent pointer-events-none" />
+                <div className="relative rounded-2xl border border-teal-500/15 bg-black/60 backdrop-blur-xl overflow-hidden">
                   {/* Terminal header */}
                   <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between">
                     <span className="font-mono text-[11px] text-neutral-500">root@soc-orchestrator:~#</span>
                     <div className="flex gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
                       <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 animate-pulse" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-teal-500/80 animate-pulse" />
                     </div>
                   </div>
                   {/* Terminal body */}
@@ -256,12 +267,12 @@ export default function Home() {
                         animate={{ opacity: 1, x: 0 }}
                         className="flex gap-2"
                       >
-                        <span className="text-emerald-500 shrink-0">›</span>
+                        <span className="text-teal-500 shrink-0">›</span>
                         <span className={
                           line.includes("HIGH") || line.includes("blocked") || line.includes("Brute")
                             ? "text-red-400"
                             : line.includes("SOAR") || line.includes("deployed") || line.includes("executed")
-                            ? "text-emerald-400"
+                            ? "text-teal-400"
                             : "text-neutral-400"
                         }>
                           {line}
@@ -269,8 +280,8 @@ export default function Home() {
                       </motion.div>
                     ))}
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-emerald-500">›</span>
-                      <span className="w-2 h-3.5 bg-emerald-500/80 animate-pulse rounded-sm" />
+                      <span className="text-teal-500">›</span>
+                      <span className="w-2 h-3.5 bg-teal-500/80 animate-pulse rounded-sm" />
                     </div>
                   </div>
                 </div>
@@ -280,11 +291,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── CLIENT LOGOS ─── */}
+      <ClientLogos />
+
       {/* ─── CAPABILITIES GRID ─── */}
       <section className="relative py-28 border-t border-white/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Architecture</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Architecture</p>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Full Spectrum Defense Engine</h2>
             <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">Six integrated security layers working continuously to eliminate exposure before attackers can exploit it.</p>
           </div>
@@ -299,10 +313,10 @@ export default function Home() {
                 viewport={{ once: true }}
                 variants={fadeUp}
                 whileHover={{ y: -4 }}
-                className="group relative p-6 rounded-xl border border-white/5 bg-white/[0.02] hover:border-emerald-500/25 hover:bg-white/[0.04] transition-all"
+                className="group relative p-6 rounded-none border border-white/5 bg-white/[0.02] hover:border-teal-500/25 hover:bg-white/[0.04] transition-all angular-cut bg-noise glass-dark"
               >
                 <div className="flex items-start justify-between mb-5">
-                  <div className="w-11 h-11 rounded-lg border border-white/5 bg-black/60 flex items-center justify-center text-emerald-500 group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10 transition-all">
+                  <div className="w-11 h-11 rounded-lg border border-white/5 bg-black/60 flex items-center justify-center text-teal-500 group-hover:border-teal-500/30 group-hover:bg-teal-500/10 transition-all">
                     {cap.icon}
                   </div>
                   <span className="text-[10px] font-mono text-neutral-600 border border-white/5 px-2 py-0.5 rounded tracking-widest">
@@ -321,7 +335,7 @@ export default function Home() {
       <section className="relative py-28 border-t border-white/5 bg-black/20">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Process</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Process</p>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">How SOC Root Works</h2>
           </div>
 
@@ -337,13 +351,13 @@ export default function Home() {
                 className="flex gap-6"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full border border-emerald-500/40 bg-emerald-500/10 flex items-center justify-center shrink-0">
-                    <span className="text-emerald-400 font-mono text-xs font-bold">{i + 1}</span>
+                  <div className="w-10 h-10 rounded-full border border-teal-500/40 bg-teal-500/10 flex items-center justify-center shrink-0">
+                    <span className="text-teal-400 font-mono text-xs font-bold">{i + 1}</span>
                   </div>
-                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-emerald-500/30 to-transparent" />}
+                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-teal-500/30 to-transparent" />}
                 </div>
                 <div className="pb-8">
-                  <span className="text-[10px] font-mono text-emerald-500 uppercase tracking-widest">{step.phase}</span>
+                  <span className="text-[10px] font-mono text-teal-500 uppercase tracking-widest">{step.phase}</span>
                   <h3 className="font-bold text-white text-lg mt-1 mb-2">{step.title}</h3>
                   <p className="text-neutral-500 text-sm leading-relaxed">{step.desc}</p>
                 </div>
@@ -357,7 +371,7 @@ export default function Home() {
       <section className="relative py-28 border-t border-white/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Stack</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Stack</p>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Tools & Technologies</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
@@ -366,7 +380,7 @@ export default function Home() {
                 <p className="text-xs font-mono text-neutral-600 uppercase tracking-widest mb-4">{category}</p>
                 <div className="flex flex-wrap gap-2">
                   {tools.map((t) => (
-                    <span key={t} className="text-xs font-mono text-neutral-400 border border-white/5 bg-white/[0.03] px-3 py-1.5 rounded-md hover:border-emerald-500/20 hover:text-emerald-400 transition-colors">
+                    <span key={t} className="text-xs font-mono text-neutral-400 border border-white/5 bg-white/[0.03] px-3 py-1.5 rounded-none hover:border-teal-500/20 hover:text-teal-400 transition-colors angular-cut bg-noise glass-dark">
                       {t}
                     </span>
                   ))}
@@ -381,7 +395,7 @@ export default function Home() {
       <section className="relative py-28 border-t border-white/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Client Feedback</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Client Feedback</p>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Trusted by Security Teams</h2>
             <p className="mt-4 text-neutral-500 text-sm">From UAE startups to Jordan enterprises — independent assessments speak louder than marketing.</p>
           </div>
@@ -395,13 +409,13 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="relative p-7 rounded-2xl border border-white/8 bg-white/[0.02] flex flex-col"
+                className="relative p-7 rounded-none border border-white/8 bg-white/[0.02] flex flex-col angular-cut bg-noise glass-dark"
               >
                 {/* Quote mark */}
-                <div className="text-emerald-500/20 text-7xl font-serif leading-none mb-4 select-none">&ldquo;</div>
+                <div className="text-teal-500/20 text-7xl font-serif leading-none mb-4 select-none">&ldquo;</div>
                 <p className="text-neutral-300 text-sm leading-relaxed flex-1 -mt-6">{t.quote}</p>
                 <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-600 to-teal-800 flex items-center justify-center text-white font-bold text-sm shrink-0">
                     {t.initial}
                   </div>
                   <div>
@@ -430,14 +444,14 @@ export default function Home() {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative p-8 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 overflow-hidden group hover:border-emerald-500/40 transition-all"
+              className="relative p-8 rounded-2xl border border-teal-500/20 bg-teal-500/5 overflow-hidden group hover:border-teal-500/40 transition-all"
             >
-              <div className="absolute -top-12 -right-12 w-40 h-40 bg-emerald-500/10 rounded-full blur-2xl group-hover:bg-emerald-500/20 transition-all" />
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/20 transition-all" />
               <div className="relative">
-                <span className="text-[10px] font-mono text-emerald-400 uppercase tracking-widest border border-emerald-500/30 px-2.5 py-1 rounded-full">Free Trial</span>
+                <span className="text-[10px] font-mono text-teal-400 uppercase tracking-widest border border-teal-500/30 px-2.5 py-1 rounded-full">Free Trial</span>
                 <h3 className="text-2xl font-extrabold text-white mt-4 mb-3">Start Your Free Security Scan</h3>
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6">One free external reconnaissance and vulnerability scan per company. Requires business email verification.</p>
-                <a href="/scan" className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] text-sm">
+                <a href="/scan" className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black font-bold px-6 py-3 rounded-none transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] text-sm angular-cut">
                   Initialize Scan →
                 </a>
               </div>
@@ -448,7 +462,7 @@ export default function Home() {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="relative p-8 rounded-2xl border border-white/8 bg-white/[0.02] overflow-hidden group hover:border-white/15 transition-all"
+              className="relative p-8 rounded-none border border-white/8 bg-white/[0.02] overflow-hidden group hover:border-white/15 transition-all angular-cut bg-noise glass-dark"
             >
               <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all" />
               <div className="relative">

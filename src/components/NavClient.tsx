@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 
+import { ClipboardList, Key, BookOpen, LogOut } from "lucide-react";
+
 const NAV_LINKS = [
   { href: "/", label: "Home" },
   { href: "/services", label: "Services" },
@@ -14,8 +16,8 @@ const NAV_LINKS = [
 ];
 
 const PORTAL_LINKS = [
-  { href: "/portal/order-status", label: "Track Order", icon: "📋" },
-  { href: "/portal/login", label: "Sign In", icon: "🔑" },
+  { href: "/portal/order-status", label: "Track Order", icon: <ClipboardList className="w-4 h-4" /> },
+  { href: "/portal/login", label: "Sign In", icon: <Key className="w-4 h-4" /> },
 ];
 
 export default function NavClient() {
@@ -74,20 +76,20 @@ export default function NavClient() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 h-[72px] border-b transition-all duration-300 ${
           scrolled
-            ? "border-emerald-500/15 bg-[#0c0c0c]/95 backdrop-blur-xl shadow-[0_1px_30px_rgba(0,0,0,0.4)]"
-            : "border-emerald-500/10 bg-[#0c0c0c]/80 backdrop-blur-xl"
+            ? "border-teal-500/15 bg-[#0c0c0c]/95 backdrop-blur-xl shadow-[0_1px_30px_rgba(0,0,0,0.4)]"
+            : "border-teal-500/10 bg-[#0c0c0c]/80 backdrop-blur-xl"
         }`}
       >
         <div className="container mx-auto px-6 h-full flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group shrink-0">
-            <span className="w-8 h-8 rounded-lg bg-emerald-500 flex items-center justify-center group-hover:bg-emerald-400 transition-colors">
+            <span className="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center group-hover:bg-teal-400 transition-colors">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c0c0c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
             </span>
             <span className="font-bold text-lg tracking-tight">
-              <span className="text-emerald-400">SOC</span>
+              <span className="text-teal-400">SOC</span>
               <span className="text-white"> Root</span>
             </span>
           </Link>
@@ -98,13 +100,13 @@ export default function NavClient() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`hover:text-emerald-400 transition-colors relative group py-1 ${
+                className={`hover:text-teal-400 transition-colors relative group py-1 ${
                   isActive(link.href) ? "text-white" : ""
                 }`}
               >
                 {link.label}
                 <span
-                  className={`absolute -bottom-1 left-0 h-px bg-emerald-400 transition-all duration-300 group-hover:w-full ${
+                  className={`absolute -bottom-1 left-0 h-px bg-teal-400 transition-all duration-300 group-hover:w-full ${
                     isActive(link.href) ? "w-full" : "w-0"
                   }`}
                 />
@@ -116,7 +118,7 @@ export default function NavClient() {
           <div className="hidden md:flex items-center gap-3">
             <Link
               href="/portal/order-status"
-              className="text-sm text-neutral-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5"
+              className="text-sm text-neutral-500 hover:text-teal-400 transition-colors flex items-center gap-1.5"
             >
               <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
@@ -131,7 +133,7 @@ export default function NavClient() {
                   onClick={() => setShowAccountMenu(!showAccountMenu)}
                   className="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-white/5 transition-all"
                 >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
                     {initials || "U"}
                   </div>
                   <span className="text-sm text-neutral-300 font-medium max-w-[100px] truncate">{userName.split(" ")[0]}</span>
@@ -187,7 +189,7 @@ export default function NavClient() {
 
             <Link
               href="/scan"
-              className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] tracking-wide"
+              className="bg-teal-500 hover:bg-teal-400 text-black font-bold text-sm px-5 py-2.5 rounded-none transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] tracking-wide angular-cut"
             >
               Free Scan
             </Link>
@@ -232,13 +234,13 @@ export default function NavClient() {
                 href={link.href}
                 className={`flex items-center justify-between py-3 px-4 rounded-xl text-sm font-medium transition-all ${
                   isActive(link.href)
-                    ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20"
+                    ? "bg-teal-500/10 text-teal-400 border border-teal-500/20"
                     : "text-neutral-300 hover:bg-white/5 hover:text-white"
                 }`}
               >
                 {link.label}
                 {isActive(link.href) && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-teal-500" />
                 )}
               </Link>
             ))}
@@ -248,7 +250,7 @@ export default function NavClient() {
               {isLoggedIn ? (
                 <>
                   <div className="flex items-center gap-3 px-4 py-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center text-white text-sm font-bold shrink-0">
                       {initials || "U"}
                     </div>
                     <div className="min-w-0">
@@ -258,15 +260,15 @@ export default function NavClient() {
                   </div>
                   <Link href="/training"
                     className="flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-all">
-                    <span>📚</span> My Training
+                    <BookOpen className="w-4 h-4" /> My Training
                   </Link>
                   <Link href="/portal/order-status"
                     className="flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-all">
-                    <span>📋</span> My Orders
+                    <ClipboardList className="w-4 h-4" /> My Orders
                   </Link>
                   <button onClick={handleLogout}
                     className="w-full flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-red-400 hover:bg-red-500/10 transition-all text-left">
-                    <span>🚪</span> Sign Out
+                    <LogOut className="w-4 h-4" /> Sign Out
                   </button>
                 </>
               ) : (
@@ -288,7 +290,7 @@ export default function NavClient() {
             <div className="pt-3">
               <Link
                 href="/scan"
-                className="w-full block text-center bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-4 rounded-xl transition-all text-sm tracking-wide shadow-[0_0_20px_rgba(16,185,129,0.25)]"
+                className="w-full block text-center bg-teal-500 hover:bg-teal-400 text-black font-bold py-4 rounded-none transition-all text-sm tracking-wide shadow-[0_0_20px_rgba(16,185,129,0.25)] angular-cut"
               >
                 Start Free Scan
               </Link>

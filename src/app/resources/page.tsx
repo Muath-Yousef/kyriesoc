@@ -8,6 +8,19 @@ export const metadata: Metadata = {
 
 const RESOURCES = [
   {
+    href: "/resources/case-study-1",
+    tag: "Case Study",
+    title: "Securing a UAE Fintech: From Critical AWS Exposure to NCA Compliant",
+    desc: "How SOC Root's automated intelligence pipeline identified exposed S3 buckets and IAM misconfigurations within 48 hours.",
+    readTime: "4 min",
+    date: "May 2026",
+    icon: (
+      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
+  },
+  {
     href: "/resources/security-guide",
     tag: "Interactive",
     title: "Business Security Posture Checklist",
@@ -49,9 +62,9 @@ export default function ResourcesIndex() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Resources</p>
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Resources</p>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Security <span className="text-emerald-400">Intelligence</span>
+            Security <span className="text-teal-400">Intelligence</span>
           </h1>
           <p className="text-neutral-400 max-w-xl mx-auto leading-relaxed">
             Practical guides and tools for business owners and IT teams. No marketing fluff — just actionable security knowledge.
@@ -64,23 +77,23 @@ export default function ResourcesIndex() {
             <Link
               key={r.href}
               href={r.href}
-              className="group flex gap-5 p-6 border border-white/8 bg-white/[0.02] rounded-2xl hover:border-emerald-500/25 hover:bg-white/[0.04] transition-all"
+              className="group flex gap-5 p-6 border border-white/8 bg-white/[0.02] rounded-none hover:border-teal-500/25 hover:bg-white/[0.04] transition-all angular-cut bg-noise glass-dark"
             >
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+              <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shrink-0 group-hover:bg-teal-500/20 transition-colors">
                 {r.icon}
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[10px] font-mono text-emerald-500 border border-emerald-500/25 bg-emerald-500/5 px-2 py-0.5 rounded uppercase tracking-widest">
+                  <span className="text-[10px] font-mono text-teal-500 border border-teal-500/25 bg-teal-500/5 px-2 py-0.5 rounded uppercase tracking-widest">
                     {r.tag}
                   </span>
                   <span className="text-neutral-700 text-xs font-mono">{r.readTime} read</span>
                   <span className="text-neutral-700 text-xs font-mono">· {r.date}</span>
                 </div>
-                <h2 className="font-bold text-white group-hover:text-emerald-400 transition-colors mb-1">{r.title}</h2>
+                <h2 className="font-bold text-white group-hover:text-teal-400 transition-colors mb-1">{r.title}</h2>
                 <p className="text-neutral-500 text-sm leading-relaxed">{r.desc}</p>
               </div>
-              <svg className="w-5 h-5 text-neutral-700 group-hover:text-emerald-500 transition-colors shrink-0 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className="w-5 h-5 text-neutral-700 group-hover:text-teal-500 transition-colors shrink-0 self-center" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
               </svg>
             </Link>
@@ -88,7 +101,7 @@ export default function ResourcesIndex() {
         </div>
 
         {/* Coming Soon */}
-        <div className="border border-white/5 bg-white/[0.01] rounded-2xl p-8">
+        <div className="border border-white/5 bg-white/[0.01] rounded-none p-8 angular-cut bg-noise glass-dark">
           <p className="font-mono text-xs text-neutral-600 uppercase tracking-[0.3em] mb-6">Coming Soon</p>
           <div className="space-y-3">
             {COMING_SOON.map((title) => (
@@ -102,7 +115,7 @@ export default function ResourcesIndex() {
             <p className="text-neutral-600 text-sm mb-4">Get notified when new guides are published:</p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 font-mono transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 font-mono transition-colors"
             >
               Subscribe to Security Intelligence →
             </Link>

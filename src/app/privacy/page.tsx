@@ -88,8 +88,10 @@ All sub-processors are contractually bound to equivalent data protection standar
 - **Legal obligation:** When required by UAE Federal Decree-Law No. 45/2021 (PDPL) or applicable law`,
   },
   {
-    title: "9. International Transfers",
-    content: `Our servers are located in Germany (EU). If you are based in the UAE or Jordan, your data may be transferred to and processed in EU jurisdictions. We ensure such transfers comply with the UAE PDPL cross-border transfer requirements through appropriate safeguards.`,
+    title: "9. International Transfers & Data Residency",
+    content: `Our primary servers are located in Germany (EU). 
+
+For clients in the UAE (under Federal Decree-Law No. 45 of 2021 on Personal Data Protection) and Jordan (under Personal Data Protection Law No. 24 of 2023), any cross-border transfers are conducted subject to explicit consent and stringent contractual safeguards. We prioritize data residency where mandated by sector-specific regulations (such as critical infrastructure or financial institutions under NCA/CBUAE guidelines) by leveraging localized, sovereign cloud deployments upon request.`,
   },
   {
     title: "10. Policy Updates",
@@ -104,7 +106,7 @@ export default function PrivacyPolicy() {
 
         {/* Header */}
         <div className="mb-14">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Legal</p>
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Legal</p>
           <h1 className="text-4xl font-extrabold tracking-tight mb-4">Privacy Policy</h1>
           <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-600">
             <span>Last Updated: April 2026</span>
@@ -113,10 +115,10 @@ export default function PrivacyPolicy() {
             <span className="text-neutral-700">·</span>
             <span>PDPL · GDPR-aligned</span>
           </div>
-          <div className="mt-6 p-5 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+          <div className="mt-6 p-5 rounded-xl bg-teal-500/5 border border-teal-500/20">
             <p className="text-sm text-neutral-400 leading-relaxed">
-              <strong className="text-emerald-400">Summary:</strong> We collect only what we need to deliver our services. We encrypt everything. We never sell your data. You can request deletion at any time by emailing{" "}
-              <a href="/contact" className="text-emerald-400 underline underline-offset-2">
+              <strong className="text-teal-400">Summary:</strong> We collect only what we need to deliver our services. We encrypt everything. We never sell your data. You can request deletion at any time by emailing{" "}
+              <a href="/contact" className="text-teal-400 underline underline-offset-2">
                 socroot@outlook.com
               </a>.
             </p>
@@ -155,14 +157,14 @@ export default function PrivacyPolicy() {
         </div>
 
         {/* Footer CTA */}
-        <div className="mt-16 p-8 rounded-2xl border border-white/8 bg-white/[0.02] text-center">
+        <div className="mt-16 p-8 rounded-none border border-white/8 bg-white/[0.02] text-center angular-cut bg-noise glass-dark">
           <h3 className="font-bold text-white mb-2">Privacy Questions?</h3>
           <p className="text-neutral-500 text-sm mb-5">
             We take your privacy seriously. Contact our data protection point of contact directly.
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-xl text-sm transition-all"
+            className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black font-bold px-6 py-3 rounded-none text-sm transition-all angular-cut"
           >
             Contact Data Controller →
           </a>

@@ -40,8 +40,8 @@ export default function SecurityGuidePage() {
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-6">
+            <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
             RESOURCES
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
@@ -57,13 +57,13 @@ export default function SecurityGuidePage() {
               initial={{ opacity: 0, y: 10 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-4"
+              className="p-6 bg-white/[0.02] border border-white/5 rounded-none flex flex-col md:flex-row justify-between items-start md:items-center gap-4 angular-cut bg-noise glass-dark"
             >
               <span className="text-base font-medium">{q}</span>
               <div className="flex gap-2 shrink-0">
                 <button 
                   onClick={() => handleAnswer(i, true)}
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${answers[i] === true ? 'bg-emerald-500 text-black' : 'bg-white/5 text-neutral-400 hover:bg-white/10'}`}
+                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${answers[i] === true ? 'bg-teal-500 text-black' : 'bg-white/5 text-neutral-400 hover:bg-white/10'}`}
                 >
                   Yes
                 </button>
@@ -78,14 +78,14 @@ export default function SecurityGuidePage() {
           ))}
 
           {score !== null && (
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-16 p-8 rounded-3xl bg-white/[0.02] border border-white/10 text-center">
-              <h2 className="text-2xl font-bold mb-4">Your Posture Score: <span className={score > 75 ? 'text-emerald-400' : score > 50 ? 'text-yellow-400' : 'text-red-400'}>{score}%</span></h2>
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-16 p-8 rounded-none bg-white/[0.02] border border-white/10 text-center angular-cut bg-noise glass-dark">
+              <h2 className="text-2xl font-bold mb-4">Your Posture Score: <span className={score > 75 ? 'text-teal-400' : score > 50 ? 'text-yellow-400' : 'text-red-400'}>{score}%</span></h2>
               
               {score < 50 && <p className="text-neutral-400 mb-8">Your organization has critical gaps. The lack of standard defense layers exposes you directly to ransomware and data breaches. Priority action is required.</p>}
               {score >= 50 && score <= 75 && <p className="text-neutral-400 mb-8">You're on the right track, but significant vulnerabilities remain. Attackers commonly exploit the controls you are currently missing.</p>}
               {score > 75 && <p className="text-neutral-400 mb-8">Strong posture. Let's maintain it professionally with continuous deep-level penetration testing.</p>}
               
-              <Link href="/scan" className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+              <Link href="/scan" className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-8 py-4 rounded-none font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] angular-cut">
                 Book a Free Assessment
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>

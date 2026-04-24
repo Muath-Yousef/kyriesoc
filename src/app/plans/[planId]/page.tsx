@@ -186,7 +186,7 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
         
         {/* Section 1 - Hero */}
         <div className="text-center">
-          <h1 className="text-5xl font-extrabold mb-4">{plan.name} <span className="text-emerald-400">Plan</span></h1>
+          <h1 className="text-5xl font-extrabold mb-4">{plan.name} <span className="text-teal-400">Plan</span></h1>
           <p className="text-xl text-neutral-400 mb-8">{plan.tagline}</p>
           <div className="flex justify-center items-end gap-2 mb-8">
             <span className="text-4xl font-bold">${billingCycle === "annual" ? plan.annualPrice : plan.monthlyPrice || plan.annualPrice}</span>
@@ -200,15 +200,15 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
               >Monthly</button>
               <button 
                 onClick={() => setBillingCycle("annual")} 
-                className={`px-4 py-2 rounded font-bold text-sm transition-all ${billingCycle === "annual" ? "bg-white/10 text-emerald-400" : "text-neutral-500 hover:text-emerald-400"}`}
+                className={`px-4 py-2 rounded font-bold text-sm transition-all ${billingCycle === "annual" ? "bg-white/10 text-teal-400" : "text-neutral-500 hover:text-teal-400"}`}
               >Annually (Save ${plan.annualSavings})</button>
             </div>
           )}
           <div className="flex flex-col md:flex-row justify-center gap-4">
-            <button onClick={() => setShowModal(true)} className="bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)]">
+            <button onClick={() => setShowModal(true)} className="bg-teal-500 hover:bg-teal-400 text-black px-8 py-4 rounded-none font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] angular-cut">
               Get Started Now
             </button>
-            <Link href="/contact" className="border border-white/10 hover:border-emerald-500/30 px-8 py-4 rounded-xl font-bold transition-all text-neutral-300">
+            <Link href="/contact" className="border border-white/10 hover:border-teal-500/30 px-8 py-4 rounded-xl font-bold transition-all text-neutral-300">
               Schedule a call
             </Link>
           </div>
@@ -216,10 +216,10 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
 
         {/* Section 2 - What This Protects You From */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-emerald-400 border-b border-white/10 pb-2">Protects You From</h2>
+          <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">Protects You From</h2>
           <div className="grid md:grid-cols-3 gap-4">
             {plan.protectsFrom.map((item, i) => (
-              <div key={i} className="flex items-center gap-3 bg-white/[0.02] border border-white/5 p-4 rounded-xl text-neutral-300">
+              <div key={i} className="flex items-center gap-3 bg-white/[0.02] border border-white/5 p-4 rounded-none text-neutral-300 angular-cut bg-noise glass-dark">
                 <span className="text-red-400">🛡️</span> {item}
               </div>
             ))}
@@ -228,11 +228,11 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
 
         {/* Section 3 - What's Included */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-emerald-400 border-b border-white/10 pb-2">What's Included</h2>
+          <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">What's Included</h2>
           <div className="space-y-4">
             {plan.features.map((f, i) => (
-              <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-2xl">
-                <h3 className="font-bold flex items-center gap-2 mb-1"><span className="text-emerald-500">✓</span> {f.name}</h3>
+              <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
+                <h3 className="font-bold flex items-center gap-2 mb-1"><span className="text-teal-500">✓</span> {f.name}</h3>
                 <p className="text-sm text-neutral-400 pl-6">{f.desc}</p>
               </div>
             ))}
@@ -241,17 +241,17 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
 
         {/* Section 4 - Our Commitment */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-emerald-400 border-b border-white/10 pb-2">Our Mutual Commitment</h2>
+          <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">Our Mutual Commitment</h2>
           <div className="grid md:grid-cols-2 gap-6 text-sm text-neutral-300">
-            <div className="p-6 bg-emerald-500/5 rounded-2xl border border-emerald-500/10">
-              <h3 className="font-bold text-emerald-400 mb-3">What SOC Root Will Do</h3>
+            <div className="p-6 bg-teal-500/5 rounded-2xl border border-teal-500/10">
+              <h3 className="font-bold text-teal-400 mb-3">What SOC Root Will Do</h3>
               <ul className="space-y-2 list-disc pl-4">
                 <li>Deploy continuous monitoring swiftly.</li>
                 <li>Ensure specialist review of zero-day exploits.</li>
                 <li>Never share your business data.</li>
               </ul>
             </div>
-            <div className="p-6 bg-white/[0.02] rounded-2xl border border-white/5">
+            <div className="p-6 bg-white/[0.02] rounded-none border border-white/5 angular-cut bg-noise glass-dark">
               <h3 className="font-bold mb-3">What You Will Do</h3>
               <ul className="space-y-2 list-disc pl-4">
                 <li>Provide authorized access.</li>
@@ -264,11 +264,11 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
 
         {/* Section 5 - How It Works */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-emerald-400 border-b border-white/10 pb-2">How It Works</h2>
+          <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">How It Works</h2>
           <div className="flex flex-col md:flex-row gap-4 justify-between">
             {["Sign up & Assess", "Deploy Protections", "Monthly Reports", "Annual Review"].map((step, i) => (
-              <div key={i} className="flex-1 text-center p-4 bg-white/[0.02] rounded-2xl border border-white/5">
-                <div className="w-8 h-8 rounded-full bg-neutral-800 text-emerald-400 font-bold mx-auto mb-2 flex items-center justify-center">{i+1}</div>
+              <div key={i} className="flex-1 text-center p-4 bg-white/[0.02] rounded-none border border-white/5 angular-cut bg-noise glass-dark">
+                <div className="w-8 h-8 rounded-full bg-neutral-800 text-teal-400 font-bold mx-auto mb-2 flex items-center justify-center">{i+1}</div>
                 <div className="text-sm font-bold text-neutral-300">{step}</div>
               </div>
             ))}
@@ -278,10 +278,10 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
         {/* Section 6 - Compliance */}
         {plan.compliance && (
           <section>
-            <h2 className="text-2xl font-bold mb-6 text-emerald-400 border-b border-white/10 pb-2">Compliance Coverage</h2>
+            <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">Compliance Coverage</h2>
             <ul className="space-y-3">
               {plan.compliance.map((c, i) => (
-                <li key={i} className="flex items-center gap-3 text-neutral-300"><span className="text-emerald-500">📋</span> {c}</li>
+                <li key={i} className="flex items-center gap-3 text-neutral-300"><span className="text-teal-500">📋</span> {c}</li>
               ))}
             </ul>
           </section>
@@ -289,21 +289,21 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
 
         {/* Section 8 - FAQ */}
         <section>
-          <h2 className="text-2xl font-bold mb-6 text-emerald-400 border-b border-white/10 pb-2">FAQ</h2>
+          <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">FAQ</h2>
           <div className="space-y-4">
-            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-xl cursor-pointer">
+            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-none cursor-pointer angular-cut bg-noise glass-dark">
               <summary className="font-bold">Do I need technical knowledge to use this service?</summary>
               <p className="mt-2 text-sm text-neutral-400">No. We handle the technical complexities and provide reports written in plain business language.</p>
             </details>
-            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-xl cursor-pointer">
+            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-none cursor-pointer angular-cut bg-noise glass-dark">
               <summary className="font-bold">What happens if there's an incident at 3am?</summary>
               <p className="mt-2 text-sm text-neutral-400">Depending on your plan, our automated response engines block the threat immediately, and our analysts investigate the root cause.</p>
             </details>
-            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-xl cursor-pointer">
+            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-none cursor-pointer angular-cut bg-noise glass-dark">
               <summary className="font-bold">Who has access to my company's data?</summary>
               <p className="mt-2 text-sm text-neutral-400">Only authorized Tier 2 analysts. Your data is encrypted and completely isolated.</p>
             </details>
-            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-xl cursor-pointer">
+            <details className="bg-white/[0.02] border border-white/5 p-4 rounded-none cursor-pointer angular-cut bg-noise glass-dark">
               <summary className="font-bold">How long until I see results?</summary>
               <p className="mt-2 text-sm text-neutral-400">Your first comprehensive assessment report is usually delivered within 48 to 72 hours of onboarding.</p>
             </details>
@@ -327,30 +327,30 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
                   <form onSubmit={handleCreateOrder} className="space-y-4">
                     <div>
                       <label className="block text-xs font-mono text-neutral-500 mb-1">Company Name</label>
-                      <input type="text" required value={company} onChange={e => setCompany(e.target.value)} className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none" />
+                      <input type="text" required value={company} onChange={e => setCompany(e.target.value)} className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-teal-500 focus:outline-none" />
                     </div>
                     <div>
                       <label className="block text-xs font-mono text-neutral-500 mb-1">Contact Email</label>
-                      <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-emerald-500 focus:outline-none" />
+                      <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-[#1A1A1A] border border-white/10 rounded-xl px-4 py-3 text-white focus:border-teal-500 focus:outline-none" />
                     </div>
                     <div>
                       <label className="block text-xs font-mono text-neutral-500 mb-2">Payment Method</label>
                       <div className="grid grid-cols-2 gap-2">
-                        <button type="button" onClick={() => setMethod("binance_trc20")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="binance_trc20" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>Crypto (USDT/USDC)</button>
-                        <button type="button" onClick={() => setMethod("bank_transfer")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="bank_transfer" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>Bank Transfer</button>
-                        <button type="button" onClick={() => setMethod("cliq")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="cliq" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>CliQ (Arab Bank)</button>
-                        <button type="button" onClick={() => setMethod("paypal")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="paypal" ? "border-emerald-500 bg-emerald-500/10 text-emerald-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>PayPal</button>
+                        <button type="button" onClick={() => setMethod("binance_trc20")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="binance_trc20" ? "border-teal-500 bg-teal-500/10 text-teal-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>Crypto (USDT/USDC)</button>
+                        <button type="button" onClick={() => setMethod("bank_transfer")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="bank_transfer" ? "border-teal-500 bg-teal-500/10 text-teal-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>Bank Transfer</button>
+                        <button type="button" onClick={() => setMethod("cliq")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="cliq" ? "border-teal-500 bg-teal-500/10 text-teal-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>CliQ (Arab Bank)</button>
+                        <button type="button" onClick={() => setMethod("paypal")} className={`p-3 border rounded-xl text-xs font-bold transition-all ${method==="paypal" ? "border-teal-500 bg-teal-500/10 text-teal-400":"border-white/10 text-neutral-400 hover:border-white/30"}`}>PayPal</button>
                       </div>
                     </div>
-                    <button disabled={loading || !method} className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:opacity-50 disabled:cursor-not-allowed text-black font-bold py-4 rounded-xl transition-all mt-4">
+                    <button disabled={loading || !method} className="w-full bg-teal-500 hover:bg-teal-400 disabled:opacity-50 disabled:cursor-not-allowed text-black font-bold py-4 rounded-none transition-all mt-4 angular-cut">
                       {loading ? "Generating Order..." : "Proceed to Payment Details"}
                     </button>
                   </form>
                 </>
               ) : (
                 <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-emerald-500/20 border border-emerald-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <div className="w-16 h-16 bg-teal-500/20 border border-teal-500/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -358,14 +358,14 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
                   <p className="text-neutral-400 text-sm">Save your Order ID — you'll need it to track your service status.</p>
 
                   {/* Order ID with Copy Button */}
-                  <div className="flex items-center gap-2 bg-emerald-500/5 border border-emerald-500/20 rounded-xl p-4">
+                  <div className="flex items-center gap-2 bg-teal-500/5 border border-teal-500/20 rounded-xl p-4">
                     <div className="flex-1 text-left">
                       <p className="text-xs text-neutral-500 mb-1">Your Order ID</p>
-                      <p className="text-emerald-400 font-mono font-bold text-lg tracking-wider">{orderInfo.order_id}</p>
+                      <p className="text-teal-400 font-mono font-bold text-lg tracking-wider">{orderInfo.order_id}</p>
                     </div>
                     <button
                       onClick={() => navigator.clipboard?.writeText(orderInfo.order_id)}
-                      className="p-2 rounded-lg hover:bg-emerald-500/10 text-neutral-500 hover:text-emerald-400 transition-all"
+                      className="p-2 rounded-lg hover:bg-teal-500/10 text-neutral-500 hover:text-teal-400 transition-all"
                       title="Copy Order ID"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
@@ -380,19 +380,19 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
                     {orderInfo.payment_details?.address && (
                       <div className="mt-2">
                         <span className="text-xs text-neutral-500 block mb-1">Network: {orderInfo.payment_details.network}</span>
-                        <code className="text-emerald-400 bg-black p-2 rounded block break-all text-sm">{orderInfo.payment_details.address}</code>
+                        <code className="text-teal-400 bg-black p-2 rounded block break-all text-sm">{orderInfo.payment_details.address}</code>
                       </div>
                     )}
                     {orderInfo.payment_details?.iban && (
                       <div className="mt-2">
                         <span className="text-xs text-neutral-500 block mb-1">Account: {orderInfo.payment_details.account_name}</span>
-                        <code className="text-emerald-400 bg-black p-2 rounded block break-all text-sm">{orderInfo.payment_details.iban}</code>
+                        <code className="text-teal-400 bg-black p-2 rounded block break-all text-sm">{orderInfo.payment_details.iban}</code>
                       </div>
                     )}
                     {orderInfo.payment_details?.alias && (
                       <div className="mt-2">
                         <span className="text-xs text-neutral-500 block mb-1">CliQ Alias:</span>
-                        <code className="text-emerald-400 bg-black p-2 rounded block text-xl text-center tracking-widest">{orderInfo.payment_details.alias}</code>
+                        <code className="text-teal-400 bg-black p-2 rounded block text-xl text-center tracking-widest">{orderInfo.payment_details.alias}</code>
                       </div>
                     )}
                     {orderInfo.payment_details?.link && (
@@ -407,7 +407,7 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
                   <div className="flex flex-col gap-2 pt-1">
                     <a
                       href={`/portal/order-status?id=${orderInfo.order_id}`}
-                      className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-bold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2"
+                      className="w-full bg-teal-500 hover:bg-teal-400 text-black font-bold py-3 rounded-none transition-all text-sm flex items-center justify-center gap-2 angular-cut"
                     >
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg>
                       Track My Order

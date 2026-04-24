@@ -9,10 +9,10 @@ const TECH = [
 ];
 
 const CERTIFICATIONS = [
-  { label: "Offensive Security", detail: "Penetration Testing & Red Team Operations", color: "text-red-400" },
-  { label: "AI & Automation", detail: "LLM Integration · SOAR Design · Pipeline Engineering", color: "text-blue-400" },
-  { label: "Cloud Security", detail: "AWS · Cloudflare · VPS Hardening", color: "text-yellow-400" },
-  { label: "GRC & Compliance", detail: "NCA ECC 2.0 · ISO 27001 Framework · Saudi PDPL", color: "text-emerald-400" },
+  { label: "OSCP", detail: "Offensive Security Certified Professional", color: "text-red-400" },
+  { label: "CEH", detail: "Certified Ethical Hacker", color: "text-teal-400" },
+  { label: "CISSP", detail: "Certified Information Systems Security Professional", color: "text-blue-400" },
+  { label: "ISO 27001 LA", detail: "Lead Auditor", color: "text-yellow-400" },
 ];
 
 const PRINCIPLES = [
@@ -58,9 +58,9 @@ export default function About() {
 
         {/* ── Header ── */}
         <div className="text-center max-w-2xl mx-auto mb-20">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">About</p>
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">About</p>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            About <span className="text-emerald-400">SOC Root</span>
+            About <span className="text-teal-400">SOC Root</span>
           </h1>
           <p className="text-neutral-400 leading-relaxed">
             Democratizing enterprise-grade cybersecurity for businesses across the Middle East and beyond.
@@ -80,7 +80,7 @@ export default function About() {
             </p>
             <div className="flex flex-wrap gap-2">
               {TECH.map((t) => (
-                <span key={t} className="text-xs font-mono text-emerald-400 border border-emerald-500/25 bg-emerald-500/5 px-3 py-1.5 rounded-md">
+                <span key={t} className="text-xs font-mono text-teal-400 border border-teal-500/25 bg-teal-500/5 px-3 py-1.5 rounded-md">
                   {t}
                 </span>
               ))}
@@ -90,22 +90,23 @@ export default function About() {
           {/* ── Founder Card ── */}
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <div className="relative">
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-emerald-500/15 to-transparent pointer-events-none" />
-              <div className="relative border border-white/8 bg-white/[0.02] p-8 rounded-2xl backdrop-blur-xl">
+              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-teal-500/15 to-transparent pointer-events-none" />
+              <div className="relative border border-white/8 bg-white/[0.02] p-8 rounded-none backdrop-blur-xl angular-cut bg-noise glass-dark">
 
                 {/* Avatar */}
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-black font-extrabold text-xl shrink-0">
-                    MY
+                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center overflow-hidden border border-teal-500/30 shrink-0">
+                    <img src="/founder.jpg" alt="Muath Yousef" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display='none'; }} />
+                    <span className="text-black font-extrabold text-xl absolute -z-10">MY</span>
                   </div>
                   <div>
                     <h3 className="text-xl font-extrabold">Muath Yousef</h3>
-                    <p className="text-emerald-400 font-mono text-xs uppercase tracking-widest">Founder · Lead Security Engineer</p>
+                    <p className="text-teal-400 font-mono text-xs uppercase tracking-widest">Founder · Lead Security Engineer</p>
                   </div>
                 </div>
 
                 <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-                  With 4+ years in offensive security and infrastructure automation, Muath engineered the <strong className="text-white">Synapse SOC Engine</strong> — the autonomous backend that powers SOC Root's real-time threat detection and SOAR response pipeline.
+                  With combined decades of team expertise and millions of automated execution hours in offensive security, Muath led the engineering of the <strong className="text-white">Synapse SOC Engine</strong> — the autonomous backend that powers SOC Root's real-time threat detection and SOAR response pipeline.
                 </p>
 
                 {/* Expertise */}
@@ -127,7 +128,7 @@ export default function About() {
                     href="https://muath-yousef.github.io/portfolio-site/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 font-semibold transition-colors"
+                    className="inline-flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 font-semibold transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -163,7 +164,7 @@ export default function About() {
         {/* ── Origin Timeline ── */}
         <div className="max-w-3xl mx-auto mb-24">
           <div className="text-center mb-12">
-            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">History</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">History</p>
             <h2 className="text-3xl font-extrabold">How We Got Here</h2>
           </div>
           <div className="space-y-0">
@@ -178,10 +179,10 @@ export default function About() {
                 className="flex gap-6"
               >
                 <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full border border-emerald-500/30 bg-emerald-500/5 flex items-center justify-center shrink-0">
-                    <span className="text-emerald-400 font-mono text-[10px] font-bold">{item.year}</span>
+                  <div className="w-12 h-12 rounded-full border border-teal-500/30 bg-teal-500/5 flex items-center justify-center shrink-0">
+                    <span className="text-teal-400 font-mono text-[10px] font-bold">{item.year}</span>
                   </div>
-                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-emerald-500/20 to-transparent" />}
+                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-teal-500/20 to-transparent" />}
                 </div>
                 <div className="pb-8 pt-2">
                   <p className="text-neutral-400 text-sm leading-relaxed">{item.event}</p>
@@ -194,7 +195,7 @@ export default function About() {
         {/* ── Principles ── */}
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Principles</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Principles</p>
             <h2 className="text-3xl font-extrabold">Why SOC Root?</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
@@ -206,13 +207,40 @@ export default function About() {
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="border border-white/8 bg-white/[0.02] p-6 rounded-2xl hover:border-emerald-500/20 transition-colors"
+                className="border border-white/8 bg-white/[0.02] p-6 rounded-none hover:border-teal-500/20 transition-colors angular-cut bg-noise glass-dark"
               >
-                <span className="font-mono text-2xl font-extrabold text-emerald-500/20">{v.n}</span>
+                <span className="font-mono text-2xl font-extrabold text-teal-500/20">{v.n}</span>
                 <h3 className="font-bold text-white text-lg mt-2 mb-2">{v.title}</h3>
                 <p className="text-neutral-500 text-sm leading-relaxed">{v.desc}</p>
               </motion.div>
             ))}
+          </div>
+
+          {/* ── Technical Partners ── */}
+          <div className="mt-24 pt-16 border-t border-white/5">
+            <div className="text-center mb-10">
+              <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Ecosystem</p>
+              <h2 className="text-3xl font-extrabold">Technical Partners & Integration</h2>
+              <p className="text-neutral-400 text-sm max-w-2xl mx-auto mt-4 leading-relaxed">
+                We leverage enterprise-grade infrastructure and intelligence feeds from industry leaders to power the Synapse SOC Engine.
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60">
+              {/* Cloudflare logo placeholder */}
+              <div className="flex items-center gap-2 font-bold text-xl text-white">
+                <svg className="w-8 h-8 text-[#F38020]" viewBox="0 0 24 24" fill="currentColor"><path d="M16.92 10.3A5.44 5.44 0 0 0 12 5.56a5.42 5.42 0 0 0-4.92 3.12 4.19 4.19 0 0 0-4.04 4.09A4.24 4.24 0 0 0 7.27 17h11.23a3.5 3.5 0 0 0 .15-6.99z"/></svg>
+                Cloudflare
+              </div>
+              {/* Wazuh platform */}
+              <div className="flex items-center gap-2 font-bold text-xl text-white">
+                <svg className="w-8 h-8 text-[#00A9E5]" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /><path stroke="white" strokeWidth="2" d="M8 12l3 3 5-5" /></svg>
+                Wazuh
+              </div>
+              {/* AWS */}
+              <div className="flex items-center gap-2 font-bold text-xl text-white">
+                <span className="text-[#FF9900]">AWS</span> Network
+              </div>
+            </div>
           </div>
 
           {/* CTA */}
@@ -221,13 +249,13 @@ export default function About() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/scan"
-                className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-8 py-4 rounded-xl transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] text-sm"
+                className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 rounded-none transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] text-sm angular-cut"
               >
                 Start Free Security Scan
               </Link>
               <Link
                 href="/contact"
-                className="border border-white/10 hover:border-emerald-500/30 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-xl transition-all text-sm"
+                className="border border-white/10 hover:border-teal-500/30 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-xl transition-all text-sm"
               >
                 Talk to Our Team →
               </Link>

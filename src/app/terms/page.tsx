@@ -10,14 +10,14 @@ export default function Terms() {
 
         {/* Header */}
         <div className="mb-14">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Legal</p>
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Legal</p>
           <h1 className="text-4xl font-extrabold tracking-tight mb-4">Terms of Service</h1>
           <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-neutral-600">
             <span>Last Updated: April 2026</span>
             <span className="text-neutral-700">·</span>
             <span>Governing Law: Jordan / UAE</span>
           </div>
-          <div className="mt-6 p-5 rounded-xl bg-white/[0.02] border border-white/8">
+          <div className="mt-6 p-5 rounded-none bg-white/[0.02] border border-white/8 angular-cut bg-noise glass-dark">
             <p className="text-sm text-neutral-400 leading-relaxed">
               By subscribing to or using any SOC Root service, you agree to the following terms. Please read them carefully. If you disagree with any part, do not proceed with the service.
             </p>
@@ -49,7 +49,7 @@ export default function Terms() {
                   "The engagement does not violate any third-party agreements or applicable laws",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-1 shrink-0">›</span>
+                    <span className="text-teal-500 mt-1 shrink-0">›</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -73,7 +73,7 @@ export default function Terms() {
                   "Guard, Governance, Premium Plans: Monthly subscription, billed at the start of each cycle",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-1 shrink-0">›</span>
+                    <span className="text-teal-500 mt-1 shrink-0">›</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -96,7 +96,7 @@ export default function Terms() {
                   "Providing a signed NDA upon request for enterprise engagements",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
-                    <span className="text-emerald-500 mt-1 shrink-0">›</span>
+                    <span className="text-teal-500 mt-1 shrink-0">›</span>
                     <span>{item}</span>
                   </li>
                 ))}
@@ -165,7 +165,7 @@ export default function Terms() {
             <h2 className="text-lg font-bold text-white mb-4">10. Contact</h2>
             <p className="text-neutral-400 text-sm leading-relaxed">
               For any questions regarding these Terms, contact:{" "}
-              <a href="/contact" className="text-emerald-400 hover:underline">
+              <a href="/contact" className="text-teal-400 hover:underline">
                 socroot@outlook.com
               </a>{" "}
               with subject line "Terms Inquiry".
@@ -180,7 +180,7 @@ export default function Terms() {
             SOC Root · Terms of Service · Version 1.0 · April 2026
           </p>
           <div className="flex gap-4 text-xs">
-            <a href="/privacy" className="text-emerald-500 hover:text-emerald-400 transition-colors">Privacy Policy</a>
+            <a href="/privacy" className="text-teal-500 hover:text-teal-400 transition-colors">Privacy Policy</a>
             <a href="/security" className="text-neutral-600 hover:text-neutral-400 transition-colors">Security Policy</a>
           </div>
         </div>

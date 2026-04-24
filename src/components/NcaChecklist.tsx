@@ -62,13 +62,13 @@ export default function NcaChecklist() {
   const score = Math.round((checked.size / NCA_CONTROLS.length) * 100);
   const criticalMissing = NCA_CONTROLS.filter(c => c.risk === "critical" && !checked.has(c.id)).length;
 
-  const scoreColor = score >= 80 ? "text-emerald-400" : score >= 50 ? "text-yellow-400" : "text-red-400";
-  const barColor = score >= 80 ? "bg-emerald-500" : score >= 50 ? "bg-yellow-500" : "bg-red-500";
+  const scoreColor = score >= 80 ? "text-teal-400" : score >= 50 ? "text-yellow-400" : "text-red-400";
+  const barColor = score >= 80 ? "bg-teal-500" : score >= 50 ? "bg-yellow-500" : "bg-red-500";
 
   return (
     <div className="space-y-6">
       {/* Score Board */}
-      <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+      <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
         <div className="flex items-center justify-between mb-4">
           <div>
             <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">ECC Compliance Score</p>
@@ -83,7 +83,7 @@ export default function NcaChecklist() {
               </span>
             )}
             {criticalMissing === 0 && checked.size > 0 && (
-              <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono">
+              <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono">
                 ✓ No critical gaps
               </span>
             )}
@@ -115,7 +115,7 @@ export default function NcaChecklist() {
             onClick={() => setFilter(d)}
             className={`px-4 py-1.5 rounded-lg text-xs font-mono font-bold transition-all border ${
               filter === d
-                ? "bg-emerald-500/15 border-emerald-500/30 text-emerald-400"
+                ? "bg-teal-500/15 border-teal-500/30 text-teal-400"
                 : "border-white/5 text-neutral-500 hover:text-white hover:border-white/15"
             }`}
           >
@@ -150,7 +150,7 @@ export default function NcaChecklist() {
                 transition={{ duration: 0.2 }}
                 className={`border rounded-xl transition-all duration-200 ${
                   isChecked
-                    ? "border-emerald-500/20 bg-emerald-500/5"
+                    ? "border-teal-500/20 bg-teal-500/5"
                     : "border-white/5 bg-white/[0.02] hover:border-white/10"
                 }`}
               >
@@ -163,8 +163,8 @@ export default function NcaChecklist() {
                     onClick={(e) => { e.stopPropagation(); toggle(item.id); }}
                     className={`w-5 h-5 shrink-0 rounded border-2 flex items-center justify-center transition-all ${
                       isChecked
-                        ? "border-emerald-500 bg-emerald-500"
-                        : "border-white/20 hover:border-emerald-500/60"
+                        ? "border-teal-500 bg-teal-500"
+                        : "border-white/20 hover:border-teal-500/60"
                     }`}
                     aria-label={`Toggle ${item.control}`}
                   >
@@ -209,7 +209,7 @@ export default function NcaChecklist() {
                         {!isChecked && (
                           <button
                             onClick={(e) => { e.stopPropagation(); toggle(item.id); }}
-                            className="mt-3 ml-9 text-xs font-mono text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded hover:bg-emerald-500/10 transition-all"
+                            className="mt-3 ml-9 text-xs font-mono text-teal-400 border border-teal-500/20 px-3 py-1.5 rounded hover:bg-teal-500/10 transition-all"
                           >
                             Mark as implemented →
                           </button>
@@ -239,7 +239,7 @@ export default function NcaChecklist() {
           </p>
           <a
             href="/scan"
-            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black font-bold px-6 py-3 rounded-xl text-sm transition-all"
+            className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black font-bold px-6 py-3 rounded-none text-sm transition-all angular-cut"
           >
             Get Free Gap Analysis
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>

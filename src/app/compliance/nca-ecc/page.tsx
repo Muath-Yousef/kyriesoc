@@ -20,13 +20,13 @@ export default function NcaEccPage() {
 
         {/* Hero */}
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-6">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-6">
+            <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
             NCA ECC 2.0 — COMPLIANCE
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
             Are You{" "}
-            <span className="text-emerald-400">Truly Compliant</span> with<br />
+            <span className="text-teal-400">Truly Compliant</span> with<br />
             Saudi Arabia's ECC?
           </h1>
           <p className="text-lg text-neutral-400 max-w-2xl leading-relaxed">
@@ -40,8 +40,8 @@ export default function NcaEccPage() {
           className="grid md:grid-cols-3 gap-4 mb-16"
         >
           {STATS.map((s, i) => (
-            <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-2xl text-center">
-              <div className="text-3xl font-black text-emerald-400 mb-1">{s.value}</div>
+            <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-none text-center angular-cut bg-noise glass-dark">
+              <div className="text-3xl font-black text-teal-400 mb-1">{s.value}</div>
               <div className="text-xs text-neutral-500">{s.label}</div>
             </div>
           ))}
@@ -51,8 +51,8 @@ export default function NcaEccPage() {
 
           {/* Section 1 — What is ECC */}
           <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <h2 className="text-2xl font-bold text-emerald-400 mb-4">What Is ECC and Why It Matters</h2>
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl text-neutral-300 leading-relaxed text-sm space-y-3">
+            <h2 className="text-2xl font-bold text-teal-400 mb-4">What Is ECC and Why It Matters</h2>
+            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none text-neutral-300 leading-relaxed text-sm space-y-3 angular-cut bg-noise glass-dark">
               <p>
                 The <strong className="text-white">Essential Cybersecurity Controls (ECC-1:2018)</strong> define the minimum security baseline required by the NCA for all government and critical infrastructure organizations in Saudi Arabia. Non-compliance isn't just a regulatory risk — it's a direct business risk.
               </p>
@@ -88,9 +88,9 @@ export default function NcaEccPage() {
                   icon: "🤝"
                 },
               ].map((domain, i) => (
-                <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-2xl">
+                <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
                   <div className="text-2xl mb-3">{domain.icon}</div>
-                  <h3 className="font-bold text-emerald-400 mb-2">{domain.title}</h3>
+                  <h3 className="font-bold text-teal-400 mb-2">{domain.title}</h3>
                   <p className="text-sm text-neutral-400">{domain.desc}</p>
                 </div>
               ))}
@@ -109,7 +109,7 @@ export default function NcaEccPage() {
           {/* Section 4 — Our Methodology */}
           <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.35 }}>
             <h2 className="text-2xl font-bold mb-4">How SOC Root Closes the Gaps</h2>
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-2xl">
+            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
               <ul className="space-y-6">
                 {[
                   {
@@ -134,7 +134,7 @@ export default function NcaEccPage() {
                   }
                 ].map((item, i) => (
                   <li key={i} className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-neutral-800 text-emerald-400 font-bold flex items-center justify-center shrink-0">{item.step}</div>
+                    <div className="w-8 h-8 rounded-full bg-neutral-800 text-teal-400 font-bold flex items-center justify-center shrink-0">{item.step}</div>
                     <div>
                       <h4 className="font-bold mb-1">{item.title}</h4>
                       <p className="text-neutral-400 text-sm">{item.desc}</p>
@@ -148,10 +148,10 @@ export default function NcaEccPage() {
           {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }}
-            className="mt-8 text-center bg-emerald-500/10 border border-emerald-500/20 p-10 rounded-3xl"
+            className="mt-8 text-center bg-teal-500/10 border border-teal-500/20 p-10 rounded-3xl"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-4">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-4">
+              <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
               NO COMMITMENT REQUIRED
             </div>
             <h3 className="text-2xl font-bold mb-3">Know Your True ECC Posture</h3>
@@ -161,14 +161,14 @@ export default function NcaEccPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/scan"
-                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-black px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+                className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-8 py-4 rounded-none font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] angular-cut"
               >
                 Start Free Assessment
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>
               <Link
                 href="/plans/governance"
-                className="inline-flex items-center gap-2 border border-white/10 hover:border-emerald-500/30 px-8 py-4 rounded-xl font-bold transition-all text-neutral-300"
+                className="inline-flex items-center gap-2 border border-white/10 hover:border-teal-500/30 px-8 py-4 rounded-xl font-bold transition-all text-neutral-300"
               >
                 View Governance Plan
               </Link>

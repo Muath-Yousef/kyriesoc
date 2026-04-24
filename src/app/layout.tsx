@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Space_Mono } from "next/font/google";
 import "./globals.css";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import NavClient from "@/components/NavClient";
 import Footer from "@/components/Footer";
+import StructuredData from "@/components/StructuredData";
+import Analytics from "@/components/Analytics";
+import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceMono = Space_Mono({
@@ -14,11 +16,11 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SOC Root — Enterprise Cybersecurity for UAE & Jordan",
+    default: "SOC Root — Enterprise Cybersecurity & Managed SOC",
     template: "%s — SOC Root",
   },
   description:
-    "Military-grade automated cybersecurity platform for businesses in the UAE and Jordan. Continuous pentesting, SIEM monitoring, NCA ECC 2.0 compliance, and security awareness training — at SMB prices.",
+    "Military-grade automated cybersecurity platform for businesses internationally. Continuous pentesting, SIEM monitoring, NCA ECC 2.0 compliance, and security awareness training — at SMB prices.",
   keywords: [
     "cybersecurity UAE", "cybersecurity Jordan", "NCA ECC compliance",
     "penetration testing", "vulnerability assessment", "SIEM monitoring",
@@ -32,19 +34,34 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://socroot.com",
     siteName: "SOC Root",
-    title: "SOC Root — Enterprise Cybersecurity for UAE & Jordan",
+    title: "SOC Root — Enterprise Cybersecurity & Managed SOC",
     description:
-      "Automated cybersecurity — continuous pentesting, NCA ECC compliance, SIEM monitoring. We hack you before they do.",
+      "Automated cybersecurity — continuous pentesting, compliance monitoring, and expert analysis. We hack you before they do.",
+    images: [
+      {
+        url: "https://socroot.com/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "SOC Root Cybersecurity",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SOC Root — Enterprise Cybersecurity for UAE & Jordan",
-    description: "Automated pentesting, SIEM, and NCA ECC compliance at SMB prices.",
+    title: "SOC Root — Enterprise Cybersecurity & Managed SOC",
+    description: "Automated pentesting, SIEM, and compliance monitoring at SMB prices.",
     creator: "@RootSoc",
+    images: ["https://socroot.com/og-image.png"],
   },
   robots: {
     index: true,
     follow: true,
+  },
+  verification: {
+    google: "socroot-search-console-verification",
+  },
+  alternates: {
+    canonical: "https://socroot.com",
   },
 };
 
@@ -52,6 +69,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
       <body className="bg-[#0c0c0c] text-[#f5f5f4] font-sans antialiased min-h-screen">
+        <StructuredData />
+        <Analytics />
         {/* Navigation — client component handles mobile menu */}
         <NavClient />
 
@@ -59,8 +78,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <Footer />
 
-        {/* Floating WhatsApp Button */}
-        <WhatsAppButton />
+        
+        {/* Cookie / Privacy Banner */}
+        <CookieBanner />
       </body>
     </html>
   );

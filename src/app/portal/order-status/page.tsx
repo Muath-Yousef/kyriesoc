@@ -28,17 +28,17 @@ const STATUS_CONFIG: Record<OrderStatus, { label: string; color: string; bg: str
   },
   paid: {
     label: "Payment Confirmed",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-    border: "border-emerald-500/20",
+    color: "text-teal-400",
+    bg: "bg-teal-500/10",
+    border: "border-teal-500/20",
     icon: "✓",
     desc: "Your payment has been received and verified. Our team is currently setting up your security monitoring environment.",
   },
   active: {
     label: "Service Active",
-    color: "text-emerald-400",
-    bg: "bg-emerald-500/10",
-    border: "border-emerald-500/20",
+    color: "text-teal-400",
+    bg: "bg-teal-500/10",
+    border: "border-teal-500/20",
     icon: "🛡️",
     desc: "Your SOC Root protection is live and monitoring your assets. Check your email for onboarding details.",
   },
@@ -135,8 +135,8 @@ function OrderStatusContent() {
 
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-mono mb-5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-5">
+            <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
             ORDER TRACKING
           </div>
           <h1 className="text-4xl font-extrabold tracking-tight mb-3">Track Your Order</h1>
@@ -145,7 +145,7 @@ function OrderStatusContent() {
 
         {/* Search Form */}
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
-          <form onSubmit={handleCheck} className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 mb-6">
+          <form onSubmit={handleCheck} className="bg-white/[0.02] border border-white/5 rounded-none p-6 mb-6 angular-cut bg-noise glass-dark">
             <label className="block text-xs font-mono text-neutral-500 uppercase tracking-widest mb-2">
               Order ID
             </label>
@@ -155,14 +155,14 @@ function OrderStatusContent() {
                 value={orderId}
                 onChange={(e) => { setOrderId(e.target.value); setError(""); }}
                 placeholder="SR-202604-XXXXXXXX"
-                className="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white font-mono placeholder-neutral-700 outline-none focus:border-emerald-500/60 transition-colors"
+                className="flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-3 text-white font-mono placeholder-neutral-700 outline-none focus:border-teal-500/60 transition-colors"
                 spellCheck={false}
                 autoComplete="off"
               />
               <button
                 type="submit"
                 disabled={loading || !orderId.trim()}
-                className="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 disabled:opacity-40 disabled:cursor-not-allowed text-black font-bold rounded-xl transition-all text-sm"
+                className="px-6 py-3 bg-teal-500 hover:bg-teal-400 disabled:opacity-40 disabled:cursor-not-allowed text-black font-bold rounded-none transition-all text-sm angular-cut"
               >
                 {loading ? (
                   <span className="flex items-center gap-2">
@@ -221,7 +221,7 @@ function OrderStatusContent() {
 
               {/* Progress Steps — only for non-cancelled */}
               {order.status !== "cancelled" && order.status !== "refunded" && (
-                <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6">
+                <div className="bg-white/[0.02] border border-white/5 rounded-none p-6 angular-cut bg-noise glass-dark">
                   <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-5">Progress</p>
                   <div className="flex items-center">
                     {STEPS.map((step, i) => {
@@ -232,9 +232,9 @@ function OrderStatusContent() {
                           <div className="flex flex-col items-center gap-1.5">
                             <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-xs font-bold transition-all ${
                               done
-                                ? "border-emerald-500 bg-emerald-500 text-black"
+                                ? "border-teal-500 bg-teal-500 text-black"
                                 : "border-white/15 text-neutral-600"
-                            } ${active ? "ring-2 ring-emerald-500/30 ring-offset-2 ring-offset-[#0c0c0c]" : ""}`}>
+                            } ${active ? "ring-2 ring-teal-500/30 ring-offset-2 ring-offset-[#0c0c0c]" : ""}`}>
                               {done ? (
                                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
@@ -246,7 +246,7 @@ function OrderStatusContent() {
                             </span>
                           </div>
                           {i < STEPS.length - 1 && (
-                            <div className={`flex-1 h-0.5 mx-2 mb-4 rounded ${i < stepIdx ? "bg-emerald-500" : "bg-white/5"}`} />
+                            <div className={`flex-1 h-0.5 mx-2 mb-4 rounded ${i < stepIdx ? "bg-teal-500" : "bg-white/5"}`} />
                           )}
                         </div>
                       );
@@ -256,7 +256,7 @@ function OrderStatusContent() {
               )}
 
               {/* Order Details */}
-              <div className="bg-white/[0.02] border border-white/5 rounded-2xl p-6 space-y-3">
+              <div className="bg-white/[0.02] border border-white/5 rounded-none p-6 space-y-3 angular-cut bg-noise glass-dark">
                 <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-4">Order Details</p>
                 {[
                   { label: "Plan", value: PLAN_NAMES[order.plan] ?? order.plan },
@@ -276,9 +276,9 @@ function OrderStatusContent() {
                   href="https://wa.me/962777545115?text=Hello%2C%20I%20need%20help%20with%20my%20order"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 border border-white/10 hover:border-emerald-500/30 text-neutral-300 hover:text-white px-4 py-3 rounded-xl transition-all text-sm font-medium"
+                  className="flex-1 flex items-center justify-center gap-2 border border-white/10 hover:border-teal-500/30 text-neutral-300 hover:text-white px-4 py-3 rounded-xl transition-all text-sm font-medium"
                 >
-                  <svg className="w-4 h-4 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 text-teal-400" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
                     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.555 4.118 1.527 5.845L.057 23.943l6.256-1.44A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.002-1.374l-.36-.213-3.713.855.869-3.62-.235-.373A9.8 9.8 0 012.182 12C2.182 6.56 6.56 2.182 12 2.182S21.818 6.56 21.818 12 17.44 21.818 12 21.818z"/>
                   </svg>
@@ -303,7 +303,7 @@ function OrderStatusContent() {
               <a
                 href="https://wa.me/962777545115?text=I%20can%27t%20find%20my%20order%20ID"
                 target="_blank"
-                className="text-emerald-500 hover:text-emerald-400 transition-colors"
+                className="text-teal-500 hover:text-teal-400 transition-colors"
               >
                 Contact us on WhatsApp
               </a>

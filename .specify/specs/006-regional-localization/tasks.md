@@ -1,32 +1,23 @@
-# Tasks: Regional Localization (UAE/Jordan)
+# Tasks: Global Cleansing & Optimization
 
-**Input**: Audit findings — English-only site targeting Arabic-speaking markets. No Arabic content, no AED/JOD pricing, no hreflang.
+**Input**: User request to remove UAE/Jordan site-wide phone numbers, enforce USD-only pricing, and defer Arabic localization.
 
-## Phase 1: Foundation
+## Phase 1: Contact Clensing
 
-- [ ] T001 Add RTL stylesheet support — create `src/app/globals-rtl.css` with direction-aware utilities
-- [ ] T002 Create i18n content structure (`src/data/i18n/ar.ts` and `src/data/i18n/en.ts`)
-- [ ] T003 Create language toggle component `src/components/LanguageToggle.tsx`
-- [ ] T004 Add language toggle to navigation bar
+- [x] T001 Remove UAE and Jordan phone numbers from `Footer.tsx`
+- [x] T002 Remove UAE and Jordan phone numbers and locations' 'Tel' lines from `contact/page.tsx`
+- [x] T003 Remove WhatsApp channel listing (uses Jordan number) and update fallback error messages
+- [x] T004 Standardize contact fallbacks to Telegram and Email
 
-**Checkpoint**: Language switching infrastructure in place
+## Phase 2: Metadata & Internationalization
 
-## Phase 2: Arabic Content
+- [x] T005 Strip regional phone numbers and localized 'areaServed' from `StructuredData.tsx`
+- [ ] T006 Audit meta descriptions in `layout.tsx` and specific pages to ensure they don't over-promise regional availability where it might conflict with the new minimal localized profile.
+- [ ] T007 Verify USD-only pricing consistency across all plan details (`src/data/pricing.ts`).
 
-- [ ] T005 Translate homepage hero section to Arabic
-- [ ] T006 [P] Translate navigation labels to Arabic
-- [ ] T007 [P] Translate footer to Arabic
-- [ ] T008 Create Arabic version of the About page (even if abbreviated)
-- [ ] T009 Create Arabic version of the Contact page
+## Phase 3: Regional Deferment
 
-**Checkpoint**: Homepage, nav, and key pages available in Arabic
+- [ ] T008 Cleanup any leftover i18n logic placeholders that might have been partially implemented.
+- [ ] T009 Document the decision to defer Arabic and Regional Currency support in the project history.
 
-## Phase 3: Regional Currency & Legal
-
-- [ ] T010 Add AED/JOD equivalent prices alongside USD on pricing cards
-- [ ] T011 [P] Add `hreflang` tags to root layout for `en` and `ar` variants
-- [ ] T012 [P] Add `Content-Language` response header
-- [ ] T013 Update Privacy Policy to reference UAE Federal Decree Law No. 45
-- [ ] T014 Add Saudi PDPL and UAE DPL references to compliance pages
-
-**Checkpoint**: Full regional market alignment — linguistic, monetary, and legal
+**Checkpoint**: Site is now globally compliant with the "No Regional Contact/Currency" constraint.

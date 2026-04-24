@@ -27,16 +27,6 @@ const CHANNELS = [
   {
     icon: (
       <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.554 4.122 1.522 5.855L.057 23.886 6.304 22.4A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.37l-.36-.213-3.714.974 1.001-3.614-.235-.374A9.818 9.818 0 1112 21.818z"/>
-      </svg>
-    ),
-    title: "WhatsApp (Fastest Response)",
-    value: "+962 777 545 115",
-    href: "https://wa.me/962777545115",
-  },
-  {
-    icon: (
-      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
         <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
       </svg>
     ),
@@ -80,13 +70,13 @@ export default function Contact() {
       }
     } catch {
       // Fallback: still notify via Telegram on client-side failure, guide user to WhatsApp
-      setErrMsg("Network error. Please contact us directly via WhatsApp at +962 777 545 115.");
+      setErrMsg("Network error. Please contact us directly via generic support email or Telegram.");
       setFormState("error");
     }
   }
 
   const inputBase =
-    "w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-emerald-500/60 transition-colors text-white placeholder-neutral-600 text-sm";
+    "w-full bg-black/50 border border-white/10 rounded-xl px-4 py-3 outline-none focus:border-teal-500/60 transition-colors text-white placeholder-neutral-600 text-sm";
 
   return (
     <div className="min-h-screen py-20">
@@ -94,9 +84,9 @@ export default function Contact() {
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Get In Touch</p>
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Get In Touch</p>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Contact <span className="text-emerald-400">SOC Root</span>
+            Contact <span className="text-teal-400">SOC Root</span>
           </h1>
           <p className="text-neutral-400">
             Ready to secure your enterprise? Reach our 24/7 analysis team directly or submit a request below.
@@ -106,30 +96,22 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
 
           {/* ── Contact Form ── */}
-          <div className="border border-white/8 bg-white/[0.02] p-8 rounded-2xl">
+          <div className="border border-white/8 bg-white/[0.02] p-8 rounded-none angular-cut bg-noise glass-dark">
             <h2 className="text-xl font-bold mb-6">Send a Secure Message</h2>
 
             {formState === "success" ? (
               <div className="flex flex-col items-center justify-center text-center py-12 gap-5">
-                <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-                  <svg className="w-8 h-8 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-16 h-16 rounded-full bg-teal-500/10 border border-teal-500/30 flex items-center justify-center">
+                  <svg className="w-8 h-8 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
                 <div>
                   <h3 className="text-lg font-bold text-white mb-2">Message Received</h3>
                   <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
-                    Your message has been transmitted securely. Our team will respond within <span className="text-emerald-400 font-semibold">24 hours</span>.
+                    Your message has been transmitted securely. Our team will respond within <span className="text-teal-400 font-semibold">24 hours</span>.
                   </p>
                 </div>
-                <a
-                  href="https://wa.me/962777545115"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 transition-colors font-mono"
-                >
-                  Need immediate help? WhatsApp us →
-                </a>
               </div>
             ) : (
               <form className="space-y-4" onSubmit={handleSubmit}>
@@ -204,7 +186,7 @@ export default function Contact() {
                 <button
                   type="submit"
                   disabled={formState === "loading"}
-                  className="w-full bg-emerald-500 hover:bg-emerald-400 disabled:opacity-60 text-black font-bold py-3.5 rounded-xl transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] text-sm flex items-center justify-center gap-2"
+                  className="w-full bg-teal-500 hover:bg-teal-400 disabled:opacity-60 text-black font-bold py-3.5 rounded-none transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] text-sm flex items-center justify-center gap-2 angular-cut"
                 >
                   {formState === "loading" ? (
                     <>
@@ -233,8 +215,8 @@ export default function Contact() {
 
           {/* ── Direct Channels + Info ── */}
           <div className="space-y-5">
-            <div className="border border-white/8 bg-white/[0.02] p-7 rounded-2xl">
-              <h3 className="text-lg font-bold text-emerald-400 mb-6">Direct Channels</h3>
+            <div className="border border-white/8 bg-white/[0.02] p-7 rounded-none angular-cut bg-noise glass-dark">
+              <h3 className="text-lg font-bold text-teal-400 mb-6">Direct Channels</h3>
               <ul className="space-y-5">
                 {CHANNELS.map((item) => (
                   <li key={item.title}>
@@ -244,11 +226,11 @@ export default function Contact() {
                       rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                       className="flex items-start gap-4 group"
                     >
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 shrink-0 group-hover:bg-emerald-500/20 transition-colors">
+                      <div className="w-10 h-10 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shrink-0 group-hover:bg-teal-500/20 transition-colors">
                         {item.icon}
                       </div>
                       <div>
-                        <p className="font-semibold text-sm text-white group-hover:text-emerald-400 transition-colors">
+                        <p className="font-semibold text-sm text-white group-hover:text-teal-400 transition-colors">
                           {item.title}
                         </p>
                         <p className="text-neutral-500 text-sm mt-0.5 font-mono">{item.value}</p>
@@ -260,14 +242,14 @@ export default function Contact() {
             </div>
 
             {/* Operating Hours */}
-            <div className="border border-white/8 bg-white/[0.02] p-6 rounded-2xl">
+            <div className="border border-white/8 bg-white/[0.02] p-6 rounded-none angular-cut bg-noise glass-dark">
               <h3 className="text-base font-bold mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
                 Availability
               </h3>
               <div className="space-y-3 text-sm">
                 {[
-                  { label: "WhatsApp / Telegram", value: "24/7 — typically < 2hr response" },
+                  { label: "Telegram Support", value: "24/7 — typically < 2hr response" },
                   { label: "Email Response", value: "Within 24 hours (business days)" },
                   { label: "Active Incidents", value: "Immediate escalation available" },
                   { label: "Timezone", value: "GST +4 (UAE) / AST +3 (Jordan)" },
@@ -280,18 +262,38 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* Locations */}
+            <div className="border border-white/8 bg-white/[0.02] p-6 rounded-none angular-cut bg-noise glass-dark">
+              <h3 className="text-base font-bold mb-4 flex items-center gap-2">
+                <svg className="w-4 h-4 text-teal-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657h-1.414l-1.414 1.414M12 21a9.003 9.003 0 008.354-5.646l-4.596 4.596A4.001 4.001 0 0110.463 15.6l-5.657-5.657A9.003 9.003 0 0012 21zm-1.414-1.414A9.003 9.003 0 013 12a9.004 9.004 0 011.536-4.945l6.05 6.05z" />
+                </svg>
+                Physical Presence
+              </h3>
+              <div className="space-y-4 text-sm">
+                <div>
+                  <h4 className="text-teal-400 font-bold mb-1">Amman, Jordan</h4>
+                  <p className="text-neutral-400 leading-relaxed">Mecca Street, Al-Husseini Complex<br />Amman 11181, Jordan</p>
+                </div>
+                <div className="border-t border-white/5 pt-4">
+                  <h4 className="text-teal-400 font-bold mb-1">Dubai, UAE</h4>
+                  <p className="text-neutral-400 leading-relaxed">Dubai World Trade Centre, Sheikh Zayed Rd<br />P.O. Box 9292, Dubai, UAE</p>
+                </div>
+              </div>
+            </div>
+
             {/* PGP — real key or nothing */}
-            <div className="border border-white/8 bg-white/[0.02] p-6 rounded-2xl">
+            <div className="border border-white/8 bg-white/[0.02] p-6 rounded-none angular-cut bg-noise glass-dark">
               <h3 className="text-base font-bold mb-2">Encrypted Disclosure</h3>
               <p className="text-neutral-500 text-sm mb-4 leading-relaxed">
                 Disclosing a vulnerability or active breach? Reach us via WhatsApp or email — we follow responsible disclosure best practices per our{" "}
-                <a href="/security" className="text-emerald-400 hover:underline">
+                <a href="/security" className="text-teal-400 hover:underline">
                   Security Policy
                 </a>.
               </p>
               <a
                 href="/security"
-                className="inline-flex items-center gap-2 text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors border border-emerald-500/20 px-3 py-2 rounded-lg"
+                className="inline-flex items-center gap-2 text-xs font-mono text-teal-400 hover:text-teal-300 transition-colors border border-teal-500/20 px-3 py-2 rounded-lg"
               >
                 View Security Policy →
               </a>
