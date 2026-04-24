@@ -22,6 +22,9 @@ export default function NavClient() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [showAccountMenu, setShowAccountMenu] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -32,10 +35,39 @@ export default function NavClient() {
   // Close mobile menu on route change
   useEffect(() => {
     setMobileOpen(false);
+    setShowAccountMenu(false);
   }, [pathname]);
+
+  // Check auth state
+  useEffect(() => {
+    const auth = localStorage.getItem("soc_auth");
+    const name = localStorage.getItem("soc_auth_name");
+    if (auth === "true" && name) {
+      setIsLoggedIn(true);
+      setUserName(name);
+    }
+  }, []);
+
+  function handleLogout() {
+    localStorage.removeItem("soc_auth");
+    localStorage.removeItem("soc_auth_email");
+    localStorage.removeItem("soc_auth_name");
+    localStorage.removeItem("soc_verified");
+    setIsLoggedIn(false);
+    setUserName("");
+    setShowAccountMenu(false);
+    window.location.href = "/";
+  }
 
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+  const initials = userName
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
 
   return (
     <>
@@ -91,12 +123,68 @@ export default function NavClient() {
               </svg>
               Track Order
             </Link>
-            <Link
-              href="/portal/login"
-              className="text-sm text-neutral-400 hover:text-white transition-colors"
-            >
-              Sign In
-            </Link>
+
+            {isLoggedIn ? (
+              /* ── Logged In: Avatar + Dropdown ── */
+              <div className="relative">
+                <button
+                  onClick={() => setShowAccountMenu(!showAccountMenu)}
+                  className="flex items-center gap-2 py-1.5 px-3 rounded-xl hover:bg-white/5 transition-all"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    {initials || "U"}
+                  </div>
+                  <span className="text-sm text-neutral-300 font-medium max-w-[100px] truncate">{userName.split(" ")[0]}</span>
+                  <svg className={`w-3 h-3 text-neutral-500 transition-transform ${showAccountMenu ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {showAccountMenu && (
+                  <>
+                    <div className="fixed inset-0 z-40" onClick={() => setShowAccountMenu(false)} />
+                    <div className="absolute right-0 mt-2 w-56 z-50 border border-white/10 bg-[#141414] rounded-xl shadow-2xl overflow-hidden">
+                      <div className="px-4 py-3 border-b border-white/5">
+                        <p className="text-sm font-semibold text-white truncate">{userName}</p>
+                        <p className="text-xs text-neutral-600 truncate">{localStorage.getItem("soc_auth_email") || ""}</p>
+                      </div>
+                      <div className="py-1">
+                        <Link href="/training" className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-400 hover:text-white hover:bg-white/5 transition-all">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                          </svg>
+                          My Training
+                        </Link>
+                        <Link href="/portal/order-status" className="flex items-center gap-3 px-4 py-2.5 text-sm text-neutral-400 hover:text-white hover:bg-white/5 transition-all">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                          </svg>
+                          My Orders
+                        </Link>
+                      </div>
+                      <div className="border-t border-white/5 py-1">
+                        <button onClick={handleLogout}
+                          className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-400 hover:bg-red-500/10 transition-all text-left">
+                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                          </svg>
+                          Sign Out
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              /* ── Not Logged In ── */
+              <Link
+                href="/portal/login"
+                className="text-sm text-neutral-400 hover:text-white transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
+
             <Link
               href="/scan"
               className="bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm px-5 py-2.5 rounded-lg transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] tracking-wide"
@@ -155,17 +243,46 @@ export default function NavClient() {
               </Link>
             ))}
 
+            {/* ── Mobile: Auth-aware section ── */}
             <div className="border-t border-white/5 pt-3 mt-3 space-y-1">
-              {PORTAL_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-all"
-                >
-                  <span>{link.icon}</span>
-                  {link.label}
-                </Link>
-              ))}
+              {isLoggedIn ? (
+                <>
+                  <div className="flex items-center gap-3 px-4 py-3">
+                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-700 flex items-center justify-center text-white text-sm font-bold shrink-0">
+                      {initials || "U"}
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-semibold text-white truncate">{userName}</p>
+                      <p className="text-xs text-neutral-600 truncate">{localStorage.getItem("soc_auth_email") || ""}</p>
+                    </div>
+                  </div>
+                  <Link href="/training"
+                    className="flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-all">
+                    <span>📚</span> My Training
+                  </Link>
+                  <Link href="/portal/order-status"
+                    className="flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-all">
+                    <span>📋</span> My Orders
+                  </Link>
+                  <button onClick={handleLogout}
+                    className="w-full flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-red-400 hover:bg-red-500/10 transition-all text-left">
+                    <span>🚪</span> Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  {PORTAL_LINKS.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className="flex items-center gap-3 py-3 px-4 rounded-xl text-sm text-neutral-400 hover:bg-white/5 hover:text-white transition-all"
+                    >
+                      <span>{link.icon}</span>
+                      {link.label}
+                    </Link>
+                  ))}
+                </>
+              )}
             </div>
 
             <div className="pt-3">

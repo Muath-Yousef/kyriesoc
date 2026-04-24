@@ -101,7 +101,7 @@ export default function ResourcesIndex() {
           <div className="mt-8 pt-6 border-t border-white/5">
             <p className="text-neutral-600 text-sm mb-4">Get notified when new guides are published:</p>
             <Link
-              href="/#newsletter"
+              href="/contact"
               className="inline-flex items-center gap-2 text-sm text-emerald-400 hover:text-emerald-300 font-mono transition-colors"
             >
               Subscribe to Security Intelligence →
