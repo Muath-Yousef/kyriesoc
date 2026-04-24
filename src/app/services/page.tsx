@@ -90,7 +90,7 @@ export default function Services() {
         </div>
 
         {/* Plans grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
+        <div id="pricing" className="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-20 scroll-mt-24">
           {PLANS.map((plan, i) => {
             const finalPrice = discount > 0 ? Math.round(plan.price * (1 - discount / 100)) : plan.price;
             return (

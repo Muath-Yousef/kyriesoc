@@ -3,10 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const SERVICES = ["Threat Scanning", "Managed SOC", "Compliance", "Training"];
+const SERVICES = [
+  { label: "Threat Scanning", href: "/services" },
+  { label: "Managed SOC", href: "/services" },
+  { label: "Compliance", href: "/services" },
+  { label: "Pricing", href: "/services#pricing" },
+  { label: "Training", href: "/training" },
+];
 const COMPANY_LINKS = [
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
+  { label: "Resources", href: "/resources" },
   { label: "Track Order", href: "/portal/order-status" },
   { label: "Portal", href: "/portal/login" },
   { label: "NCA ECC 2.0 Docs", href: "/compliance/nca-ecc" },
@@ -135,8 +142,8 @@ export default function Footer() {
             <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-5">Services</p>
             <ul className="space-y-3">
               {SERVICES.map(s => (
-                <li key={s}>
-                  <Link href="/services" className="text-sm text-neutral-400 hover:text-emerald-400 transition-colors">{s}</Link>
+                <li key={s.label}>
+                  <Link href={s.href} className="text-sm text-neutral-400 hover:text-emerald-400 transition-colors">{s.label}</Link>
                 </li>
               ))}
             </ul>

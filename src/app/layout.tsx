@@ -13,10 +13,39 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SOC Root | Enterprise Cybersecurity",
+  title: {
+    default: "SOC Root — Enterprise Cybersecurity for UAE & Jordan",
+    template: "%s — SOC Root",
+  },
   description:
-    "Military-grade cybersecurity for businesses internationally. Continuous pentesting, SIEM monitoring, NCA ECC compliance — at SMB prices.",
-  keywords: "cybersecurity, SOC, SIEM, pentesting, NCA ECC, ISO 27001",
+    "Military-grade automated cybersecurity platform for businesses in the UAE and Jordan. Continuous pentesting, SIEM monitoring, NCA ECC 2.0 compliance, and security awareness training — at SMB prices.",
+  keywords: [
+    "cybersecurity UAE", "cybersecurity Jordan", "NCA ECC compliance",
+    "penetration testing", "vulnerability assessment", "SIEM monitoring",
+    "SOC as a service", "ISO 27001", "GRC consulting", "security awareness training",
+  ],
+  authors: [{ name: "Muath Yousef", url: "https://socroot.com/about" }],
+  creator: "SOC Root",
+  metadataBase: new URL("https://socroot.com"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://socroot.com",
+    siteName: "SOC Root",
+    title: "SOC Root — Enterprise Cybersecurity for UAE & Jordan",
+    description:
+      "Automated cybersecurity — continuous pentesting, NCA ECC compliance, SIEM monitoring. We hack you before they do.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SOC Root — Enterprise Cybersecurity for UAE & Jordan",
+    description: "Automated pentesting, SIEM, and NCA ECC compliance at SMB prices.",
+    creator: "@RootSoc",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
