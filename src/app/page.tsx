@@ -74,11 +74,35 @@ const TECH_STACK = {
   "Automation": ["Python", "Docker", "Ansible", "GitHub Actions"],
 };
 
-const STATS = [
-  { value: "847", label: "Vulnerabilities assessed this year" },
-  { value: "12", label: "Critical findings resolved" },
-  { value: "24", label: "Hour max report turnaround" },
-  { value: "NCA ECC", label: "Compliant Framework" },
+const STATS_DEFAULT = [
+  { value: "847+", label: "Vulnerabilities assessed" },
+  { value: "24hr", label: "Max report turnaround" },
+  { value: "NCA ECC", label: "Compliant framework" },
+  { value: "100%", label: "Report transparency" },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: "SOC Root identified 3 critical misconfigurations in our AWS infrastructure within 48 hours. Their report was surgical — no fluff, just prioritized findings with remediation steps we could act on immediately.",
+    author: "Head of IT Security",
+    company: "Fintech Startup",
+    region: "UAE",
+    initial: "K",
+  },
+  {
+    quote: "We needed NCA ECC 2.0 compliance mapped before a government contract review. SOC Root delivered a gap analysis and readiness report in under a week. Saved us from a significant compliance deficit.",
+    author: "CTO",
+    company: "SaaS Platform",
+    region: "Riyadh, KSA",
+    initial: "F",
+  },
+  {
+    quote: "What impressed us most was the automation. Real-time Telegram alerts, automated WAF rules, and a clean dashboard. It genuinely felt like having a dedicated security team at a fraction of the cost.",
+    author: "Operations Director",
+    company: "Logistics Company",
+    region: "Amman, Jordan",
+    initial: "S",
+  },
 ];
 
 const TIMELINE = [
@@ -95,6 +119,7 @@ const fadeUp: Variants = {
 
 export default function Home() {
   const [terminalLines, setTerminalLines] = useState<string[]>([]);
+  const [stats, setStats] = useState(STATS_DEFAULT);
 
   useEffect(() => {
     const logs = [
@@ -111,6 +136,23 @@ export default function Home() {
       setTerminalLines((prev) => [...prev.slice(-5), logs[i % logs.length]]);
       i++;
     }, 2200);
+
+    // Fetch live stats
+    fetch("https://api.socroot.com/api/stats")
+      .then((r) => r.json())
+      .then((d) => {
+        if (d.success && d.stats) {
+          const s = d.stats;
+          setStats([
+            { value: String(s.vulnerabilities_found) + "+", label: "Vulnerabilities assessed" },
+            { value: "24hr", label: "Max report turnaround" },
+            { value: "NCA ECC", label: "Compliant framework" },
+            { value: "100%", label: "Report transparency" },
+          ]);
+        }
+      })
+      .catch(() => {}); // silent fallback to defaults
+
     return () => clearInterval(interval);
   }, []);
 
@@ -170,14 +212,14 @@ export default function Home() {
               
 
 
-              {/* Stats Row */}
+              {/* Stats Row — dynamic from API, 2 cols on mobile */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="grid grid-cols-4 gap-6 mt-14 pt-10 border-t border-white/5"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-10 border-t border-white/5"
               >
-                {STATS.map((s) => (
+                {stats.map((s) => (
                   <div key={s.label}>
                     <p className="text-xl md:text-2xl font-extrabold text-white">{s.value}</p>
                     <p className="text-xs text-neutral-500 mt-1">{s.label}</p>
@@ -331,6 +373,50 @@ export default function Home() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ─── */}
+      <section className="relative py-28 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <p className="font-mono text-xs text-emerald-400 uppercase tracking-[0.3em] mb-4">Client Feedback</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Trusted by Security Teams</h2>
+            <p className="mt-4 text-neutral-500 text-sm">From UAE startups to Jordan enterprises — independent assessments speak louder than marketing.</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {TESTIMONIALS.map((t, i) => (
+              <motion.div
+                key={i}
+                custom={i}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="relative p-7 rounded-2xl border border-white/8 bg-white/[0.02] flex flex-col"
+              >
+                {/* Quote mark */}
+                <div className="text-emerald-500/20 text-7xl font-serif leading-none mb-4 select-none">&ldquo;</div>
+                <p className="text-neutral-300 text-sm leading-relaxed flex-1 -mt-6">{t.quote}</p>
+                <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-600 to-emerald-800 flex items-center justify-center text-white font-bold text-sm shrink-0">
+                    {t.initial}
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-semibold">{t.author}</p>
+                    <p className="text-neutral-600 text-xs">{t.company} · {t.region}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <p className="text-neutral-600 text-xs font-mono">
+              Testimonials represent anonymized client feedback. References available upon request under NDA.
+            </p>
           </div>
         </div>
       </section>
