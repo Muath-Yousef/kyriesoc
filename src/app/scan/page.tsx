@@ -15,9 +15,6 @@ export default function FreeScan() {
   const [target, setTarget] = useState("");
   const [scanError, setScanError] = useState("");
 
-  // Mock verification code — in production this would be sent via email
-  const MOCK_CODE = "SOC-2026";
-
   function getDomain(e: string) {
     return e.split("@")[1]?.toLowerCase() ?? "";
   }

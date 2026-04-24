@@ -168,11 +168,7 @@ export default function Home() {
                 </a>
               </motion.div>
               
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="mt-6">
-                 <a href="/sample-report.pdf" target="_blank" className="text-emerald-400 text-sm hover:underline flex items-center gap-2 font-mono">
-                   View a sample assessment report →
-                 </a>
-              </motion.div>
+
 
               {/* Stats Row */}
               <motion.div

@@ -10,7 +10,8 @@ const COMPANY_LINKS = [
   { label: "Track Order", href: "/portal/order-status" },
   { label: "Portal", href: "/portal/login" },
   { label: "NCA ECC 2.0 Docs", href: "/compliance/nca-ecc" },
-  { label: "ISO 27001", href: "/compliance/iso-27001" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms of Service", href: "/terms" },
   { label: "Security Policy", href: "/.well-known/security.txt" },
 ];
 const TRUST_BADGES = [
@@ -178,7 +179,11 @@ export default function Footer() {
 
         <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600">
           <p>© 2026 SOC Root — All rights reserved.</p>
-          <p>Engineered by <span className="text-emerald-500">Muath Yousef</span> · Serving businesses internationally</p>
+          <div className="flex items-center gap-4 flex-wrap justify-center">
+            <Link href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-neutral-400 transition-colors">Terms of Service</Link>
+            <span>Engineered by <span className="text-emerald-500">Muath Yousef</span></span>
+          </div>
         </div>
       </div>
     </footer>
