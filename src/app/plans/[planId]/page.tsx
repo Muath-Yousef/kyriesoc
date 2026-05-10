@@ -4,6 +4,7 @@ import { useState, use } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import DynamicBackground from "@/components/DynamicBackground";
+import { Shield, ClipboardCheck } from "lucide-react";
 
 const PLAN_DATA = {
   starter: {
@@ -220,7 +221,7 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
           <div className="grid md:grid-cols-3 gap-4">
             {plan.protectsFrom.map((item, i) => (
               <div key={i} className="flex items-center gap-3 bg-white/[0.02] border border-white/5 p-4 rounded-none text-neutral-300 angular-cut bg-noise glass-dark">
-                <span className="text-red-400">🛡️</span> {item}
+                <Shield className="w-4 h-4 text-red-400 shrink-0" /> {item}
               </div>
             ))}
           </div>
@@ -281,7 +282,7 @@ export default function PlanPage({ params }: { params: Promise<{ planId: string 
             <h2 className="text-2xl font-bold mb-6 text-teal-400 border-b border-white/10 pb-2">Compliance Coverage</h2>
             <ul className="space-y-3">
               {plan.compliance.map((c, i) => (
-                <li key={i} className="flex items-center gap-3 text-neutral-300"><span className="text-teal-500">📋</span> {c}</li>
+                <li key={i} className="flex items-center gap-3 text-neutral-300"><ClipboardCheck className="w-4 h-4 text-teal-500 shrink-0" /> {c}</li>
               ))}
             </ul>
           </section>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import DynamicBackground from "@/components/DynamicBackground";
 import NcaChecklist from "@/components/NcaChecklist";
+import { Building2, Shield, RefreshCw, Handshake } from "lucide-react";
 
 const STATS = [
   { value: "76%", label: "of Saudi orgs had at least one ECC gap in 2024" },
@@ -70,26 +71,26 @@ export default function NcaEccPage() {
                 {
                   title: "Cybersecurity Governance",
                   desc: "Policy frameworks, risk ownership, roles and accountability — the foundation everything else is built on.",
-                  icon: "🏛️"
+                  Icon: Building2
                 },
                 {
                   title: "Cybersecurity Defense",
                   desc: "Endpoint protection, vulnerability management, network segmentation, and continuous external scanning.",
-                  icon: "🛡️"
+                  Icon: Shield
                 },
                 {
                   title: "Cybersecurity Resilience",
                   desc: "Incident response plans, business continuity, disaster recovery, and backup integrity testing.",
-                  icon: "🔄"
+                  Icon: RefreshCw
                 },
                 {
                   title: "Third-Party Cybersecurity",
                   desc: "Vendor risk assessments, contractual cybersecurity requirements, and securing supply chains.",
-                  icon: "🤝"
+                  Icon: Handshake
                 },
               ].map((domain, i) => (
                 <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
-                  <div className="text-2xl mb-3">{domain.icon}</div>
+                  <domain.Icon className="w-7 h-7 text-teal-400 mb-3" />
                   <h3 className="font-bold text-teal-400 mb-2">{domain.title}</h3>
                   <p className="text-sm text-neutral-400">{domain.desc}</p>
                 </div>

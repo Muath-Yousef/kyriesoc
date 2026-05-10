@@ -129,7 +129,7 @@ export default function Services() {
             {[
               { icon: "₿", label: "Binance Pay", color: "text-yellow-400" },
               { icon: "PP", label: "PayPal", color: "text-blue-400" },
-              { icon: "🏦", label: "Bank Transfer (SWIFT)", color: "text-teal-400" },
+              { icon: "BT", label: "Bank Transfer (SWIFT)", color: "text-teal-400" },
               { icon: "W", label: "Wise Business", color: "text-teal-400" },
             ].map(({ icon, label, color }) => (
               <div key={label} className="flex items-center gap-3 px-5 py-3 rounded-xl border border-white/8 bg-black/40 text-sm">
