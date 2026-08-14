@@ -8,7 +8,7 @@ const STATUS = [
   { value: "Pre-production", label: "Current maturity" },
   { value: "HITL", label: "Sensitive actions" },
   { value: "Dry-run", label: "Default response mode" },
-  { value: "Public", label: "Architecture documentation" },
+  { value: "Subscription", label: "Commercial model under validation" },
 ];
 
 const CAPABILITIES = [
@@ -40,7 +40,7 @@ const CAPABILITIES = [
   {
     tag: "ARCHITECTURE",
     title: "Modular system boundaries",
-    desc: "A documented separation between the public architecture, control plane, SOC runtime, and product website.",
+    desc: "Explicit boundaries between the SOCRoot product surface, its candidate control plane, reusable assets, and the separate Project Synapse graduation project.",
   },
 ];
 
@@ -79,21 +79,21 @@ const SYNTHETIC_LOGS = [
 const REPOSITORIES = [
   {
     title: "Project Synapse",
-    label: "Public architecture",
+    label: "Separate graduation project",
     href: "https://github.com/Muath-Yousef/project-synapse",
-    desc: "System boundaries, maturity, engineering principles, and roadmap.",
+    desc: "An open-source graduation project combining security operations, data analytics, and a scalable modular architecture.",
   },
   {
-    title: "SOCRoot Control Plane",
-    label: "Private engineering",
-    href: "https://github.com/Muath-Yousef/project-synapse#repository-role",
-    desc: "Portals, RBAC, client state, evidence workflows, and observability. Private during Git-history review.",
+    title: "SOCRoot Control Plane Candidate",
+    label: "Private product engineering",
+    href: "https://github.com/Muath-Yousef/ide-agentic-engine",
+    desc: "A candidate foundation for portals, RBAC, client state, evidence workflows, and observability; adoption depends on service validation.",
   },
   {
-    title: "SOCRoot SOC Runtime",
-    label: "Private engineering",
-    href: "https://github.com/Muath-Yousef/project-synapse#repository-role",
-    desc: "Alert ingestion, triage, orchestration, HITL, and evidence capture. Private during Git-history review.",
+    title: "Project Synapse Runtime / POC",
+    label: "Private graduation-project engineering",
+    href: "https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory",
+    desc: "Alert ingestion, triage, human approval, and evidence capture for Project Synapse. Reuse by SOCRoot requires an explicit interface and value case.",
   },
 ];
 
@@ -142,7 +142,7 @@ export default function Home() {
                 transition={{ delay: 0.16, duration: 0.5 }}
                 className="text-lg text-neutral-400 leading-relaxed max-w-2xl mb-10"
               >
-                SOCRoot is an evolving cybersecurity engineering initiative that grew from Project Synapse. It explores how SIEM, SOAR, case management, observability, and AI-assisted analysis can support smaller organizations without hiding maturity, risk, or operational limits.
+                SOCRoot is an independent cybersecurity product initiative developing automatable subscription services for smaller organizations. Each service must deliver measurable, repeatable customer value while keeping maturity, risk, authorization, and operational limits explicit.
               </motion.p>
 
               <motion.div
@@ -152,10 +152,10 @@ export default function Home() {
                 className="flex flex-wrap gap-4"
               >
                 <a
-                  href="https://github.com/Muath-Yousef/project-synapse"
+                  href="/services"
                   className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 transition-all text-sm uppercase tracking-wider angular-cut"
                 >
-                  Review the architecture
+                  Explore service direction
                 </a>
                 <Link
                   href="/about"
@@ -210,10 +210,10 @@ export default function Home() {
       <section className="relative py-28 border-t border-white/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Architecture tracks</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Capabilities with explicit boundaries</h2>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Service foundations</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Automatable capabilities with explicit boundaries</h2>
             <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
-              These are engineering tracks under validation—not claims of an unattended, production-grade managed SOC.
+              These capabilities are being tested as building blocks for subscription services—not presented as an unattended, production-grade managed SOC.
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
@@ -270,7 +270,7 @@ export default function Home() {
             <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Open engineering record</p>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Inspect the work, not just the claims</h2>
             <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
-              The public record separates architecture, implementation responsibilities, and maturity so each claim can be reviewed in context.
+              The public record separates SOCRoot product work from Project Synapse and labels implementation maturity so each claim can be reviewed in context.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
@@ -297,14 +297,14 @@ export default function Home() {
 
       <section className="relative py-20 border-t border-white/5 bg-teal-500/[0.03]">
         <div className="container mx-auto px-6 text-center max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-5">Interested in the engineering approach?</h2>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-5">Interested in a scoped security service?</h2>
           <p className="text-neutral-400 leading-relaxed mb-8">
-            Review the architecture and limitations first. For collaboration or a carefully scoped, authorized assessment, start with a written conversation about scope and evidence.
+            Start with a clearly bounded problem, authorization, expected evidence, and the recurring value the service should deliver. Current offerings remain subject to pre-production validation.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a href="https://github.com/Muath-Yousef/project-synapse" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-7 py-3 transition-colors">
-              Architecture repository
-            </a>
+            <Link href="/services" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-7 py-3 transition-colors">
+              Explore services
+            </Link>
             <Link href="/contact" className="border border-white/10 hover:border-teal-500/40 text-neutral-300 px-7 py-3 transition-colors">
               Contact
             </Link>
