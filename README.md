@@ -40,8 +40,8 @@ Open http://localhost:3000.
 ## Related repositories
 
 - [Project Synapse — public architecture](https://github.com/Muath-Yousef/project-synapse)
-- [SOCRoot control plane](https://github.com/Muath-Yousef/ide-agentic-engine)
-- [SOCRoot runtime](https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory)
+- **SOCRoot control plane** — canonical implementation is private during Git-history security review
+- **SOCRoot runtime** — canonical implementation is private during Git-history security review
 
 ## Communication rules
 

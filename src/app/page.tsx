@@ -85,15 +85,15 @@ const REPOSITORIES = [
   },
   {
     title: "SOCRoot Control Plane",
-    label: "Active engineering",
-    href: "https://github.com/Muath-Yousef/ide-agentic-engine",
-    desc: "Portals, RBAC, client state, evidence workflows, and observability.",
+    label: "Private engineering",
+    href: "https://github.com/Muath-Yousef/project-synapse#repository-role",
+    desc: "Portals, RBAC, client state, evidence workflows, and observability. Private during Git-history review.",
   },
   {
     title: "SOCRoot SOC Runtime",
-    label: "Active prototype",
-    href: "https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory",
-    desc: "Alert ingestion, triage, orchestration, HITL, and evidence capture.",
+    label: "Private engineering",
+    href: "https://github.com/Muath-Yousef/project-synapse#repository-role",
+    desc: "Alert ingestion, triage, orchestration, HITL, and evidence capture. Private during Git-history review.",
   },
 ];
 
@@ -270,7 +270,7 @@ export default function Home() {
             <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Open engineering record</p>
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Inspect the work, not just the claims</h2>
             <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
-              The public repositories separate architecture, implementation responsibilities, and maturity so each claim can be reviewed in context.
+              The public record separates architecture, implementation responsibilities, and maturity so each claim can be reviewed in context.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
@@ -288,7 +288,7 @@ export default function Home() {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-teal-400">{repo.label}</span>
                 <h3 className="text-xl font-bold text-white mt-4 mb-3">{repo.title}</h3>
                 <p className="text-sm text-neutral-500 leading-relaxed">{repo.desc}</p>
-                <span className="inline-block mt-6 text-sm text-teal-400">Open on GitHub →</span>
+                <span className="inline-block mt-6 text-sm text-teal-400">Open public documentation →</span>
               </motion.a>
             ))}
           </div>

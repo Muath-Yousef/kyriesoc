@@ -66,8 +66,8 @@ const PRINCIPLES = [
 
 const REPOSITORIES = [
   ["Public architecture", "project-synapse", "https://github.com/Muath-Yousef/project-synapse"],
-  ["Control plane", "ide-agentic-engine", "https://github.com/Muath-Yousef/ide-agentic-engine"],
-  ["SOC runtime", "Project-Synapse-SOC-Factory", "https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory"],
+  ["Private control plane", "ide-agentic-engine · history review", "https://github.com/Muath-Yousef/project-synapse#repository-role"],
+  ["Private SOC runtime", "Project-Synapse-SOC-Factory · history review", "https://github.com/Muath-Yousef/project-synapse#repository-role"],
   ["Engineering portfolio", "portfolio-site", "https://github.com/Muath-Yousef/portfolio-site"],
 ];
 
@@ -241,7 +241,7 @@ export default function About() {
         <section className="max-w-5xl mx-auto mb-20">
           <div className="text-center mb-12">
             <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Repository map</p>
-            <h2 className="text-4xl font-extrabold">Review the source by responsibility</h2>
+            <h2 className="text-4xl font-extrabold">Review the public record by responsibility</h2>
           </div>
           <div className="divide-y divide-white/5 border-y border-white/5">
             {REPOSITORIES.map(([role, name, href]) => (
