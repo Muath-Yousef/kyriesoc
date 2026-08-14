@@ -122,7 +122,7 @@ export default function Home() {
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
                 <span className="font-mono text-[11px] text-teal-300 uppercase tracking-[0.22em]">
-                  Engineering initiative · pre-production validation
+                  Cybersecurity subscriptions · pre-production validation
                 </span>
               </motion.div>
 
@@ -132,7 +132,7 @@ export default function Home() {
                 transition={{ delay: 0.08, duration: 0.55 }}
                 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.04] mb-6"
               >
-                Security operations built for
+                Security services built for
                 <span className="text-teal-400"> evidence and control.</span>
               </motion.h1>
 
