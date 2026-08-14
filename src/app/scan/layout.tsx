@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Free External Security Scan — SOC Root",
-  description: "Get a free external vulnerability and reconnaissance scan for your business domain. Requires business email verification. NCA ECC aligned findings report included.",
-  keywords: "free vulnerability scan, free penetration test, domain security check, external recon, SOC Root scan UAE Jordan",
+  title: "Authorized Review Intake | SOCRoot",
+  description: "Prepare ownership evidence, boundaries, exclusions, safety controls, and reporting expectations for a bounded security review.",
+  keywords: "authorized security review, assessment scope, evidence handling, safe security testing",
   openGraph: {
-    title: "Free External Security Scan — SOC Root",
-    description: "One free scan per company. Powered by Nuclei, Subfinder, and AI triage. Get your free vulnerability report in under 45 minutes.",
+    title: "Authorized Review Intake | SOCRoot",
+    description: "A pre-production scoping checklist; this public page does not launch a scan or promise a report.",
     url: "https://socroot.com/scan",
     type: "website",
   },

@@ -1,92 +1,45 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import DynamicBackground from "@/components/DynamicBackground";
 
 export default function Iso27001Page() {
+  const evidenceAreas = [
+    ["Context and scope", "Define the organization, interested parties, ISMS boundaries, dependencies, and exclusions."],
+    ["Risk method", "Document how information-security risks are identified, evaluated, treated, accepted, and reviewed."],
+    ["Control rationale", "Maintain an evidence-backed Statement of Applicability rather than treating every control as automatically applicable."],
+    ["Operational evidence", "Retain reviewable records for access, incidents, suppliers, changes, continuity, learning, and corrective action."],
+    ["Independent assurance", "Use qualified legal, certification, and audit professionals where formal interpretation or attestation is required."],
+  ];
+
   return (
-    <main className="min-h-screen bg-[#0c0c0c] text-[#f5f5f5] pt-32 pb-24 relative overflow-hidden">
-      <DynamicBackground />
+    <main className="min-h-screen py-24">
+      <div className="container mx-auto max-w-4xl px-6">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-teal-400">Framework reference</p>
+        <h1 className="mb-6 text-4xl font-extrabold tracking-tight md:text-5xl">ISO/IEC 27001 readiness starts with evidence</h1>
+        <p className="mb-4 max-w-3xl text-lg leading-relaxed text-neutral-400">
+          ISO/IEC 27001 specifies requirements for an information security management system. Certification is performed by an accredited certification body, not by this website or its readiness materials.
+        </p>
+        <p className="mb-12 max-w-3xl leading-relaxed text-neutral-500">
+          The notes below are an educational structure for discussing readiness. Applicability, legal obligations, audit scope, duration, and certification outcomes depend on the organization and qualified independent review.
+        </p>
 
-      <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-6">
-            <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
-            COMPLIANCE FRAMEWORKS
+        <div className="space-y-4">
+          {evidenceAreas.map(([title, description], index) => (
+            <section key={title} className="angular-cut flex gap-5 border border-white/10 bg-white/[0.02] p-6">
+              <span className="font-mono text-sm text-teal-400">0{index + 1}</span>
+              <div>
+                <h2 className="mb-2 text-lg font-bold text-white">{title}</h2>
+                <p className="leading-relaxed text-neutral-400">{description}</p>
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <div className="mt-12 border border-amber-500/20 bg-amber-500/[0.04] p-7">
+          <h2 className="mb-3 text-xl font-bold text-white">No fixed certification timeline is claimed</h2>
+          <p className="mb-6 text-neutral-400">A credible plan follows a scoped gap review and depends on management commitment, system complexity, current evidence, remediation work, internal audit, management review, and the certification body’s process.</p>
+          <div className="flex flex-wrap gap-4">
+            <Link href="/scan" className="bg-teal-500 px-5 py-3 text-sm font-bold text-black hover:bg-teal-400">Prepare a review scope</Link>
+            <Link href="/resources" className="border border-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/5">Review public evidence</Link>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
-            ISO 27001
-            <span className="block text-xl md:text-2xl font-normal text-neutral-400 mt-4">Practical Path to Certification</span>
-          </h1>
-        </motion.div>
-
-        <div className="space-y-12">
-          {/* Section 1 */}
-          <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}>
-            <h2 className="text-2xl font-bold text-teal-400 mb-4">What ISO 27001 Certification Means</h2>
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none text-neutral-300 leading-relaxed text-sm angular-cut bg-noise glass-dark">
-              <p>ISO 27001 is the internationally recognized gold standard for Information Security Management Systems (ISMS). For your business, achieving this certification goes beyond IT security; it demonstrates to vendors, partners, and clients that you have mature governance over their sensitive data.</p>
-            </div>
-          </motion.section>
-
-          {/* Section 2 */}
-          <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.2 }}>
-            <h2 className="text-2xl font-bold mb-4">The Key Control Domains</h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                { title: "Information Security Policies", desc: "Written guidelines dictating how physical and digital assets are managed." },
-                { title: "Access Control", desc: "Ensuring employees only have access to the data necessary for their role." },
-                { title: "Operations Security", desc: "Configuration, backup, and malware protection controls." },
-                { title: "Communications Security", desc: "Network security and secure information transfer." }
-              ].map((domain, i) => (
-                <div key={i} className="p-5 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
-                  <h3 className="font-bold text-teal-400 mb-2">{domain.title}</h3>
-                  <p className="text-sm text-neutral-400">{domain.desc}</p>
-                </div>
-              ))}
-            </div>
-          </motion.section>
-
-          {/* Section 3 */}
-          <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>
-            <h2 className="text-2xl font-bold mb-4">Timeline to Certification</h2>
-            <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
-              <ul className="space-y-6">
-                <li className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-neutral-800 text-teal-400 font-bold flex items-center justify-center shrink-0">1</div>
-                  <div>
-                    <h4 className="font-bold">Gap Assessment (Weeks 1-2)</h4>
-                    <p className="text-neutral-400 text-sm">Identifying current posture verses the ISO standard.</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-neutral-800 text-teal-400 font-bold flex items-center justify-center shrink-0">2</div>
-                  <div>
-                    <h4 className="font-bold">Implementation (Months 2-4)</h4>
-                    <p className="text-neutral-400 text-sm">Deploying controls, SIEM monitoring, and training.</p>
-                  </div>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-8 h-8 rounded-full bg-neutral-800 text-teal-400 font-bold flex items-center justify-center shrink-0">3</div>
-                  <div>
-                    <h4 className="font-bold">Internal Audit & Review (Month 5)</h4>
-                    <p className="text-neutral-400 text-sm">Simulated audit to ensure preparedness.</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </motion.section>
-
-          {/* CTA */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.4 }} className="mt-16 text-center bg-teal-500/10 border border-teal-500/20 p-10 rounded-3xl">
-            <h3 className="text-2xl font-bold mb-4">Book Your ISO 27001 Readiness Assessment</h3>
-            <p className="text-neutral-400 mb-8 max-w-xl mx-auto">Start your journey to certification by scheduling a readiness assessment.</p>
-            <Link href="/scan" className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-8 py-4 rounded-none font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] angular-cut">
-              Initiate Free Assessment
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-            </Link>
-          </motion.div>
         </div>
       </div>
     </main>

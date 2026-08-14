@@ -242,13 +242,13 @@ export default function NcaChecklist() {
             {criticalMissing} critical control{criticalMissing > 1 ? "s" : ""} not implemented
           </p>
           <p className="text-neutral-400 text-sm mb-4">
-            SOC Root can close these gaps within 14 days. Schedule a free assessment.
+            Treat these selections as prompts for evidence review, not as confirmed control failures or a remediation estimate.
           </p>
           <a
             href="/scan"
             className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black font-bold px-6 py-3 rounded-none text-sm transition-all angular-cut"
           >
-            Get Free Gap Analysis
+            Prepare an Authorized Review
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
           </a>
         </motion.div>

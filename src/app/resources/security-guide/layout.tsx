@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Business Security Posture Checklist — Free Assessment",
-  description: "Answer 10 questions to assess your organization's cybersecurity posture. Get an instant score and personalized recommendations from SOC Root's security engineers.",
-  keywords: "cybersecurity checklist, security posture assessment, NCA ECC audit, business security UAE Jordan, free security audit",
+  title: "Security Review Questions | SOCRoot",
+  description: "Evidence-oriented questions for discussing security ownership, identity, assets, detection, response, recovery, suppliers, and learning.",
+  keywords: "cybersecurity checklist, security evidence, security review questions, control ownership",
   openGraph: {
-    title: "Business Security Posture Checklist — SOC Root",
-    description: "10 questions. Instant score. Find out how exposed your business is to cyber threats — for free.",
+    title: "Security Review Questions | SOCRoot",
+    description: "A conversation aid, not a posture score, audit, penetration test, or compliance determination.",
     url: "https://socroot.com/resources/security-guide",
     type: "article",
   },

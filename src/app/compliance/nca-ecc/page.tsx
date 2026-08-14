@@ -124,12 +124,12 @@ export default function NcaEccPage() {
                   },
                   {
                     step: "3",
-                    title: "Continuous Posture Monitoring",
+                    title: "Prioritized Improvement Work",
                     desc: "Translate validated gaps into prioritized technical and governance work with accountable owners."
                   },
                   {
                     step: "4",
-                    title: "Audit-Ready Documentation",
+                    title: "Evidence Package",
                     desc: "Retest improvements and organize evidence for internal review or an independent qualified assessor."
                   }
                 ].map((item, i) => (
@@ -163,14 +163,14 @@ export default function NcaEccPage() {
                 href="/scan"
                 className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-8 py-4 rounded-none font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] angular-cut"
               >
-                Start Free Assessment
+                Prepare Review Scope
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </Link>
               <Link
                 href="/plans/governance"
                 className="inline-flex items-center gap-2 border border-white/10 hover:border-teal-500/30 px-8 py-4 rounded-xl font-bold transition-all text-neutral-300"
               >
-                View Governance Plan
+                Review Governance Scope
               </Link>
             </div>
           </motion.div>
