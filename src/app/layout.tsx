@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s — SOC Root",
   },
   description:
-    "A pre-production cybersecurity engineering initiative exploring evidence-driven SOC workflows, human-controlled automation, and practical architecture for smaller organizations.",
+    "A pre-production cybersecurity initiative developing automatable subscription services with measurable, evidence-backed value for smaller organizations.",
   keywords: [
     "cybersecurity UAE", "cybersecurity Jordan", "NCA ECC compliance",
     "penetration testing", "vulnerability assessment", "SIEM monitoring",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "SOC Root",
     title: "SOCRoot — Evidence-Driven Security Engineering",
     description:
-      "Public architecture and pre-production engineering for evidence-centered SOC workflows and human-controlled security automation.",
+      "Pre-production subscription services for evidence-centered security workflows and human-controlled automation.",
     images: [
       {
         url: "https://socroot.com/og-image.png",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SOCRoot — Evidence-Driven Security Engineering",
-    description: "Pre-production SOC architecture, evidence workflows, and human-controlled security automation.",
+    description: "Pre-production cybersecurity subscription services with evidence workflows and human-controlled automation.",
     creator: "@RootSoc",
     images: ["https://socroot.com/og-image.png"],
   },
