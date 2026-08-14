@@ -3,17 +3,17 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Security Resources & Guides — SOC Root",
-  description: "Free cybersecurity guides, checklists, and assessments for business owners and IT teams in the UAE and Jordan. NCA ECC aligned content.",
+  description: "Cybersecurity architecture notes, synthetic scenarios, and readiness resources with explicit maturity and evidence boundaries.",
 };
 
 const RESOURCES = [
   {
     href: "/resources/case-study-1",
-    tag: "Case Study",
-    title: "Securing a UAE Fintech: From Critical AWS Exposure to NCA Compliant",
-    desc: "How SOC Root's automated intelligence pipeline identified exposed S3 buckets and IAM misconfigurations within 48 hours.",
+    tag: "Synthetic Scenario",
+    title: "Fintech Exposure Assessment: A Safe Workflow Walkthrough",
+    desc: "A fictional, non-customer scenario explaining authorization, discovery, human triage, dry-run response, and evidence capture.",
     readTime: "4 min",
-    date: "May 2026",
+    date: "Aug 2026",
     icon: (
       <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -37,7 +37,7 @@ const RESOURCES = [
     href: "/compliance/nca-ecc",
     tag: "Compliance",
     title: "NCA ECC 2.0 Overview & Control Mapping",
-    desc: "A practical breakdown of the 29 NCA ECC 2.0 domains, what each requires, and how SOC Root maps to each control.",
+    desc: "A practical readiness reference for selected control objectives. It does not certify an organization or attest compliance.",
     readTime: "8 min",
     date: "Mar 2026",
     icon: (

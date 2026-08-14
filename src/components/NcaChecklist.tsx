@@ -53,7 +53,11 @@ export default function NcaChecklist() {
   const toggle = (id: string) => {
     setChecked(prev => {
       const next = new Set(prev);
-      next.has(id) ? next.delete(id) : next.add(id);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
       return next;
     });
   };
@@ -71,7 +75,7 @@ export default function NcaChecklist() {
       <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">ECC Compliance Score</p>
+            <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-1">Simplified Readiness Score</p>
             <p className={`text-5xl font-black ${scoreColor}`}>{score}<span className="text-xl text-neutral-500">%</span></p>
           </div>
           <div className="text-right">
@@ -99,11 +103,14 @@ export default function NcaChecklist() {
           />
         </div>
         <p className="text-xs text-neutral-600 mt-3">
-          {score === 0 && "Start checking controls to measure your compliance posture."}
-          {score > 0 && score < 50 && "🔴 High risk — significant gaps across critical controls."}
-          {score >= 50 && score < 80 && "🟡 Moderate risk — key controls missing. Action required."}
-          {score >= 80 && score < 100 && "🟢 Good posture — fine-tune remaining controls."}
-          {score === 100 && "✅ Full control coverage — maintain and document regularly."}
+          {score === 0 && "Start checking items to explore which evidence may exist."}
+          {score > 0 && score < 50 && "Many readiness items remain unconfirmed; validate scope and evidence."}
+          {score >= 50 && score < 80 && "Some readiness items are present; independent evidence review is still required."}
+          {score >= 80 && score < 100 && "Most simplified items are selected; confirm each one with current evidence."}
+          {score === 100 && "All simplified items are selected; this is still not a compliance determination."}
+        </p>
+        <p className="text-[11px] text-amber-300/70 mt-3">
+          Educational self-assessment only. This score is not certification, legal advice, or an auditor opinion.
         </p>
       </div>
 

@@ -7,9 +7,9 @@ import NcaChecklist from "@/components/NcaChecklist";
 import { Building2, Shield, RefreshCw, Handshake } from "lucide-react";
 
 const STATS = [
-  { value: "76%", label: "of Saudi orgs had at least one ECC gap in 2024" },
-  { value: "4.5M", label: "SAR — average cost of a data breach in the region" },
-  { value: "23", label: "ECC controls mapped continuously by SOC Root" },
+  { value: "5", label: "high-level ECC domains to understand" },
+  { value: "Readiness", label: "the purpose of this educational tool" },
+  { value: "No", label: "certification or auditor attestation" },
 ];
 
 export default function NcaEccPage() {
@@ -23,15 +23,14 @@ export default function NcaEccPage() {
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-6">
             <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
-            NCA ECC 2.0 — COMPLIANCE
+            NCA ECC — READINESS REFERENCE
           </div>
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
-            Are You{" "}
-            <span className="text-teal-400">Truly Compliant</span> with<br />
-            Saudi Arabia's ECC?
+            Understand the evidence behind
+            <span className="text-teal-400"> ECC readiness.</span>
           </h1>
           <p className="text-lg text-neutral-400 max-w-2xl leading-relaxed">
-            The National Cybersecurity Authority's Essential Cybersecurity Controls (ECC-1:2018) are a mandatory baseline for every organization operating in the Kingdom. Most believe they're compliant. Most are wrong.
+            This educational page helps teams discuss selected Essential Cybersecurity Controls and identify evidence gaps. It is not a complete legal interpretation, certification, or auditor assessment.
           </p>
         </motion.div>
 
@@ -55,10 +54,10 @@ export default function NcaEccPage() {
             <h2 className="text-2xl font-bold text-teal-400 mb-4">What Is ECC and Why It Matters</h2>
             <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none text-neutral-300 leading-relaxed text-sm space-y-3 angular-cut bg-noise glass-dark">
               <p>
-                The <strong className="text-white">Essential Cybersecurity Controls (ECC-1:2018)</strong> define the minimum security baseline required by the NCA for all government and critical infrastructure organizations in Saudi Arabia. Non-compliance isn't just a regulatory risk — it's a direct business risk.
+                The <strong className="text-white">Essential Cybersecurity Controls (ECC-1:2018)</strong> define a cybersecurity baseline published by the NCA for relevant organizations in Saudi Arabia. A gap may create regulatory and business risk, but applicability and compliance require qualified review.
               </p>
               <p>
-                A single unaddressed gap in your Governance or Defense domain can result in a breach that costs millions in remediation, reputational damage, and potential regulatory action. SOC Root maps every one of your active controls against the full ECC framework in real time — so you're never caught off guard.
+                A readiness review should connect each relevant control objective to current, reviewable evidence. SOCRoot can help structure that mapping, but it does not claim continuous measurement of every control or certify compliance.
               </p>
             </div>
           </motion.section>
@@ -102,36 +101,36 @@ export default function NcaEccPage() {
           <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }}>
             <div className="mb-6">
               <h2 className="text-2xl font-bold mb-2">Self-Assessment Checklist</h2>
-              <p className="text-sm text-neutral-500">Check each control your organization has implemented. Get an instant compliance score and see where your critical gaps are.</p>
+              <p className="text-sm text-neutral-500">Use this simplified checklist as a conversation starter. Its score is educational and must not be represented as an ECC compliance result.</p>
             </div>
             <NcaChecklist />
           </motion.section>
 
           {/* Section 4 — Our Methodology */}
           <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.35 }}>
-            <h2 className="text-2xl font-bold mb-4">How SOC Root Closes the Gaps</h2>
+            <h2 className="text-2xl font-bold mb-4">A responsible readiness workflow</h2>
             <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
               <ul className="space-y-6">
                 {[
                   {
                     step: "1",
                     title: "Initial Gap Analysis",
-                    desc: "We map your existing infrastructure against all 23 ECC controls and produce a prioritized gap report within 48 hours."
+                    desc: "Agree the applicable control objectives, scope, evidence sources, owners, and exclusions before rating readiness."
                   },
                   {
                     step: "2",
                     title: "Remediation Roadmap",
-                    desc: "Critical gaps get immediate action plans. We don't hand you a list and walk away — our engineers guide implementation."
+                    desc: "Record current evidence, missing evidence, uncertainty, and the operational impact of each gap."
                   },
                   {
                     step: "3",
                     title: "Continuous Posture Monitoring",
-                    desc: "Our SIEM continuously measures your compliance state. Any drift from an implemented control triggers an immediate alert."
+                    desc: "Translate validated gaps into prioritized technical and governance work with accountable owners."
                   },
                   {
                     step: "4",
                     title: "Audit-Ready Documentation",
-                    desc: "When the NCA or an auditor comes knocking, your compliance evidence is ready: dashboards, logs, reports, and control attestations."
+                    desc: "Retest improvements and organize evidence for internal review or an independent qualified assessor."
                   }
                 ].map((item, i) => (
                   <li key={i} className="flex gap-4">
@@ -153,11 +152,11 @@ export default function NcaEccPage() {
           >
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-4">
               <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
-              NO COMMITMENT REQUIRED
+              EDUCATIONAL READINESS SUPPORT
             </div>
-            <h3 className="text-2xl font-bold mb-3">Know Your True ECC Posture</h3>
+            <h3 className="text-2xl font-bold mb-3">Start with scope and evidence</h3>
             <p className="text-neutral-400 mb-8 max-w-xl mx-auto text-sm leading-relaxed">
-              Start with a free external vulnerability scan. We'll map the findings to your specific ECC gaps and deliver a prioritized action plan — at no cost.
+              A useful readiness conversation begins with applicable obligations, asset ownership, evidence sources, and the decision the review needs to support.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

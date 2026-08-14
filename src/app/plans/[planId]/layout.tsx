@@ -10,10 +10,10 @@ export async function generateStaticParams() {
 }
 
 const PLAN_META: Record<string, { title: string, desc: string }> = {
-  starter: { title: "Starter Plan", desc: "Deploy continuous vulnerability scanning in 24 hours. One-time engagement with specialist-reviewed reports and security recommendations." },
-  guard: { title: "Guard Plan", desc: "Active defense with 24/7 SIEM log correlation, analyst-backed incident response, and email threat intelligence starting at $160/month." },
-  governance: { title: "Governance Plan", desc: "Full NCA ECC 2.0 compliance mapping, quarterly executive risk briefings, and certified security awareness training." },
-  premium: { title: "Premium Plan", desc: "Enterprise SOC operations with quarterly penetration testing, dedicated senior analyst, and dual-track ISO 27001 + NCA ECC compliance." }
+  starter: { title: "Starter Scope", desc: "A reference design for a small, authorized exposure assessment with defined evidence and exclusions." },
+  guard: { title: "Guard Pilot", desc: "A pre-production SOC workflow pilot focused on approved telemetry, triage, HITL, and dry-run evidence." },
+  governance: { title: "Governance Readiness", desc: "Advisory evidence-to-control mapping that does not claim certification, attestation, or legal assurance." },
+  premium: { title: "Integrated Validation Track", desc: "A future scoped design gated by integration tests, monitoring, safety controls, and operational evidence." }
 };
 
 export async function generateMetadata({ params }: { params: Promise<{ planId: string }> }): Promise<Metadata> {

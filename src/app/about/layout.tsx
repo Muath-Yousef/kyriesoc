@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "About SOC Root — Cybersecurity Engineering Team",
-  description: "Meet the team behind SOC Root. Founded by an offensive security engineer with 4+ years in penetration testing and SOAR automation, serving UAE, Jordan, and KSA markets.",
+  title: "About SOCRoot — Cybersecurity Engineering Initiative",
+  description: "How Mu'ath Yousef's Project Synapse evolved into SOCRoot, a pre-production cybersecurity engineering initiative focused on evidence, SOC workflows, and safe automation.",
   keywords: "SOC Root about, cybersecurity company UAE Jordan, offensive security engineer, NCA ECC consultant, SIEM automation",
   openGraph: {
-    title: "About SOC Root — Cybersecurity Engineering Team",
-    description: "Built by security practitioners, not marketers. Learn how SOC Root delivers enterprise-grade defense at SMB prices across the Middle East.",
+    title: "About SOCRoot — Cybersecurity Engineering Initiative",
+    description: "Review the origin, maturity, principles, and public repository boundaries behind SOCRoot.",
     url: "https://socroot.com/about",
     type: "website",
   },

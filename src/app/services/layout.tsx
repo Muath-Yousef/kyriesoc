@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Security Plans & Pricing — SOC Root",
-  description: "Enterprise cybersecurity plans from $190/year. Starter, Guard, Governance, and Premium tiers with NCA ECC compliance, Wazuh SIEM, and dedicated analyst options.",
-  keywords: "cybersecurity pricing, NCA ECC compliance, penetration testing cost, SIEM monitoring price, SOC plans UAE Jordan",
+  title: "Capability Tracks & Scope — SOCRoot",
+  description: "Pre-production cybersecurity capability tracks with explicit authorization, evidence, human-control, and rollback requirements.",
+  keywords: "cybersecurity engineering, NCA ECC readiness, evidence workflow, human-controlled automation, SOC architecture",
   openGraph: {
-    title: "Security Plans & Pricing — SOC Root",
-    description: "Vulnerability scanning, compliance mapping, SIEM monitoring — starting at $190. No hidden fees.",
+    title: "Capability Tracks & Scope — SOCRoot",
+    description: "Review bounded assessment, SOC workflow, readiness, and training tracks without unsupported SLA or certification claims.",
     url: "https://socroot.com/services",
     type: "website",
   },

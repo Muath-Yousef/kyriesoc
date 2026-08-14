@@ -1,104 +1,46 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
-import DynamicBackground from "@/components/DynamicBackground";
+
+export const metadata = {
+  title: "Security Review Questions | SOCRoot",
+  description: "Evidence-oriented questions for a small organization reviewing its security posture.",
+};
+
+const QUESTIONS = [
+  ["Ownership", "Who owns each critical system, dataset, security control, and escalation decision?"],
+  ["Identity", "Can we show that privileged access is limited, reviewed, and protected with strong authentication?"],
+  ["Assets", "Do we maintain a current inventory with business criticality, owner, exposure, and lifecycle state?"],
+  ["Detection", "Which events are logged, who reviews them, and what evidence proves that the review occurs?"],
+  ["Response", "Are containment actions rehearsed, human-approved, reversible, and protected by explicit stop conditions?"],
+  ["Recovery", "When were backups last restored in a test, and what did that test actually demonstrate?"],
+  ["Suppliers", "Which third parties receive data or access, and how are those dependencies reviewed?"],
+  ["Learning", "Which incidents, exercises, and control failures have produced a documented change?"],
+];
 
 export default function SecurityGuidePage() {
-  const [answers, setAnswers] = useState<Record<number, boolean>>({});
-
-  const questions = [
-    "Do you enforce Multi-Factor Authentication (MFA) on all company accounts?",
-    "Do you conduct continuous vulnerability scanning across your external assets?",
-    "Is sensitive company data encrypted both in transit and at rest?",
-    "Do you have a centralized SIEM to aggregate security logs?",
-    "Are employees required to take verified security awareness training?",
-    "Do you maintain reliable, off-site, immutable backups of core databases?",
-    "Has a specialist-reviewed penetration test been performed in the last 12 months?",
-    "Do you run regular phishing simulation campaigns?",
-    "Are former employee accounts immediately deactivated upon departure?",
-    "Is there a formal Incident Response plan in place?"
-  ];
-
-  const handleAnswer = (index: number, answer: boolean) => {
-    setAnswers(prev => ({ ...prev, [index]: answer }));
-  };
-
-  const calculateScore = () => {
-    const answeredCount = Object.keys(answers).length;
-    if (answeredCount < questions.length) return null;
-    const yesCount = Object.values(answers).filter(a => a).length;
-    return Math.round((yesCount / questions.length) * 100);
-  };
-
-  const score = calculateScore();
-
   return (
-    <main className="min-h-screen bg-[#0c0c0c] text-[#f5f5f5] pt-32 pb-24 relative overflow-hidden">
-      <DynamicBackground />
-
-      <div className="container mx-auto px-6 relative z-10 max-w-4xl">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="mb-16">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/10 border border-teal-500/20 text-teal-400 text-xs font-mono mb-6">
-            <span className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
-            RESOURCES
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
-            The Business Owner's Security Checklist
-            <span className="block text-xl md:text-2xl font-normal text-neutral-400 mt-4">Questions to Ask Your IT Team</span>
-          </h1>
-        </motion.div>
-
-        <div className="space-y-6">
-          {questions.map((q, i) => (
-            <motion.div 
-              key={i} 
-              initial={{ opacity: 0, y: 10 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="p-6 bg-white/[0.02] border border-white/5 rounded-none flex flex-col md:flex-row justify-between items-start md:items-center gap-4 angular-cut bg-noise glass-dark"
-            >
-              <span className="text-base font-medium">{q}</span>
-              <div className="flex gap-2 shrink-0">
-                <button 
-                  onClick={() => handleAnswer(i, true)}
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${answers[i] === true ? 'bg-teal-500 text-black' : 'bg-white/5 text-neutral-400 hover:bg-white/10'}`}
-                >
-                  Yes
-                </button>
-                <button 
-                  onClick={() => handleAnswer(i, false)}
-                  className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${answers[i] === false ? 'bg-red-500 text-white' : 'bg-white/5 text-neutral-400 hover:bg-white/10'}`}
-                >
-                  No
-                </button>
+    <div className="min-h-screen py-24">
+      <div className="container mx-auto max-w-4xl px-6">
+        <p className="mb-4 font-mono text-xs uppercase tracking-[0.3em] text-teal-400">Evidence guide</p>
+        <h1 className="mb-6 text-4xl font-extrabold tracking-tight md:text-5xl">Questions that reveal more than a posture score</h1>
+        <p className="mb-10 max-w-3xl text-lg leading-relaxed text-neutral-400">
+          This checklist is a conversation aid, not an assessment, penetration test, risk rating, or compliance determination. Good answers point to current evidence, named owners, and tested procedures.
+        </p>
+        <div className="grid gap-4 md:grid-cols-2">
+          {QUESTIONS.map(([label, question], index) => (
+            <article key={label} className="angular-cut border border-white/10 bg-white/[0.02] p-6">
+              <div className="mb-3 flex items-center justify-between">
+                <span className="font-mono text-xs uppercase tracking-widest text-teal-400">{label}</span>
+                <span className="font-mono text-xs text-neutral-700">0{index + 1}</span>
               </div>
-            </motion.div>
+              <p className="leading-relaxed text-neutral-300">{question}</p>
+            </article>
           ))}
-
-          {score !== null && (
-            <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} className="mt-16 p-8 rounded-none bg-white/[0.02] border border-white/10 text-center angular-cut bg-noise glass-dark">
-              <h2 className="text-2xl font-bold mb-4">Your Posture Score: <span className={score > 75 ? 'text-teal-400' : score > 50 ? 'text-yellow-400' : 'text-red-400'}>{score}%</span></h2>
-              
-              {score < 50 && <p className="text-neutral-400 mb-8">Your organization has critical gaps. The lack of standard defense layers exposes you directly to ransomware and data breaches. Priority action is required.</p>}
-              {score >= 50 && score <= 75 && <p className="text-neutral-400 mb-8">You're on the right track, but significant vulnerabilities remain. Attackers commonly exploit the controls you are currently missing.</p>}
-              {score > 75 && <p className="text-neutral-400 mb-8">Strong posture. Let's maintain it professionally with continuous deep-level penetration testing.</p>}
-              
-              <Link href="/scan" className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black px-8 py-4 rounded-none font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.2)] angular-cut">
-                Book a Free Assessment
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-              </Link>
-            </motion.div>
-          )}
-
-          {score === null && (
-             <div className="text-center text-sm font-mono text-neutral-500 mt-8">
-               Answer all {questions.length} questions to see your posture score.
-             </div>
-          )}
+        </div>
+        <div className="mt-10 flex flex-wrap gap-4">
+          <a href="/sample-report.pdf" className="bg-teal-500 px-5 py-3 text-sm font-bold text-black hover:bg-teal-400">Open synthetic report sample</a>
+          <Link href="/scan" className="border border-white/10 px-5 py-3 text-sm font-bold text-white hover:bg-white/5">Prepare an authorized scope</Link>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

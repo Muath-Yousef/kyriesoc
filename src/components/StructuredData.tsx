@@ -3,30 +3,31 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Organization",
-        "@id": "https://socroot.com/#organization",
-        "name": "SOC Root",
-        "url": "https://socroot.com",
-        "logo": "https://socroot.com/logo.png",
-        "description": "Enterprise cybersecurity for businesses globally.",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "contactType": "customer service",
-          "availableLanguage": ["en"]
-        }
+        "@type": "WebSite",
+        "@id": "https://socroot.com/#website",
+        name: "SOCRoot",
+        url: "https://socroot.com",
+        description:
+          "A pre-production cybersecurity engineering initiative focused on evidence-driven SOC workflows and human-controlled automation.",
+        creator: { "@id": "https://socroot.com/#person" },
       },
       {
-        "@type": "ProfessionalService",
-        "@id": "https://socroot.com/#service",
-        "name": "SOC Root Cybersecurity Services",
-        "url": "https://socroot.com/services",
-        "description": "Continuous pentesting, SIEM monitoring, NCA ECC 2.0 compliance, and security awareness training.",
-        "provider": {
-          "@id": "https://socroot.com/#organization"
-        },
-        "priceRange": "$$$"
-      }
-    ]
+        "@type": "Person",
+        "@id": "https://socroot.com/#person",
+        name: "Mu'ath Yousef",
+        url: "https://socroot.com/about",
+        sameAs: [
+          "https://github.com/Muath-Yousef",
+          "https://www.linkedin.com/in/muath-ysf",
+        ],
+        knowsAbout: [
+          "Security operations",
+          "Security automation",
+          "Incident response",
+          "Cybersecurity architecture",
+        ],
+      },
+    ],
   };
 
   return (

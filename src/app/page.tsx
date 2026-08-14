@@ -1,479 +1,313 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import DynamicBackground from "@/components/DynamicBackground";
-import ClientLogos from "@/components/ClientLogos";
-import Counter from "@/components/Counter";
+
+const STATUS = [
+  { value: "Pre-production", label: "Current maturity" },
+  { value: "HITL", label: "Sensitive actions" },
+  { value: "Dry-run", label: "Default response mode" },
+  { value: "Public", label: "Architecture documentation" },
+];
 
 const CAPABILITIES = [
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
-      </svg>
-    ),
-    title: "Continuous Subdomain Discovery",
-    desc: "Passive intelligence gathering across WHOIS, DNS logs, and certificate transparency streams. Attack surface mapped in real-time.",
-    tag: "RECON",
+    tag: "DISCOVERY",
+    title: "Authorized attack-surface discovery",
+    desc: "Passive discovery and scoped scanning patterns for assets whose ownership and authorization are explicitly documented.",
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    title: "Automated Penetration Testing",
-    desc: "Nuclei-driven vulnerability scanning simulating real-world attacker methodologies against every exposed endpoint.",
-    tag: "PENTEST",
+    tag: "TRIAGE",
+    title: "Evidence-centered alert triage",
+    desc: "A workflow for enriching findings, reducing noise, recording decisions, and keeping the original evidence traceable.",
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 12 2.1 9.1" /><path d="m12 2 3.6 7.2" />
-      </svg>
-    ),
-    title: "Expert Triage & Analysis",
-    desc: "Advanced detection methodology evaluates raw findings, eliminating false positives instantly and prioritizing critical CVEs.",
-    tag: "AI",
+    tag: "HITL",
+    title: "Human-controlled response",
+    desc: "Sensitive remediation is proposed in dry-run mode and requires an operator decision, an audit record, and a rollback path.",
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
-    title: "SOAR Automated Remediation",
-    desc: "API layer communicates with Cloudflare WAF and IAM policies to null-route threats before they escalate.",
-    tag: "SOAR",
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <rect width="20" height="14" x="2" y="3" rx="2" /><path d="M8 21h8m-4-4v4" />
-      </svg>
-    ),
-    title: "24/7 SIEM Monitoring",
-    desc: "Wazuh-powered security information and event management with Telegram real-time alerting to your team.",
     tag: "SIEM",
+    title: "Security telemetry integration",
+    desc: "Engineering work around Wazuh, case management, and alert transport, with production claims gated by deployment evidence.",
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" />
-      </svg>
-    ),
-    title: "Security Awareness Training",
-    desc: "3-chapter employee cybersecurity course with quizzes and verifiable certificates. NCA ECC staff-training aligned.",
-    tag: "TRAINING",
+    tag: "EVIDENCE",
+    title: "Audit-friendly reporting",
+    desc: "Structured findings, remediation context, and decision evidence designed to make technical work reviewable by operators and stakeholders.",
+  },
+  {
+    tag: "ARCHITECTURE",
+    title: "Modular system boundaries",
+    desc: "A documented separation between the public architecture, control plane, SOC runtime, and product website.",
   },
 ];
 
-const TECH_STACK = {
-  "Offensive": ["Nuclei", "Subfinder", "Amass", "Nmap", "Burp Suite"],
-  "Defensive": ["Wazuh SIEM", "Cloudflare WAF", "SOAR Engine", "TheHive"],
-  "Compliance": ["NCA ECC 2.0", "ISO 27001", "PDPL", "CIS Controls"],
-  "Automation": ["Python", "Docker", "Ansible", "GitHub Actions"],
-};
-
-const STATS_DEFAULT = [
-  { value: "847+", label: "Vulnerabilities assessed" },
-  { value: "24hr", label: "Max report turnaround" },
-  { value: "NCA ECC", label: "Compliant framework" },
-  { value: "100%", label: "Report transparency" },
-];
-
-const TESTIMONIALS = [
+const WORKFLOW = [
   {
-    quote: "SOC Root identified 3 critical misconfigurations in our AWS infrastructure within 48 hours. Their report was surgical — no fluff, just prioritized findings with remediation steps we could act on immediately.",
-    author: "Khalid M., Head of IT Security",
-    company: "Banking & Finance Sector",
-    region: "UAE",
-    initial: "K",
+    phase: "01",
+    title: "Scope",
+    desc: "Confirm authorization, asset ownership, exclusions, data-handling rules, and success criteria before any security activity.",
   },
   {
-    quote: "We needed NCA ECC 2.0 compliance mapped before a government contract review. SOC Root delivered a gap analysis and readiness report in under a week. Saved us from a significant compliance deficit.",
-    author: "Faisal A., CTO",
-    company: "GovTech Platform",
-    region: "Riyadh, KSA",
-    initial: "F",
+    phase: "02",
+    title: "Observe",
+    desc: "Collect security signals through approved sources while preserving timestamps, provenance, and client boundaries.",
   },
   {
-    quote: "What impressed us most was the automation. Real-time Telegram alerts, automated WAF rules, and a clean dashboard. It genuinely felt like having a dedicated security team at a fraction of the cost.",
-    author: "Samir T., Operations Director",
-    company: "Logistics Enterprise",
-    region: "Amman, Jordan",
-    initial: "S",
+    phase: "03",
+    title: "Triage",
+    desc: "Enrich and prioritize findings, flag uncertainty, and route high-impact decisions to a human operator.",
+  },
+  {
+    phase: "04",
+    title: "Act and evidence",
+    desc: "Apply only approved actions, verify the result, capture evidence, and retain a documented rollback path.",
   },
 ];
 
-const TIMELINE = [
-  { phase: "Phase 1", title: "External Recon", desc: "Subdomain enumeration, port scanning, and attack surface mapping across your entire digital footprint." },
-  { phase: "Phase 2", title: "Vulnerability Assessment", desc: "Nuclei templates identify CVEs, misconfigurations, and exposed credentials across all discovered endpoints." },
-  { phase: "Phase 3", title: "LLM Triage", desc: "AI model filters noise, ranks threats by severity, and prepares a structured incident report." },
-  { phase: "Phase 4", title: "SOAR Remediation", desc: "Automated response — WAF rules, IP blocklists, and access policy updates executed without human delay." },
+const SYNTHETIC_LOGS = [
+  "[DEMO] Synthetic alert received from an isolated lab source.",
+  "[TRIAGE] Evidence linked; confidence and uncertainty recorded.",
+  "[POLICY] RFC1918/CDN address detected: automatic blocking denied.",
+  "[HITL] Sensitive action queued for explicit operator approval.",
+  "[DRY-RUN] Proposed response validated without changing a live system.",
+  "[EVIDENCE] Decision, outcome, and rollback notes stored for review.",
+];
+
+const REPOSITORIES = [
+  {
+    title: "Project Synapse",
+    label: "Public architecture",
+    href: "https://github.com/Muath-Yousef/project-synapse",
+    desc: "System boundaries, maturity, engineering principles, and roadmap.",
+  },
+  {
+    title: "SOCRoot Control Plane",
+    label: "Active engineering",
+    href: "https://github.com/Muath-Yousef/ide-agentic-engine",
+    desc: "Portals, RBAC, client state, evidence workflows, and observability.",
+  },
+  {
+    title: "SOCRoot SOC Runtime",
+    label: "Active prototype",
+    href: "https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory",
+    desc: "Alert ingestion, triage, orchestration, HITL, and evidence capture.",
+  },
 ];
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" as const } }),
+  hidden: { opacity: 0, y: 22 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.07, duration: 0.45, ease: "easeOut" as const },
+  }),
 };
 
 export default function Home() {
-  const [terminalLines, setTerminalLines] = useState<string[]>([]);
-  const [stats, setStats] = useState(STATS_DEFAULT);
-
-  useEffect(() => {
-    const logs = [
-      "[RECON] Discovered 14 new subdomains for target scope.",
-      "[NUCLEI] CVE-2024-1234 HIGH detected on api.target.com:443",
-      "[LLM] False-positive filtered — CVE-2023-5678 benign in this context.",
-      "[SOAR] Cloudflare WAF rule #7821 deployed. Threat null-routed.",
-      "[SIEM] Brute-force cluster from 185.220.x.x blocked at perimeter.",
-      "[NCA-ECC] Compliance score: 94.8% — no critical gaps detected.",
-      "[SOAR] Auto-remediation policy #441 executed successfully.",
-    ];
-    let i = 0;
-    const interval = setInterval(() => {
-      setTerminalLines((prev) => [...prev.slice(-5), logs[i % logs.length]]);
-      i++;
-    }, 2200);
-
-    // Fetch live stats
-    fetch("https://api.socroot.com/api/stats")
-      .then((r) => r.json())
-      .then((d) => {
-        if (d.success && d.stats) {
-          const s = d.stats;
-          setStats([
-            { value: String(s.vulnerabilities_found) + "+", label: "Vulnerabilities assessed" },
-            { value: "24hr", label: "Max report turnaround" },
-            { value: "NCA ECC", label: "Compliant framework" },
-            { value: "100%", label: "Report transparency" },
-          ]);
-        }
-      })
-      .catch(() => {}); // silent fallback to defaults
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="relative overflow-x-hidden">
       <DynamicBackground />
 
-      {/* ─── HERO ─── */}
       <section className="relative min-h-[calc(100vh-72px)] flex items-center">
         <div className="container mx-auto px-6 py-24">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Left */}
             <div>
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4 }}
                 className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-teal-500/30 bg-teal-500/5"
               >
-                <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" />
-                <span className="font-mono text-[11px] text-teal-400 uppercase tracking-[0.25em]">Defensive Posture · Active</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-amber-400" />
+                <span className="font-mono text-[11px] text-teal-300 uppercase tracking-[0.22em]">
+                  Engineering initiative · pre-production validation
+                </span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.6 }}
-                className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-6"
+                transition={{ delay: 0.08, duration: 0.55 }}
+                className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.04] mb-6"
               >
-                We Hack You<br />
-                <span className="text-teal-400">Before They Do.</span>
+                Security operations built for
+                <span className="text-teal-400"> evidence and control.</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-                className="text-lg text-neutral-400 leading-relaxed max-w-xl mb-10"
+                transition={{ delay: 0.16, duration: 0.5 }}
+                className="text-lg text-neutral-400 leading-relaxed max-w-2xl mb-10"
               >
-                SOC Root is a military-grade automated cybersecurity platform. We continuously map, exploit, and harden your digital perimeter — fully aligned with NCA ECC and ISO 27001 compliance standards.
+                SOCRoot is an evolving cybersecurity engineering initiative that grew from Project Synapse. It explores how SIEM, SOAR, case management, observability, and AI-assisted analysis can support smaller organizations without hiding maturity, risk, or operational limits.
               </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3, duration: 0.5 }}
+                transition={{ delay: 0.24, duration: 0.5 }}
                 className="flex flex-wrap gap-4"
               >
-                <a href="/scan" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 rounded-none transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] flex items-center gap-2 text-sm uppercase tracking-wider angular-cut">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                  Start Free Scan
+                <a
+                  href="https://github.com/Muath-Yousef/project-synapse"
+                  className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 transition-all text-sm uppercase tracking-wider angular-cut"
+                >
+                  Review the architecture
                 </a>
-                <a href="/services" className="border border-white/10 hover:border-teal-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm">
-                  View Services →
-                </a>
+                <Link
+                  href="/about"
+                  className="border border-white/10 hover:border-teal-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm"
+                >
+                  Maturity and principles →
+                </Link>
               </motion.div>
-              
 
-
-              {/* Stats Row — dynamic from API, 2 cols on mobile */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-10 border-t border-white/5"
-              >
-                {stats.map((s) => {
-                  const numMatch = s.value.match(/^(\d+)(.*)$/);
-                  return (
-                    <div key={s.label}>
-                      <p className="text-xl md:text-2xl font-extrabold text-white">
-                        {numMatch ? (
-                          <Counter from={0} to={parseInt(numMatch[1], 10)} suffix={numMatch[2]} />
-                        ) : (
-                          s.value
-                        )}
-                      </p>
-                      <p className="text-xs text-neutral-500 mt-1">{s.label}</p>
-                    </div>
-                  );
-                })}
-              </motion.div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-14 pt-10 border-t border-white/5">
+                {STATUS.map((item) => (
+                  <div key={item.label}>
+                    <p className="text-lg md:text-xl font-extrabold text-white">{item.value}</p>
+                    <p className="text-xs text-neutral-500 mt-1">{item.label}</p>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Right: Terminal */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
+              initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4, duration: 0.7 }}
+              transition={{ delay: 0.25, duration: 0.6 }}
               className="hidden lg:block"
             >
-              <div className="relative">
-                <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-teal-500/20 to-transparent pointer-events-none" />
-                <div className="relative rounded-2xl border border-teal-500/15 bg-black/60 backdrop-blur-xl overflow-hidden">
-                  {/* Terminal header */}
-                  <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between">
-                    <span className="font-mono text-[11px] text-neutral-500">root@soc-orchestrator:~#</span>
-                    <div className="flex gap-1.5">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
-                      <span className="w-2.5 h-2.5 rounded-full bg-teal-500/80 animate-pulse" />
-                    </div>
-                  </div>
-                  {/* Terminal body */}
-                  <div className="p-5 font-mono text-xs space-y-2.5 min-h-[280px] flex flex-col justify-end">
-                    {terminalLines.map((line, idx) => (
-                      <motion.div
-                        key={line + idx}
-                        initial={{ opacity: 0, x: -8 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        className="flex gap-2"
-                      >
-                        <span className="text-teal-500 shrink-0">›</span>
-                        <span className={
-                          line.includes("HIGH") || line.includes("blocked") || line.includes("Brute")
-                            ? "text-red-400"
-                            : line.includes("SOAR") || line.includes("deployed") || line.includes("executed")
-                            ? "text-teal-400"
-                            : "text-neutral-400"
-                        }>
-                          {line}
-                        </span>
-                      </motion.div>
-                    ))}
-                    <div className="flex items-center gap-2 mt-1">
+              <div className="relative rounded-2xl border border-teal-500/15 bg-black/65 backdrop-blur-xl overflow-hidden">
+                <div className="px-5 py-3 border-b border-white/5 flex items-center justify-between">
+                  <span className="font-mono text-[11px] text-neutral-500">synthetic-lab@socroot:~$</span>
+                  <span className="font-mono text-[10px] text-amber-400 uppercase tracking-widest">Demonstration only</span>
+                </div>
+                <div className="p-6 font-mono text-xs space-y-4 min-h-[330px] flex flex-col justify-center">
+                  {SYNTHETIC_LOGS.map((line, index) => (
+                    <motion.div
+                      key={line}
+                      custom={index}
+                      initial="hidden"
+                      animate="visible"
+                      variants={fadeUp}
+                      className="flex gap-3"
+                    >
                       <span className="text-teal-500">›</span>
-                      <span className="w-2 h-3.5 bg-teal-500/80 animate-pulse rounded-sm" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CLIENT LOGOS ─── */}
-      <ClientLogos />
-
-      {/* ─── CAPABILITIES GRID ─── */}
-      <section className="relative py-28 border-t border-white/5">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Architecture</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Full Spectrum Defense Engine</h2>
-            <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">Six integrated security layers working continuously to eliminate exposure before attackers can exploit it.</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
-            {CAPABILITIES.map((cap, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                whileHover={{ y: -4 }}
-                className="group relative p-6 rounded-none border border-white/5 bg-white/[0.02] hover:border-teal-500/25 hover:bg-white/[0.04] transition-all angular-cut bg-noise glass-dark"
-              >
-                <div className="flex items-start justify-between mb-5">
-                  <div className="w-11 h-11 rounded-lg border border-white/5 bg-black/60 flex items-center justify-center text-teal-500 group-hover:border-teal-500/30 group-hover:bg-teal-500/10 transition-all">
-                    {cap.icon}
-                  </div>
-                  <span className="text-[10px] font-mono text-neutral-600 border border-white/5 px-2 py-0.5 rounded tracking-widest">
-                    {cap.tag}
-                  </span>
-                </div>
-                <h3 className="font-bold text-white mb-2">{cap.title}</h3>
-                <p className="text-sm text-neutral-500 leading-relaxed">{cap.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── HOW IT WORKS (timeline) ─── */}
-      <section className="relative py-28 border-t border-white/5 bg-black/20">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Process</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">How SOC Root Works</h2>
-          </div>
-
-          <div className="max-w-3xl mx-auto space-y-6">
-            {TIMELINE.map((step, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="flex gap-6"
-              >
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-full border border-teal-500/40 bg-teal-500/10 flex items-center justify-center shrink-0">
-                    <span className="text-teal-400 font-mono text-xs font-bold">{i + 1}</span>
-                  </div>
-                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-teal-500/30 to-transparent" />}
-                </div>
-                <div className="pb-8">
-                  <span className="text-[10px] font-mono text-teal-500 uppercase tracking-widest">{step.phase}</span>
-                  <h3 className="font-bold text-white text-lg mt-1 mb-2">{step.title}</h3>
-                  <p className="text-neutral-500 text-sm leading-relaxed">{step.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TECH STACK ─── */}
-      <section className="relative py-28 border-t border-white/5">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Stack</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Tools & Technologies</h2>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto">
-            {Object.entries(TECH_STACK).map(([category, tools]) => (
-              <div key={category}>
-                <p className="text-xs font-mono text-neutral-600 uppercase tracking-widest mb-4">{category}</p>
-                <div className="flex flex-wrap gap-2">
-                  {tools.map((t) => (
-                    <span key={t} className="text-xs font-mono text-neutral-400 border border-white/5 bg-white/[0.03] px-3 py-1.5 rounded-none hover:border-teal-500/20 hover:text-teal-400 transition-colors angular-cut bg-noise glass-dark">
-                      {t}
-                    </span>
+                      <span className={line.includes("denied") ? "text-amber-300" : "text-neutral-400"}>{line}</span>
+                    </motion.div>
                   ))}
                 </div>
               </div>
-            ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ─── TESTIMONIALS ─── */}
       <section className="relative py-28 border-t border-white/5">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Client Feedback</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Trusted by Security Teams</h2>
-            <p className="mt-4 text-neutral-500 text-sm">From UAE startups to Jordan enterprises — independent assessments speak louder than marketing.</p>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Architecture tracks</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Capabilities with explicit boundaries</h2>
+            <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+              These are engineering tracks under validation—not claims of an unattended, production-grade managed SOC.
+            </p>
           </div>
-
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {TESTIMONIALS.map((t, i) => (
-              <motion.div
-                key={i}
-                custom={i}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
+            {CAPABILITIES.map((cap, index) => (
+              <motion.article
+                key={cap.title}
+                custom={index}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="relative p-7 rounded-none border border-white/8 bg-white/[0.02] flex flex-col angular-cut bg-noise glass-dark"
+                className="p-6 border border-white/5 bg-white/[0.02] hover:border-teal-500/25 transition-colors angular-cut bg-noise glass-dark"
               >
-                {/* Quote mark */}
-                <div className="text-teal-500/20 text-7xl font-serif leading-none mb-4 select-none">&ldquo;</div>
-                <p className="text-neutral-300 text-sm leading-relaxed flex-1 -mt-6">{t.quote}</p>
-                <div className="mt-6 pt-5 border-t border-white/5 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-gradient-to-br from-teal-600 to-teal-800 flex items-center justify-center text-white font-bold text-sm shrink-0">
-                    {t.initial}
-                  </div>
-                  <div>
-                    <p className="text-white text-sm font-semibold">{t.author}</p>
-                    <p className="text-neutral-600 text-xs">{t.company} · {t.region}</p>
-                  </div>
-                </div>
-              </motion.div>
+                <span className="text-[10px] font-mono text-teal-400 border border-teal-500/20 px-2 py-1 tracking-widest">{cap.tag}</span>
+                <h3 className="font-bold text-white text-lg mt-5 mb-2">{cap.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{cap.desc}</p>
+              </motion.article>
             ))}
-          </div>
-
-          <div className="mt-12 text-center">
-            <p className="text-neutral-600 text-xs font-mono">
-              Testimonials represent anonymized client feedback. References available upon request under NDA.
-            </p>
           </div>
         </div>
       </section>
 
-      {/* ─── DUAL CTA ─── */}
       <section className="relative py-28 border-t border-white/5 bg-black/20">
-        <div className="container mx-auto px-6">
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Free Scan CTA */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative p-8 rounded-2xl border border-teal-500/20 bg-teal-500/5 overflow-hidden group hover:border-teal-500/40 transition-all"
-            >
-              <div className="absolute -top-12 -right-12 w-40 h-40 bg-teal-500/10 rounded-full blur-2xl group-hover:bg-teal-500/20 transition-all" />
-              <div className="relative">
-                <span className="text-[10px] font-mono text-teal-400 uppercase tracking-widest border border-teal-500/30 px-2.5 py-1 rounded-full">Free Trial</span>
-                <h3 className="text-2xl font-extrabold text-white mt-4 mb-3">Start Your Free Security Scan</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">One free external reconnaissance and vulnerability scan per company. Requires business email verification.</p>
-                <a href="/scan" className="inline-flex items-center gap-2 bg-teal-500 hover:bg-teal-400 text-black font-bold px-6 py-3 rounded-none transition-all hover:shadow-[0_0_20px_rgba(16,185,129,0.4)] text-sm angular-cut">
-                  Initialize Scan →
-                </a>
-              </div>
-            </motion.div>
+        <div className="container mx-auto px-6 max-w-4xl">
+          <div className="text-center mb-16">
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Operating model</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">A controlled path from signal to evidence</h2>
+          </div>
+          <div className="space-y-5">
+            {WORKFLOW.map((step, index) => (
+              <motion.div
+                key={step.phase}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="grid sm:grid-cols-[80px_1fr] gap-5 p-6 border border-white/5 bg-white/[0.02]"
+              >
+                <span className="font-mono text-2xl font-black text-teal-500/60">{step.phase}</span>
+                <div>
+                  <h3 className="font-bold text-white text-lg mb-2">{step.title}</h3>
+                  <p className="text-sm text-neutral-500 leading-relaxed">{step.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Training CTA */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="relative p-8 rounded-none border border-white/8 bg-white/[0.02] overflow-hidden group hover:border-white/15 transition-all angular-cut bg-noise glass-dark"
-            >
-              <div className="absolute -top-12 -right-12 w-40 h-40 bg-white/5 rounded-full blur-2xl group-hover:bg-white/10 transition-all" />
-              <div className="relative">
-                <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-widest border border-white/10 px-2.5 py-1 rounded-full">Awareness Training</span>
-                <h3 className="text-2xl font-extrabold text-white mt-4 mb-3">Train Your Team Against Threats</h3>
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">3-chapter security awareness course for employees. 100% pass-rate quizzes and verifiable completion certificates.</p>
-                <a href="/training" className="inline-flex items-center gap-2 border border-white/10 hover:border-white/25 text-neutral-300 hover:text-white font-medium px-6 py-3 rounded-lg transition-all text-sm">
-                  Start Training →
-                </a>
-              </div>
-            </motion.div>
+      <section className="relative py-28 border-t border-white/5">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16">
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Open engineering record</p>
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">Inspect the work, not just the claims</h2>
+            <p className="mt-4 text-neutral-400 max-w-2xl mx-auto">
+              The public repositories separate architecture, implementation responsibilities, and maturity so each claim can be reviewed in context.
+            </p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {REPOSITORIES.map((repo, index) => (
+              <motion.a
+                key={repo.href}
+                href={repo.href}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="block p-7 border border-white/8 bg-white/[0.02] hover:border-teal-500/30 hover:bg-white/[0.04] transition-all"
+              >
+                <span className="font-mono text-[10px] uppercase tracking-widest text-teal-400">{repo.label}</span>
+                <h3 className="text-xl font-bold text-white mt-4 mb-3">{repo.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{repo.desc}</p>
+                <span className="inline-block mt-6 text-sm text-teal-400">Open on GitHub →</span>
+              </motion.a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative py-20 border-t border-white/5 bg-teal-500/[0.03]">
+        <div className="container mx-auto px-6 text-center max-w-3xl">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-5">Interested in the engineering approach?</h2>
+          <p className="text-neutral-400 leading-relaxed mb-8">
+            Review the architecture and limitations first. For collaboration or a carefully scoped, authorized assessment, start with a written conversation about scope and evidence.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="https://github.com/Muath-Yousef/project-synapse" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-7 py-3 transition-colors">
+              Architecture repository
+            </a>
+            <Link href="/contact" className="border border-white/10 hover:border-teal-500/40 text-neutral-300 px-7 py-3 transition-colors">
+              Contact
+            </Link>
           </div>
         </div>
       </section>

@@ -1,206 +1,90 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
+import { Ban, CheckSquare, Search, Shield } from "lucide-react";
 
-import { CheckSquare, Shield, Lock, Search, Ban, Zap } from "lucide-react";
-
-const SERVICES = [
-  { label: "Threat Scanning", href: "/services" },
-  { label: "Managed SOC", href: "/services" },
-  { label: "Compliance", href: "/services" },
-  { label: "Pricing", href: "/services#pricing" },
-  { label: "Training", href: "/training" },
+const CAPABILITY_LINKS = [
+  { label: "Assessment workflow", href: "/services" },
+  { label: "SOC architecture", href: "/services" },
+  { label: "Readiness mapping", href: "/services" },
+  { label: "Awareness content", href: "/training" },
 ];
-const COMPANY_LINKS = [
+
+const PROJECT_LINKS = [
   { label: "About", href: "/about" },
-  { label: "Contact", href: "/contact" },
-  { label: "Resources", href: "/resources" },
-  { label: "Track Order", href: "/portal/order-status" },
-  { label: "Portal", href: "/portal/login" },
-  { label: "NCA ECC 2.0 Docs", href: "/compliance/nca-ecc" },
-  { label: "Privacy Policy", href: "/privacy" },
-  { label: "Terms of Service", href: "/terms" },
-  { label: "Security Policy", href: "/security" },
-  { label: "Service Level Agreement", href: "/sla" },
+  { label: "Evidence library", href: "/resources" },
+  { label: "NCA ECC reference", href: "/compliance/nca-ecc" },
+  { label: "ISO 27001 reference", href: "/compliance/iso-27001" },
+  { label: "Validation targets", href: "/sla" },
+  { label: "Privacy notice", href: "/privacy" },
+  { label: "Use terms", href: "/terms" },
+  { label: "Security policy", href: "/security" },
 ];
-const TRUST_BADGES = [
-  { icon: <CheckSquare className="w-6 h-6 text-teal-500 mb-1" />, label: "NCA ECC 2.0", sub: "Aligned", href: "/compliance/nca-ecc" },
-  { icon: <Shield className="w-6 h-6 text-teal-500 mb-1" />, label: "ISO 27001", sub: "Framework", href: "/compliance/iso-27001" },
-  { icon: <Lock className="w-6 h-6 text-teal-500 mb-1" />, label: "TLS Encrypted", sub: "All Comms", href: null },
-  { icon: <Search className="w-6 h-6 text-teal-500 mb-1" />, label: "Expert Review", sub: "Every Report", href: null },
-  { icon: <Ban className="w-6 h-6 text-teal-500 mb-1" />, label: "Data Privacy", sub: "Never Sold", href: null },
-  { icon: <Zap className="w-6 h-6 text-teal-500 mb-1" />, label: "24hr Turnaround", sub: "Max Delivery", href: null },
+
+const PRINCIPLES = [
+  { icon: CheckSquare, label: "Dry run", detail: "Default mode" },
+  { icon: Search, label: "Human review", detail: "Before action" },
+  { icon: Ban, label: "Safety rules", detail: "Explicit scope" },
+  { icon: Shield, label: "Evidence", detail: "Before claims" },
 ];
 
 export default function Footer() {
-  const [nsEmail, setNsEmail] = useState("");
-  const [nsName, setNsName] = useState("");
-  const [nsState, setNsState] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [nsMsg, setNsMsg] = useState("");
-
-  async function handleSubscribe(e: React.FormEvent) {
-    e.preventDefault();
-    if (!nsEmail.includes("@")) return;
-    setNsState("loading");
-    try {
-      const res = await fetch("https://api.socroot.com/api/subscribe-newsletter", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: nsEmail, name: nsName || "Subscriber" }),
-      });
-      const data = await res.json();
-      if (data.success) {
-        setNsState("success");
-        setNsMsg(data.message || "You're subscribed!");
-        setNsEmail("");
-        setNsName("");
-      } else {
-        setNsState("error");
-        setNsMsg(data.message || "Something went wrong.");
-      }
-    } catch {
-      setNsState("error");
-      setNsMsg("Network error. Please try again.");
-    }
-  }
-
   return (
-    <footer className="relative z-10 border-t border-teal-500/10 py-16 mt-24">
+    <footer className="relative z-10 mt-24 border-t border-teal-500/10 py-16">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-500/30 to-transparent" />
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-16">
-
-          {/* Brand + Newsletter */}
+        <div className="mb-14 grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-8 rounded-lg bg-teal-500 flex items-center justify-center">
+            <div className="mb-4 flex items-center gap-2">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-500">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0c0c0c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                 </svg>
               </span>
-              <span className="font-bold text-lg">
-                <span className="text-teal-400">SOC</span>
-                <span className="text-white"> Root</span>
-              </span>
+              <span className="text-lg font-bold"><span className="text-teal-400">SOC</span><span className="text-white">Root</span></span>
             </div>
-            <p className="text-neutral-500 text-sm leading-relaxed max-w-sm mb-5">
-              Enterprise-grade cybersecurity for businesses internationally. Powered by automation, expert analysis, and open-source intelligence.
+            <p className="mb-5 max-w-md text-sm leading-relaxed text-neutral-500">
+              A pre-production cybersecurity engineering initiative by Muath Yousef, focused on evidence-driven SOC workflows and human-controlled automation.
             </p>
-            <div className="flex gap-3 mb-6">
-              <span className="text-xs font-mono text-neutral-600 bg-white/5 px-3 py-1.5 rounded border border-white/5">NCA ECC 2.0</span>
-              <span className="text-xs font-mono text-neutral-600 bg-white/5 px-3 py-1.5 rounded border border-white/5">ISO 27001</span>
-            </div>
-
-            <div className="mb-8 space-y-1 text-sm text-neutral-500 font-mono">
-              <p>Email: socroot@outlook.com</p>
-            </div>
-
-            {/* Newsletter */}
-            <div className="bg-white/[0.02] border border-white/5 rounded-none p-4 angular-cut bg-noise glass-dark">
-              <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-3">Security Intelligence Updates</p>
-              {nsState === "success" ? (
-                <div className="flex items-center gap-2 text-teal-400 text-sm">
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
-                  {nsMsg}
-                </div>
-              ) : (
-                <form onSubmit={handleSubscribe} className="space-y-2">
-                  <input
-                    type="text"
-                    value={nsName}
-                    onChange={e => setNsName(e.target.value)}
-                    placeholder="Your name (optional)"
-                    className="w-full bg-black/50 border border-white/8 rounded-lg px-3 py-2 text-sm text-neutral-300 placeholder-neutral-700 outline-none focus:border-teal-500/40 transition-colors"
-                  />
-                  <div className="flex gap-2">
-                    <input
-                      type="email"
-                      required
-                      value={nsEmail}
-                      onChange={e => { setNsEmail(e.target.value); setNsState("idle"); }}
-                      placeholder="Work email"
-                      className="flex-1 bg-black/50 border border-white/8 rounded-lg px-3 py-2 text-sm text-neutral-300 placeholder-neutral-700 outline-none focus:border-teal-500/40 transition-colors"
-                    />
-                    <button
-                      type="submit"
-                      disabled={nsState === "loading"}
-                      className="px-4 py-2 bg-teal-500 hover:bg-teal-400 disabled:opacity-50 text-black font-bold text-xs rounded-none transition-all whitespace-nowrap angular-cut"
-                    >
-                      {nsState === "loading" ? (
-                        <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.4 0 0 5.4 0 12h4z"/>
-                        </svg>
-                      ) : "Subscribe"}
-                    </button>
-                  </div>
-                  {nsState === "error" && (
-                    <p className="text-red-400 text-xs">{nsMsg}</p>
-                  )}
-                  <p className="text-neutral-700 text-[11px]">No spam. Unsubscribe anytime.</p>
-                </form>
-              )}
+            <div className="flex flex-wrap gap-3 text-sm">
+              <a href="https://github.com/Muath-Yousef" target="_blank" rel="noreferrer" className="text-teal-400 hover:text-teal-300">GitHub</a>
+              <a href="https://www.linkedin.com/in/muath-ysf" target="_blank" rel="noreferrer" className="text-teal-400 hover:text-teal-300">LinkedIn</a>
+              <Link href="/contact" className="text-teal-400 hover:text-teal-300">Contact</Link>
             </div>
           </div>
 
-          {/* Services */}
           <div>
-            <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-5">Services</p>
+            <p className="mb-5 font-mono text-xs uppercase tracking-widest text-neutral-500">Capabilities</p>
             <ul className="space-y-3">
-              {SERVICES.map(s => (
-                <li key={s.label}>
-                  <Link href={s.href} className="text-sm text-neutral-400 hover:text-teal-400 transition-colors">{s.label}</Link>
-                </li>
-              ))}
+              {CAPABILITY_LINKS.map((item) => <li key={item.label}><Link href={item.href} className="text-sm text-neutral-400 transition-colors hover:text-teal-400">{item.label}</Link></li>)}
             </ul>
           </div>
 
-          {/* Company */}
           <div>
-            <p className="text-xs font-mono text-neutral-500 uppercase tracking-widest mb-5">Company</p>
+            <p className="mb-5 font-mono text-xs uppercase tracking-widest text-neutral-500">Project</p>
             <ul className="space-y-3">
-              {COMPANY_LINKS.map(({ label, href }) => (
-                <li key={label}>
-                  <Link href={href} className="text-sm text-neutral-400 hover:text-teal-400 transition-colors">{label}</Link>
-                </li>
-              ))}
+              {PROJECT_LINKS.map((item) => <li key={item.label}><Link href={item.href} className="text-sm text-neutral-400 transition-colors hover:text-teal-400">{item.label}</Link></li>)}
             </ul>
           </div>
         </div>
 
-        {/* Trust Badges */}
-        <div className="border-t border-white/5 pt-10 mt-4 mb-8">
-          <p className="text-center text-xs font-mono text-neutral-600 uppercase tracking-widest mb-6">Compliance &amp; Trust</p>
+        <div className="mb-8 border-t border-white/5 pt-10">
+          <p className="mb-6 text-center font-mono text-xs uppercase tracking-widest text-neutral-600">Published operating principles</p>
           <div className="flex flex-wrap justify-center gap-4">
-            {TRUST_BADGES.map(badge =>
-              badge.href ? (
-                <Link key={badge.label} href={badge.href} className="flex flex-col items-center gap-1 px-4 py-3 bg-white/[0.03] border border-white/5 rounded-none hover:border-teal-500/30 hover:bg-teal-500/5 transition-all min-w-[90px] angular-cut bg-noise glass-dark">
-                  <span className="text-xl">{badge.icon}</span>
-                  <span className="text-xs font-bold text-neutral-300">{badge.label}</span>
-                  <span className="text-[10px] text-neutral-600">{badge.sub}</span>
-                </Link>
-              ) : (
-                <div key={badge.label} className="flex flex-col items-center gap-1 px-4 py-3 bg-white/[0.03] border border-white/5 rounded-none min-w-[90px] angular-cut bg-noise glass-dark">
-                  <span className="text-xl">{badge.icon}</span>
-                  <span className="text-xs font-bold text-neutral-300">{badge.label}</span>
-                  <span className="text-[10px] text-neutral-600">{badge.sub}</span>
-                </div>
-              )
-            )}
+            {PRINCIPLES.map(({ icon: Icon, label, detail }) => (
+              <div key={label} className="angular-cut flex min-w-[120px] flex-col items-center gap-1 border border-white/5 bg-white/[0.03] px-4 py-3">
+                <Icon className="mb-1 h-5 w-5 text-teal-500" />
+                <span className="text-xs font-bold text-neutral-300">{label}</span>
+                <span className="text-[10px] text-neutral-600">{detail}</span>
+              </div>
+            ))}
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-neutral-600">
-          <div className="flex flex-col gap-1 items-center md:items-start text-center md:text-left">
-            <p>© 2026 SOC Root — All rights reserved.</p>
-            <p>Trade License: 894523 (Dubai) | VAT TRN: 100412345600003</p>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 text-xs text-neutral-600 md:flex-row">
+          <div className="text-center md:text-left">
+            <p>© 2026 SOCRoot.</p>
+            <p>Capabilities and service commitments require written scope, evidence, and validation.</p>
           </div>
-          <div className="flex items-center gap-4 flex-wrap justify-center">
-            <Link href="/privacy" className="hover:text-neutral-400 transition-colors">Privacy Policy</Link>
-            <Link href="/terms" className="hover:text-neutral-400 transition-colors">Terms of Service</Link>
-            <span>Engineered by <span className="text-teal-500">Muath Yousef</span></span>
-          </div>
+          <span>Engineered by <span className="text-teal-500">Muath Yousef</span></span>
         </div>
       </div>
     </footer>

@@ -4,8 +4,6 @@ import "./globals.css";
 import NavClient from "@/components/NavClient";
 import Footer from "@/components/Footer";
 import StructuredData from "@/components/StructuredData";
-import Analytics from "@/components/Analytics";
-import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceMono = Space_Mono({
@@ -16,11 +14,11 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SOC Root — Enterprise Cybersecurity & Managed SOC",
+    default: "SOCRoot — Evidence-Driven Security Engineering",
     template: "%s — SOC Root",
   },
   description:
-    "Military-grade automated cybersecurity platform for businesses internationally. Continuous pentesting, SIEM monitoring, NCA ECC 2.0 compliance, and security awareness training — at SMB prices.",
+    "A pre-production cybersecurity engineering initiative exploring evidence-driven SOC workflows, human-controlled automation, and practical architecture for smaller organizations.",
   keywords: [
     "cybersecurity UAE", "cybersecurity Jordan", "NCA ECC compliance",
     "penetration testing", "vulnerability assessment", "SIEM monitoring",
@@ -34,9 +32,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://socroot.com",
     siteName: "SOC Root",
-    title: "SOC Root — Enterprise Cybersecurity & Managed SOC",
+    title: "SOCRoot — Evidence-Driven Security Engineering",
     description:
-      "Automated cybersecurity — continuous pentesting, compliance monitoring, and expert analysis. We hack you before they do.",
+      "Public architecture and pre-production engineering for evidence-centered SOC workflows and human-controlled security automation.",
     images: [
       {
         url: "https://socroot.com/og-image.png",
@@ -48,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SOC Root — Enterprise Cybersecurity & Managed SOC",
-    description: "Automated pentesting, SIEM, and compliance monitoring at SMB prices.",
+    title: "SOCRoot — Evidence-Driven Security Engineering",
+    description: "Pre-production SOC architecture, evidence workflows, and human-controlled security automation.",
     creator: "@RootSoc",
     images: ["https://socroot.com/og-image.png"],
   },
@@ -70,7 +68,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
       <body className="bg-[#0c0c0c] text-[#f5f5f4] font-sans antialiased min-h-screen">
         <StructuredData />
-        <Analytics />
         {/* Navigation — client component handles mobile menu */}
         <NavClient />
 
@@ -79,8 +76,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
 
         
-        {/* Cookie / Privacy Banner */}
-        <CookieBanner />
       </body>
     </html>
   );

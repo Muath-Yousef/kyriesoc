@@ -1,268 +1,273 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
+import { motion, type Variants } from "framer-motion";
+import DynamicBackground from "@/components/DynamicBackground";
 
-const TECH = [
-  "React / Next.js", "Wazuh SIEM", "Cloudflare WAF",
-  "Python Orchestration", "Nuclei", "Docker", "Ansible",
+const FOCUS_AREAS = [
+  {
+    title: "SOC engineering",
+    desc: "Detection, case handling, evidence capture, and operator-centered incident workflows.",
+  },
+  {
+    title: "Security automation",
+    desc: "Dry-run-first orchestration with human approval, audit records, and rollback requirements.",
+  },
+  {
+    title: "System architecture",
+    desc: "Clear boundaries between public documentation, the control plane, runtime, and product surface.",
+  },
+  {
+    title: "Responsible AI integration",
+    desc: "AI-assisted analysis that records uncertainty and avoids sending raw client data to external providers.",
+  },
 ];
 
-const CERTIFICATIONS = [
-  { label: "OSCP", detail: "Offensive Security Certified Professional", color: "text-red-400" },
-  { label: "CEH", detail: "Certified Ethical Hacker", color: "text-teal-400" },
-  { label: "CISSP", detail: "Certified Information Systems Security Professional", color: "text-blue-400" },
-  { label: "ISO 27001 LA", detail: "Lead Auditor", color: "text-yellow-400" },
+const JOURNEY = [
+  {
+    label: "Origin",
+    title: "Project Synapse",
+    desc: "A cybersecurity graduation project exploring how practical SOC capabilities could be made more accessible to smaller organizations.",
+  },
+  {
+    label: "Architecture",
+    title: "From a single project to separated system boundaries",
+    desc: "The work was split into a public architecture, a control plane, a SOC runtime, and a public website so each responsibility could mature independently.",
+  },
+  {
+    label: "Current",
+    title: "SOCRoot pre-production validation",
+    desc: "The current focus is narrowing the system into testable, safe workflows with explicit evidence gates instead of expanding unverified capability claims.",
+  },
 ];
 
 const PRINCIPLES = [
   {
     n: "01",
-    title: "Automation-First",
-    desc: "Every process — from recon to remediation — is engineered as code. No manual steps in the critical path means faster response and zero human error.",
+    title: "Evidence before claims",
+    desc: "A capability is described as verified only when tests, deployment evidence, limitations, and rollback behavior can be reviewed.",
   },
   {
     n: "02",
-    title: "Transparent Reporting",
-    desc: "No black boxes. Every finding is documented with severity scores (CVSS), reproduction steps, and prioritized remediation actions your team can execute immediately.",
+    title: "Human control for sensitive actions",
+    desc: "High-impact remediation is never presented as unattended automation. Dry-run and explicit approval are the default.",
   },
   {
     n: "03",
-    title: "Aligned with Local Law",
-    desc: "Fully compliant with NCA ECC 2.0, Saudi PDPL, and UAE cybersecurity frameworks — designed specifically for the regulatory landscape of the Gulf and Levant.",
+    title: "Client data stays bounded",
+    desc: "Raw client data is not published, reused as portfolio material, or sent to external AI providers without explicit authorization.",
   },
   {
     n: "04",
-    title: "Affordable Enterprise Grade",
-    desc: "Enterprise-grade SOC operations traditionally cost $15,000+/month. We deliver equivalent capability at 3-5% of that cost using open-source intelligence and automation.",
+    title: "Architecture should reveal uncertainty",
+    desc: "Pre-production status, incomplete integrations, assumptions, and safety constraints belong in the public engineering record.",
   },
 ];
 
-const TIMELINE = [
-  { year: "2022", event: "Started offensive security research — automated first external recon pipeline using Subfinder + Nmap." },
-  { year: "2023", event: "Built the first version of Synapse SOC Engine — SOAR automation with Cloudflare WAF integration." },
-  { year: "2024", event: "First enterprise engagement — NCA ECC 2.0 readiness assessment for a KSA-based SaaS provider." },
-  { year: "2025", event: "Deployed Wazuh SIEM stack with live threat telemetry. Launched SOC Root as a commercial service." },
-  { year: "2026", event: "Serving clients across UAE, Jordan, and KSA. Platform handles 800+ vulnerability assessments." },
+const REPOSITORIES = [
+  ["Public architecture", "project-synapse", "https://github.com/Muath-Yousef/project-synapse"],
+  ["Control plane", "ide-agentic-engine", "https://github.com/Muath-Yousef/ide-agentic-engine"],
+  ["SOC runtime", "Project-Synapse-SOC-Factory", "https://github.com/Muath-Yousef/Project-Synapse-SOC-Factory"],
+  ["Engineering portfolio", "portfolio-site", "https://github.com/Muath-Yousef/portfolio-site"],
 ];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 } }),
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 22 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.07, duration: 0.45, ease: "easeOut" as const },
+  }),
 };
 
 export default function About() {
   return (
-    <div className="min-h-screen py-20">
-      <div className="container mx-auto px-6">
+    <div className="relative min-h-screen py-20 overflow-hidden">
+      <DynamicBackground />
+      <div className="container mx-auto px-6 relative z-10">
+        <section className="max-w-4xl mx-auto text-center mb-24">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-5"
+          >
+            About SOCRoot
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.08 }}
+            className="text-5xl md:text-6xl font-extrabold tracking-tight mb-7"
+          >
+            An engineering initiative,
+            <span className="text-teal-400"> documented in public.</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.16 }}
+            className="text-lg text-neutral-400 leading-relaxed max-w-3xl mx-auto"
+          >
+            SOCRoot grew from Project Synapse, a cybersecurity graduation project by Mu&apos;ath Yousef. The work investigates practical, evidence-driven security operations for smaller organizations. It is currently in active engineering and pre-production validation.
+          </motion.p>
+        </section>
 
-        {/* ── Header ── */}
-        <div className="text-center max-w-2xl mx-auto mb-20">
-          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">About</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            About <span className="text-teal-400">SOC Root</span>
-          </h1>
-          <p className="text-neutral-400 leading-relaxed">
-            Democratizing enterprise-grade cybersecurity for businesses across the Middle East and beyond.
-            Built by security practitioners, not marketers.
-          </p>
-        </div>
-
-        {/* ── Mission + Founder ── */}
-        <div className="grid md:grid-cols-2 gap-10 items-start mb-24 max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-            <h2 className="text-3xl font-extrabold mb-5">The Problem We Solve</h2>
-            <p className="text-neutral-400 mb-5 leading-relaxed">
-              Most businesses in the UAE and Jordan face the same harsh reality: enterprise-grade cybersecurity is financially out of reach. A traditional SOC engagement costs upwards of $15,000/month — making it exclusive to Fortune 500 companies.
+        <section className="grid lg:grid-cols-[1.2fr_0.8fr] gap-8 max-w-6xl mx-auto mb-24">
+          <motion.article
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={0}
+            className="p-8 md:p-10 border border-white/8 bg-white/[0.02] angular-cut bg-noise glass-dark"
+          >
+            <span className="font-mono text-xs text-teal-400 uppercase tracking-widest">The builder</span>
+            <h2 className="text-3xl font-extrabold mt-4 mb-5">Mu&apos;ath Yousef</h2>
+            <p className="text-neutral-400 leading-relaxed mb-5">
+              Cybersecurity graduate from Tafila Technical University, focused on SOC engineering, security automation, architecture, and operational evidence.
             </p>
-            <p className="text-neutral-400 mb-8 leading-relaxed">
-              SOC Root was engineered to break this barrier. By combining offensive security expertise, AI-powered triage, and open-source intelligence automation, we deliver the output of a fully staffed security team at a fraction of the cost — without compromising on depth or compliance alignment.
+            <p className="text-neutral-400 leading-relaxed mb-7">
+              The public repositories show both implemented work and its limits. They deliberately avoid presenting planned modules, synthetic demonstrations, or incomplete integrations as customer outcomes or production guarantees.
             </p>
-            <div className="flex flex-wrap gap-2">
-              {TECH.map((t) => (
-                <span key={t} className="text-xs font-mono text-teal-400 border border-teal-500/25 bg-teal-500/5 px-3 py-1.5 rounded-md">
-                  {t}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* ── Founder Card ── */}
-          <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
-            <div className="relative">
-              <div className="absolute -inset-px rounded-2xl bg-gradient-to-b from-teal-500/15 to-transparent pointer-events-none" />
-              <div className="relative border border-white/8 bg-white/[0.02] p-8 rounded-none backdrop-blur-xl angular-cut bg-noise glass-dark">
-
-                {/* Avatar */}
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center overflow-hidden border border-teal-500/30 shrink-0">
-                    <img src="/founder.jpg" alt="Muath Yousef" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.style.display='none'; }} />
-                    <span className="text-black font-extrabold text-xl absolute -z-10">MY</span>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-extrabold">Muath Yousef</h3>
-                    <p className="text-teal-400 font-mono text-xs uppercase tracking-widest">Founder · Lead Security Engineer</p>
-                  </div>
-                </div>
-
-                <p className="text-neutral-400 text-sm leading-relaxed mb-6">
-                  With combined decades of team expertise and millions of automated execution hours in offensive security, Muath led the engineering of the <strong className="text-white">Synapse SOC Engine</strong> — the autonomous backend that powers SOC Root's real-time threat detection and SOAR response pipeline.
-                </p>
-
-                {/* Expertise */}
-                <div className="space-y-3 mb-6">
-                  {CERTIFICATIONS.map((c) => (
-                    <div key={c.label} className="flex items-start gap-3">
-                      <span className={`font-mono text-xs font-bold ${c.color} shrink-0 mt-0.5`}>›</span>
-                      <div>
-                        <span className="text-white text-sm font-semibold">{c.label}</span>
-                        <span className="text-neutral-600 text-xs ml-2">{c.detail}</span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Links */}
-                <div className="flex gap-3 pt-4 border-t border-white/5 flex-wrap">
-                  <a
-                    href="https://muath-yousef.github.io/portfolio-site/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-teal-400 hover:text-teal-300 font-semibold transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
-                    Portfolio
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/muath-yousef"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.327-.027-3.037-1.852-3.037-1.854 0-2.137 1.446-2.137 2.94v5.666H9.351V9h3.414v1.561h.048c.476-.9 1.637-1.849 3.37-1.849 3.602 0 4.267 2.37 4.267 5.455v6.285zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                    LinkedIn
-                  </a>
-                  <a
-                    href="/contact"
-                    className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
-                  >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    Direct Contact
-                  </a>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* ── Origin Timeline ── */}
-        <div className="max-w-3xl mx-auto mb-24">
-          <div className="text-center mb-12">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">History</p>
-            <h2 className="text-3xl font-extrabold">How We Got Here</h2>
-          </div>
-          <div className="space-y-0">
-            {TIMELINE.map((item, i) => (
-              <motion.div
-                key={i}
-                custom={i}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="flex gap-6"
+            <div className="flex flex-wrap gap-3">
+              <a
+                href="https://www.linkedin.com/in/muath-ysf"
+                className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-6 py-3 transition-colors text-sm"
               >
-                <div className="flex flex-col items-center">
-                  <div className="w-12 h-12 rounded-full border border-teal-500/30 bg-teal-500/5 flex items-center justify-center shrink-0">
-                    <span className="text-teal-400 font-mono text-[10px] font-bold">{item.year}</span>
-                  </div>
-                  {i < TIMELINE.length - 1 && <div className="w-px flex-1 mt-2 bg-gradient-to-b from-teal-500/20 to-transparent" />}
-                </div>
-                <div className="pb-8 pt-2">
-                  <p className="text-neutral-400 text-sm leading-relaxed">{item.event}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
+                LinkedIn
+              </a>
+              <a
+                href="https://github.com/Muath-Yousef"
+                className="border border-white/10 hover:border-teal-500/30 px-6 py-3 text-sm text-neutral-300 hover:text-white transition-colors"
+              >
+                GitHub profile
+              </a>
+            </div>
+          </motion.article>
 
-        {/* ── Principles ── */}
-        <div className="max-w-5xl mx-auto">
+          <motion.aside
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            custom={1}
+            className="p-8 border border-amber-500/20 bg-amber-500/[0.03]"
+          >
+            <span className="font-mono text-xs text-amber-300 uppercase tracking-widest">Maturity statement</span>
+            <h2 className="text-2xl font-bold mt-4 mb-4">What this site does—and does not—claim</h2>
+            <ul className="space-y-4 text-sm text-neutral-400 leading-relaxed">
+              <li>• The architecture and code are substantial engineering work.</li>
+              <li>• Some components are prototypes or partial integrations.</li>
+              <li>• Demonstration data and scenarios are labeled as synthetic.</li>
+              <li>• No public 24/7 service, SLA, autonomous remediation, customer count, or certification claim is made without evidence.</li>
+              <li>• Formal production claims require tests, deployment records, monitoring, and rollback validation.</li>
+            </ul>
+          </motion.aside>
+        </section>
+
+        <section className="max-w-6xl mx-auto mb-24">
           <div className="text-center mb-12">
-            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Principles</p>
-            <h2 className="text-3xl font-extrabold">Why SOC Root?</h2>
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Focus</p>
+            <h2 className="text-4xl font-extrabold">Current engineering areas</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-5">
-            {PRINCIPLES.map((v, i) => (
-              <motion.div
-                key={i}
-                custom={i}
+            {FOCUS_AREAS.map((item, index) => (
+              <motion.article
+                key={item.title}
+                custom={index}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
                 variants={fadeUp}
-                className="border border-white/8 bg-white/[0.02] p-6 rounded-none hover:border-teal-500/20 transition-colors angular-cut bg-noise glass-dark"
+                className="p-7 border border-white/8 bg-white/[0.02]"
               >
-                <span className="font-mono text-2xl font-extrabold text-teal-500/20">{v.n}</span>
-                <h3 className="font-bold text-white text-lg mt-2 mb-2">{v.title}</h3>
-                <p className="text-neutral-500 text-sm leading-relaxed">{v.desc}</p>
-              </motion.div>
+                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
+              </motion.article>
             ))}
           </div>
+        </section>
 
-          {/* ── Technical Partners ── */}
-          <div className="mt-24 pt-16 border-t border-white/5">
-            <div className="text-center mb-10">
-              <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Ecosystem</p>
-              <h2 className="text-3xl font-extrabold">Technical Partners & Integration</h2>
-              <p className="text-neutral-400 text-sm max-w-2xl mx-auto mt-4 leading-relaxed">
-                We leverage enterprise-grade infrastructure and intelligence feeds from industry leaders to power the Synapse SOC Engine.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-60">
-              {/* Cloudflare logo placeholder */}
-              <div className="flex items-center gap-2 font-bold text-xl text-white">
-                <svg className="w-8 h-8 text-[#F38020]" viewBox="0 0 24 24" fill="currentColor"><path d="M16.92 10.3A5.44 5.44 0 0 0 12 5.56a5.42 5.42 0 0 0-4.92 3.12 4.19 4.19 0 0 0-4.04 4.09A4.24 4.24 0 0 0 7.27 17h11.23a3.5 3.5 0 0 0 .15-6.99z"/></svg>
-                Cloudflare
-              </div>
-              {/* Wazuh platform */}
-              <div className="flex items-center gap-2 font-bold text-xl text-white">
-                <svg className="w-8 h-8 text-[#00A9E5]" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10" /><path stroke="white" strokeWidth="2" d="M8 12l3 3 5-5" /></svg>
-                Wazuh
-              </div>
-              {/* AWS */}
-              <div className="flex items-center gap-2 font-bold text-xl text-white">
-                <span className="text-[#FF9900]">AWS</span> Network
-              </div>
-            </div>
+        <section className="max-w-4xl mx-auto mb-24">
+          <div className="text-center mb-12">
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Evolution</p>
+            <h2 className="text-4xl font-extrabold">From Synapse to SOCRoot</h2>
           </div>
-
-          {/* CTA */}
-          <div className="mt-16 text-center">
-            <p className="text-neutral-500 text-sm mb-6">Ready to see what we can find in your infrastructure?</p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/scan"
-                className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 rounded-none transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] text-sm angular-cut"
+          <div className="space-y-5">
+            {JOURNEY.map((item, index) => (
+              <motion.article
+                key={item.label}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="grid sm:grid-cols-[120px_1fr] gap-5 p-6 border border-white/5 bg-black/20"
               >
-                Start Free Security Scan
-              </Link>
-              <Link
-                href="/contact"
-                className="border border-white/10 hover:border-teal-500/30 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-xl transition-all text-sm"
-              >
-                Talk to Our Team →
-              </Link>
-            </div>
+                <span className="font-mono text-xs text-teal-400 uppercase tracking-widest">{item.label}</span>
+                <div>
+                  <h3 className="font-bold text-white text-lg mb-2">{item.title}</h3>
+                  <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
+                </div>
+              </motion.article>
+            ))}
           </div>
-        </div>
+        </section>
 
+        <section className="max-w-6xl mx-auto mb-24">
+          <div className="text-center mb-12">
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Principles</p>
+            <h2 className="text-4xl font-extrabold">How the work is evaluated</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {PRINCIPLES.map((item, index) => (
+              <motion.article
+                key={item.n}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="p-7 border border-white/8 bg-white/[0.02]"
+              >
+                <span className="font-mono text-2xl font-black text-teal-500/30">{item.n}</span>
+                <h3 className="text-xl font-bold text-white mt-3 mb-3">{item.title}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{item.desc}</p>
+              </motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-5xl mx-auto mb-20">
+          <div className="text-center mb-12">
+            <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Repository map</p>
+            <h2 className="text-4xl font-extrabold">Review the source by responsibility</h2>
+          </div>
+          <div className="divide-y divide-white/5 border-y border-white/5">
+            {REPOSITORIES.map(([role, name, href]) => (
+              <a key={name} href={href} className="grid sm:grid-cols-[180px_1fr_auto] gap-4 py-5 items-center group">
+                <span className="text-xs font-mono text-neutral-500 uppercase tracking-widest">{role}</span>
+                <span className="font-semibold text-white group-hover:text-teal-400 transition-colors">{name}</span>
+                <span className="text-teal-400">→</span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section className="max-w-3xl mx-auto text-center border-t border-white/5 pt-16">
+          <h2 className="text-3xl font-extrabold mb-5">Start with the architecture and scope</h2>
+          <p className="text-neutral-500 mb-8">
+            Collaboration begins with authorization, bounded goals, and evidence requirements—not a promise of unattended production capability.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a href="https://github.com/Muath-Yousef/project-synapse" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-7 py-3 transition-colors">
+              Review Project Synapse
+            </a>
+            <Link href="/contact" className="border border-white/10 hover:border-teal-500/30 px-7 py-3 text-neutral-300 transition-colors">
+              Contact Mu&apos;ath
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

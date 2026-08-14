@@ -15,17 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/terms',
     '/security',
     '/scan',
-    '/portal/login',
-    '/portal/order-status',
     '/compliance/nca-ecc',
     '/compliance/iso-27001',
     '/resources',
     '/resources/security-guide',
   ];
 
-  const planRoutes = ['starter', 'guard', 'governance', 'premium'].map((id) => `/plans/${id}`);
-
-  const allRoutes = [...staticRoutes, ...planRoutes];
+  const allRoutes = staticRoutes;
 
   return allRoutes.map((route) => ({
     url: `${baseUrl}${route}`,

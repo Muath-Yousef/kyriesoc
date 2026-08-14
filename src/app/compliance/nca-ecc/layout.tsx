@@ -1,11 +1,11 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "NCA ECC 2.0 Compliance | SOC Root",
-  description: "Ensure your organization in Saudi Arabia meets all 23 Essential Cybersecurity Controls (ECC). Gap analysis, remediation, and continuous monitoring.",
+  title: "NCA ECC Readiness Reference | SOCRoot",
+  description: "An educational readiness reference for discussing ECC control objectives and evidence gaps; not certification or auditor attestation.",
   openGraph: {
-    title: "NCA ECC 2.0 Compliance | SOC Root",
-    description: "Continuous NCA ECC compliance monitoring with automated gap analysis and audit-ready documentation for Saudi organizations.",
+    title: "NCA ECC Readiness Reference | SOCRoot",
+    description: "A simplified control-and-evidence discussion tool with explicit limits on compliance claims.",
     url: "https://socroot.com/compliance/nca-ecc",
     siteName: "SOC Root",
     type: "website",

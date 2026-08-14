@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact SOC Root — 24/7 Security Team",
-  description: "Reach the SOC Root security team directly. WhatsApp, email, or Telegram. Active security incidents responded to immediately. Serving UAE, Jordan, and KSA.",
+  title: "Contact SOCRoot — Scope an Engineering Conversation",
+  description: "Contact SOCRoot about authorized assessment work, architecture collaboration, or a bounded pre-production pilot.",
   keywords: "contact SOC Root, cybersecurity help UAE, security consultant Jordan, report vulnerability, emergency incident response",
   openGraph: {
-    title: "Contact SOC Root — 24/7 Security Team",
-    description: "Security emergency? General inquiry? Our team responds within 24 hours — or immediately via WhatsApp for active incidents.",
+    title: "Contact SOCRoot — Scope an Engineering Conversation",
+    description: "Start with authorization, scope, evidence requirements, and operational constraints.",
     url: "https://socroot.com/contact",
     type: "website",
   },

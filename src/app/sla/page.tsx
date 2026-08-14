@@ -1,118 +1,106 @@
-import { ShieldAlert, Zap, Clock, ShieldCheck } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Service Level Agreement (SLA) — SOC Root",
-  description: "SOC Root's Service Level Agreement covering response times, severity classifications, and service availability for our automated cybersecurity solutions.",
+  title: "Service Validation Targets — SOC Root",
+  description: "Pre-production service targets, validation gates, and the evidence required before SOC Root can publish a contractual SLA.",
 };
 
-const SEVERITY_LEVELS = [
+const TARGETS = [
   {
-    level: "Critical (P0)",
-    desc: "Active exploitation, mass data exfiltration, or complete loss of critical infrastructure.",
-    time: "< 1 Hour",
-    color: "text-red-500",
-    bg: "bg-red-500/10 border-red-500/20",
+    name: "Availability",
+    current: "No public uptime guarantee",
+    evidence: "Measured production deployment, external monitoring, incident records, maintenance process, and recovery tests.",
   },
   {
-    level: "High (P1)",
-    desc: "Severe vulnerability exposing internal network, high probability of exploitation.",
-    time: "< 4 Hours",
-    color: "text-orange-500",
-    bg: "bg-orange-500/10 border-orange-500/20",
+    name: "Response time",
+    current: "Agreed per authorized scope",
+    evidence: "Staffing coverage, paging tests, severity definitions, escalation ownership, and a sustained measurement period.",
   },
   {
-    level: "Medium (P2)",
-    desc: "Misconfiguration or vulnerability with limited impact or high complexity to exploit.",
-    time: "< 24 Hours",
-    color: "text-yellow-500",
-    bg: "bg-yellow-500/10 border-yellow-500/20",
+    name: "Remediation",
+    current: "Dry-run and human approval",
+    evidence: "Integration tests, policy enforcement, rollback validation, audit logs, and client-specific authorization.",
   },
   {
-    level: "Low (P3)",
-    desc: "Informational findings, best practice deviations, or defense-in-depth suggestions.",
-    time: "< 48 Hours",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10 border-blue-500/20",
+    name: "Reporting",
+    current: "Deliverables defined before work",
+    evidence: "Scope, evidence requirements, review criteria, data-retention rules, and acceptance sign-off.",
   },
 ];
 
-export default function SLA() {
+const SEVERITY = [
+  ["Critical", "Active exploitation or material impact requiring immediate human assessment."],
+  ["High", "A validated weakness with serious impact or a credible path to exploitation."],
+  ["Medium", "A confirmed weakness with constrained impact, prerequisites, or mitigating controls."],
+  ["Low / informational", "A hardening opportunity, observation, or defense-in-depth recommendation."],
+];
+
+export default function ServiceTargets() {
   return (
     <div className="min-h-screen py-20">
-      <div className="container mx-auto px-6 max-w-4xl">
-        
-        {/* Header */}
-        <div className="mb-16">
-          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Legal</p>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Service Level <span className="text-teal-400">Agreement</span>
+      <div className="container mx-auto px-6 max-w-5xl">
+        <header className="mb-14 max-w-3xl">
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Pre-production policy</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-5">
+            Service validation <span className="text-teal-400">targets</span>
           </h1>
-          <p className="text-neutral-400 max-w-xl leading-relaxed">
-            Standard metrics, turnaround times, and incident response guarantees for SOC Root clients. No ambiguity.
+          <p className="text-neutral-400 leading-relaxed">
+            SOCRoot does not currently publish a contractual uptime or response-time SLA. This page records the evidence gates that must be satisfied before a service commitment can be represented as proven.
           </p>
-        </div>
+        </header>
 
-        {/* Uptime Guarantee */}
-        <section className="mb-16 border border-white/5 bg-white/[0.02] p-8 rounded-none angular-cut bg-noise glass-dark">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400">
-              <Zap className="w-6 h-6" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-white">Platform Availability</h2>
-              <p className="text-teal-400 font-mono text-sm tracking-widest mt-1">99.9% Uptime Guarantee</p>
-            </div>
-          </div>
-          <p className="text-neutral-400 leading-relaxed max-w-2xl">
-            The Synapse SOC Engine, Client Portal, and API endpoints are guaranteed to have a 99.9% monthly uptime. Planned maintenance windows are communicated 7 days in advance and operate solely outside of Gulf Standard Time (GST) business hours.
+        <section className="border border-amber-500/20 bg-amber-500/[0.04] p-6 md:p-8 mb-12">
+          <h2 className="font-bold text-white mb-3">Why the old guarantee language was removed</h2>
+          <p className="text-sm text-neutral-400 leading-relaxed">
+            A 99.9% uptime claim, fixed response windows, or 24/7 coverage requires deployed monitoring, measured history, staffing, escalation ownership, and contractual terms. Architecture and prototype code alone do not prove those conditions.
           </p>
         </section>
 
-        {/* Severity Classifications */}
         <section className="mb-16">
-          <h2 className="text-2xl font-bold text-white mb-8 flex items-center gap-2">
-            <ShieldAlert className="w-6 h-6 text-teal-500" />
-            Incident Severity & Response
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            {SEVERITY_LEVELS.map((s) => (
-              <div key={s.level} className={`p-6 rounded-2xl border ${s.bg}`}>
-                <div className="flex justify-between items-start mb-3">
-                  <h3 className={`font-bold text-lg ${s.color}`}>{s.level}</h3>
-                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded bg-black/40 border border-white/10 shrink-0">
-                    <Clock className="w-3.5 h-3.5 text-neutral-400" />
-                    <span className="text-xs font-mono font-bold text-white tracking-wider">{s.time}</span>
-                  </div>
-                </div>
-                <p className="text-sm text-neutral-300 leading-relaxed">{s.desc}</p>
-              </div>
+          <div className="grid md:grid-cols-2 gap-5">
+            {TARGETS.map((target) => (
+              <article key={target.name} className="p-7 border border-white/8 bg-white/[0.02] angular-cut bg-noise glass-dark">
+                <p className="font-mono text-[10px] text-teal-400 uppercase tracking-widest mb-3">{target.name}</p>
+                <h2 className="text-xl font-bold text-white mb-3">{target.current}</h2>
+                <p className="text-sm text-neutral-500 leading-relaxed">
+                  <strong className="text-neutral-300">Required evidence:</strong> {target.evidence}
+                </p>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* SOC Operations */}
-        <section className="border-t border-white/5 pt-12">
-          <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
-            <ShieldCheck className="w-6 h-6 text-teal-500" />
-            Service Turnarounds
-          </h2>
-          <div className="space-y-6">
-            <div className="flex gap-4 p-5 rounded-none border border-white/5 bg-white/[0.01] angular-cut bg-noise glass-dark">
-              <span className="font-mono text-teal-500 text-sm w-32 shrink-0">Vulnerability Scans</span>
-              <p className="text-sm text-neutral-400">Reports delivered within <strong className="text-white">24 hours</strong> of scan completion. Executive summary included.</p>
-            </div>
-            <div className="flex gap-4 p-5 rounded-none border border-white/5 bg-white/[0.01] angular-cut bg-noise glass-dark">
-              <span className="font-mono text-teal-500 text-sm w-32 shrink-0">Compliance Audits</span>
-              <p className="text-sm text-neutral-400">NCA ECC 2.0 readiness assessments finalized within <strong className="text-white">3-5 business days</strong> of asset mapping.</p>
-            </div>
-            <div className="flex gap-4 p-5 rounded-none border border-white/5 bg-white/[0.01] angular-cut bg-noise glass-dark">
-              <span className="font-mono text-teal-500 text-sm w-32 shrink-0">SOAR Orchestration</span>
-              <p className="text-sm text-neutral-400">Automated workflows initiated within <strong className="text-white">60 seconds</strong> of critical alert validation by the LLM engine.</p>
-            </div>
+        <section className="mb-16">
+          <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Common language</p>
+          <h2 className="text-3xl font-extrabold mb-7">Severity classification</h2>
+          <div className="divide-y divide-white/5 border-y border-white/5">
+            {SEVERITY.map(([name, description]) => (
+              <div key={name} className="grid md:grid-cols-[180px_1fr] gap-4 py-5">
+                <h3 className="font-bold text-white">{name}</h3>
+                <p className="text-sm text-neutral-500 leading-relaxed">{description}</p>
+              </div>
+            ))}
           </div>
+          <p className="text-xs text-neutral-600 mt-5">
+            Classification does not create a response-time guarantee. A response window is defined only in a written engagement with verified coverage.
+          </p>
         </section>
 
+        <section className="text-center border-t border-white/5 pt-12">
+          <h2 className="text-3xl font-extrabold mb-4">Need a scoped service target?</h2>
+          <p className="text-neutral-500 max-w-2xl mx-auto mb-7">
+            Start by defining the environment, severity model, coverage hours, evidence, escalation ownership, and rollback responsibilities.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link href="/contact" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-7 py-3 transition-colors">
+              Discuss a scope
+            </Link>
+            <Link href="/services" className="border border-white/10 hover:border-teal-500/30 px-7 py-3 text-neutral-300 transition-colors">
+              Capability tracks
+            </Link>
+          </div>
+        </section>
       </div>
     </div>
   );

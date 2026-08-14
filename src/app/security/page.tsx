@@ -27,7 +27,7 @@ export default function SecurityPage() {
             <h2 className="text-2xl font-bold text-teal-400 mb-4">Reporting a Vulnerability</h2>
             <div className="p-6 bg-white/[0.02] border border-white/5 rounded-none text-neutral-300 leading-relaxed text-sm angular-cut bg-noise glass-dark">
               <p className="mb-4">
-                If you believe you have found a security vulnerability in SOC Root's platform or infrastructure, please report it to us immediately. We investigate all legitimate reports and do our best to quickly fix the problem.
+                If you believe you have found a security vulnerability in SOCRoot&apos;s public website or repositories, please report it privately. Reports are reviewed and prioritized according to reproducibility, impact, and the maturity of the affected component.
               </p>
               <ul className="list-disc pl-5 space-y-2 text-neutral-400">
                 <li>Submit your report via our <Link href="/contact" className="text-teal-400 hover:underline">Contact Page</Link>.</li>
@@ -42,8 +42,8 @@ export default function SecurityPage() {
             <h2 className="text-2xl font-bold mb-4">Our Commitment</h2>
             <div className="grid md:grid-cols-2 gap-4">
               <div className="p-5 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
-                <h3 className="font-bold text-teal-400 mb-2">Fast Response</h3>
-                <p className="text-sm text-neutral-400">We aim to acknowledge receipt of vulnerability reports within 24 hours.</p>
+                <h3 className="font-bold text-teal-400 mb-2">Triage</h3>
+                <p className="text-sm text-neutral-400">Reports are prioritized according to reproducibility, impact, and affected-component maturity; no public response window is promised.</p>
               </div>
               <div className="p-5 bg-white/[0.02] border border-white/5 rounded-none angular-cut bg-noise glass-dark">
                 <h3 className="font-bold text-teal-400 mb-2">Safe Harbor</h3>
@@ -68,7 +68,7 @@ export default function SecurityPage() {
               <ul className="list-disc pl-5 space-y-2 text-sm text-neutral-400">
                 <li>Denial of Service (DoS) or Distributed Denial of Service (DDoS) attacks.</li>
                 <li>Physical testing of our facilities or hardware.</li>
-                <li>Social engineering (e.g., phishing, vishing) against our employees, contractors, or customers.</li>
+                <li>Social engineering (e.g., phishing or vishing) against any person associated with the project.</li>
                 <li>Exfiltrating, destroying, or modifying data that does not belong to you.</li>
                 <li>Automated scanning with tools that generate extensive traffic.</li>
               </ul>

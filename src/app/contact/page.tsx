@@ -69,8 +69,7 @@ export default function Contact() {
         setFormState("error");
       }
     } catch {
-      // Fallback: still notify via Telegram on client-side failure, guide user to WhatsApp
-      setErrMsg("Network error. Please contact us directly via generic support email or Telegram.");
+      setErrMsg("Network error. Please contact us directly by email or Telegram.");
       setFormState("error");
     }
   }
@@ -89,7 +88,7 @@ export default function Contact() {
             Contact <span className="text-teal-400">SOC Root</span>
           </h1>
           <p className="text-neutral-400">
-            Ready to secure your enterprise? Reach our 24/7 analysis team directly or submit a request below.
+            Start with an authorized scope, the decision you need to support, and the evidence you expect.
           </p>
         </div>
 
@@ -109,7 +108,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-lg font-bold text-white mb-2">Message Received</h3>
                   <p className="text-neutral-400 text-sm leading-relaxed max-w-xs">
-                    Your message has been transmitted securely. Our team will respond within <span className="text-teal-400 font-semibold">24 hours</span>.
+                    Your message was accepted by the contact endpoint. A response time is not guaranteed; please use direct email for time-sensitive coordination.
                   </p>
                 </div>
               </div>
@@ -207,7 +206,7 @@ export default function Contact() {
                 </button>
 
                 <p className="text-neutral-700 text-[11px] text-center">
-                  Transmitted over TLS 1.3 · Stored encrypted · Max 24hr response
+                  Use this form only for an initial, non-sensitive inquiry. Do not include secrets or client evidence.
                 </p>
               </form>
             )}
@@ -249,9 +248,9 @@ export default function Contact() {
               </h3>
               <div className="space-y-3 text-sm">
                 {[
-                  { label: "Telegram Support", value: "24/7 — typically < 2hr response" },
-                  { label: "Email Response", value: "Within 24 hours (business days)" },
-                  { label: "Active Incidents", value: "Immediate escalation available" },
+                  { label: "Telegram", value: "Coordination channel — no public response-time guarantee" },
+                  { label: "Email", value: "No public response-time guarantee" },
+                  { label: "Active Incidents", value: "No public emergency-response service" },
                   { label: "Timezone", value: "GST +4 (UAE) / AST +3 (Jordan)" },
                 ].map(({ label, value }) => (
                   <div key={label} className="flex justify-between gap-4">
