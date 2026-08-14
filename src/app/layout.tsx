@@ -14,7 +14,7 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "SOCRoot — Evidence-Driven Security Engineering",
+    default: "SOCRoot — Automatable Cybersecurity Subscriptions",
     template: "%s — SOC Root",
   },
   description:
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://socroot.com",
     siteName: "SOC Root",
-    title: "SOCRoot — Evidence-Driven Security Engineering",
+    title: "SOCRoot — Automatable Cybersecurity Subscriptions",
     description:
       "Pre-production subscription services for evidence-centered security workflows and human-controlled automation.",
     images: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SOCRoot — Evidence-Driven Security Engineering",
+    title: "SOCRoot — Automatable Cybersecurity Subscriptions",
     description: "Pre-production cybersecurity subscription services with evidence workflows and human-controlled automation.",
     creator: "@RootSoc",
     images: ["https://socroot.com/og-image.png"],
