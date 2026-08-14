@@ -15,7 +15,7 @@ const FOCUS_AREAS = [
   },
   {
     title: "System architecture",
-    desc: "Clear boundaries between public documentation, the control plane, runtime, and product surface.",
+    desc: "Clear boundaries between SOCRoot product work, reusable technical assets, and the separate Project Synapse graduation project.",
   },
   {
     title: "Responsible AI integration",
@@ -25,19 +25,19 @@ const FOCUS_AREAS = [
 
 const JOURNEY = [
   {
-    label: "Origin",
+    label: "Academic track",
     title: "Project Synapse",
-    desc: "A cybersecurity graduation project exploring how practical SOC capabilities could be made more accessible to smaller organizations.",
+    desc: "An open-source graduation project combining cybersecurity workflows, data analytics, and a scalable modular architecture.",
   },
   {
-    label: "Architecture",
-    title: "From a single project to separated system boundaries",
-    desc: "The work was split into a public architecture, a control plane, a SOC runtime, and a public website so each responsibility could mature independently.",
+    label: "Commercial track",
+    title: "SOCRoot",
+    desc: "An independent product initiative focused on automatable cybersecurity subscription services with measurable, repeatable customer value.",
   },
   {
     label: "Current",
-    title: "SOCRoot pre-production validation",
-    desc: "The current focus is narrowing the system into testable, safe workflows with explicit evidence gates instead of expanding unverified capability claims.",
+    title: "Pre-production commercial validation",
+    desc: "The current focus is selecting narrow service problems, validating willingness to pay, and proving safe delivery with explicit evidence gates.",
   },
 ];
 
@@ -65,9 +65,9 @@ const PRINCIPLES = [
 ];
 
 const REPOSITORIES = [
-  ["Public architecture", "project-synapse", "https://github.com/Muath-Yousef/project-synapse"],
-  ["Private control plane", "ide-agentic-engine · history review", "https://github.com/Muath-Yousef/project-synapse#repository-role"],
-  ["Private SOC runtime", "Project-Synapse-SOC-Factory · history review", "https://github.com/Muath-Yousef/project-synapse#repository-role"],
+  ["Graduation project", "project-synapse", "https://github.com/Muath-Yousef/project-synapse"],
+  ["SOCRoot website", "kyriesoc", "https://github.com/Muath-Yousef/kyriesoc"],
+  ["SOCRoot candidate control plane", "ide-agentic-engine · private", "https://github.com/Muath-Yousef/ide-agentic-engine"],
   ["Engineering portfolio", "portfolio-site", "https://github.com/Muath-Yousef/portfolio-site"],
 ];
 
@@ -108,7 +108,7 @@ export default function About() {
             transition={{ delay: 0.16 }}
             className="text-lg text-neutral-400 leading-relaxed max-w-3xl mx-auto"
           >
-            SOCRoot grew from Project Synapse, a cybersecurity graduation project by Mu&apos;ath Yousef. The work investigates practical, evidence-driven security operations for smaller organizations. It is currently in active engineering and pre-production validation.
+            SOCRoot is Mu&apos;ath Yousef&apos;s independent cybersecurity product initiative. It is developing automatable subscription services for smaller organizations and validating whether each service produces measurable value customers will pay to receive repeatedly. Project Synapse remains a separate open-source graduation project.
           </motion.p>
         </section>
 
@@ -191,7 +191,7 @@ export default function About() {
         <section className="max-w-4xl mx-auto mb-24">
           <div className="text-center mb-12">
             <p className="font-mono text-xs text-teal-400 uppercase tracking-[0.3em] mb-4">Evolution</p>
-            <h2 className="text-4xl font-extrabold">From Synapse to SOCRoot</h2>
+            <h2 className="text-4xl font-extrabold">Two independent tracks</h2>
           </div>
           <div className="space-y-5">
             {JOURNEY.map((item, index) => (
@@ -255,9 +255,9 @@ export default function About() {
         </section>
 
         <section className="max-w-3xl mx-auto text-center border-t border-white/5 pt-16">
-          <h2 className="text-3xl font-extrabold mb-5">Start with the architecture and scope</h2>
+          <h2 className="text-3xl font-extrabold mb-5">Start with value, scope, and evidence</h2>
           <p className="text-neutral-500 mb-8">
-            Collaboration begins with authorization, bounded goals, and evidence requirements—not a promise of unattended production capability.
+            A useful engagement begins with authorization, a narrow customer problem, measurable outcomes, and evidence requirements—not a promise of unattended production capability.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a href="https://github.com/Muath-Yousef/project-synapse" className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-7 py-3 transition-colors">
