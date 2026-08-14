@@ -99,7 +99,7 @@ export default function About() {
             transition={{ delay: 0.08 }}
             className="text-5xl md:text-6xl font-extrabold tracking-tight mb-7"
           >
-            An engineering initiative,
+            A cybersecurity product initiative,
             <span className="text-teal-400"> documented in public.</span>
           </motion.h1>
           <motion.p
