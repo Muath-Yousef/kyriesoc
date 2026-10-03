@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 
 const NAV_LINKS = [
   { href: "/", label: "Home" },
+  { href: "/services/m365-hardening", label: "M365 Audit ($500)" },
   { href: "/services", label: "Capabilities" },
   { href: "/about", label: "About" },
   { href: "/resources", label: "Evidence" },
@@ -70,10 +71,10 @@ export default function NavClient() {
             GitHub
           </a>
           <Link
-            href="/scan"
+            href="/services/m365-hardening"
             className="angular-cut bg-teal-500 px-5 py-2.5 text-sm font-bold text-black transition-all hover:bg-teal-400"
           >
-            Scope a review
+            M365 Audit ($500)
           </Link>
         </div>
 
@@ -111,11 +112,11 @@ export default function NavClient() {
             </Link>
           ))}
           <Link
-            href="/scan"
+            href="/services/m365-hardening"
             onClick={() => setMobileOpen(false)}
             className="mt-3 block bg-teal-500 px-4 py-3 text-center text-sm font-bold text-black"
           >
-            Scope a review
+            Request M365 Audit ($500)
           </Link>
         </div>
       </div>

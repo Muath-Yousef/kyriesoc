@@ -151,17 +151,18 @@ export default function Home() {
                 transition={{ delay: 0.24, duration: 0.5 }}
                 className="flex flex-wrap gap-4"
               >
-                <a
-                  href="/services"
-                  className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 transition-all text-sm uppercase tracking-wider angular-cut"
-                >
-                  Explore service direction
-                </a>
                 <Link
-                  href="/about"
-                  className="border border-white/10 hover:border-teal-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-lg transition-all text-sm"
+                  href="/services/m365-hardening"
+                  className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 transition-all text-sm uppercase tracking-wider angular-cut flex items-center gap-2"
                 >
-                  Maturity and principles →
+                  <span>M365 Baseline Audit ($500)</span>
+                  <span>→</span>
+                </Link>
+                <Link
+                  href="/services"
+                  className="border border-white/10 hover:border-teal-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-none angular-cut transition-all text-sm"
+                >
+                  Explore Capabilities
                 </Link>
               </motion.div>
 

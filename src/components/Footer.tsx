@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Ban, CheckSquare, Search, Shield } from "lucide-react";
 
 const CAPABILITY_LINKS = [
+  { label: "M365 Audit Pilot ($500)", href: "/services/m365-hardening" },
   { label: "Assessment workflow", href: "/services" },
   { label: "SOC architecture", href: "/services" },
   { label: "Readiness mapping", href: "/services" },
