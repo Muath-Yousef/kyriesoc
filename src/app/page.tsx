@@ -170,7 +170,7 @@ export default function Home() {
                   href="/resources/case-study-1"
                   className="border border-white/10 hover:border-white/30 text-neutral-300 hover:text-white font-medium px-6 py-4 rounded-none angular-cut transition-all text-sm"
                 >
-                  Case Study (17 Gaps) →
+                  M365 Demonstration (17 Gaps) →
                 </Link>
               </motion.div>
 
@@ -216,22 +216,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Real-World Case Study Banner */}
-      <section className="relative py-12 border-y border-teal-500/20 bg-teal-500/[0.04]">
+      {/* Featured Demonstration Assessment Banner */}
+      <section className="relative py-12 border-y border-amber-500/20 bg-amber-500/[0.03]">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-2 space-y-3">
               <div className="flex items-center gap-2">
-                <span className="text-[10px] font-mono text-teal-300 border border-teal-500/30 bg-teal-500/10 px-2 py-0.5 uppercase tracking-widest font-bold">
-                  Featured Case Study
+                <span className="text-[10px] font-mono text-amber-300 border border-amber-500/30 bg-amber-500/10 px-2 py-0.5 uppercase tracking-widest font-bold">
+                  Demonstration Assessment
                 </span>
-                <span className="text-xs text-neutral-400 font-mono">Fintech Sector · 180 Seats · M365 Baseline</span>
+                <span className="text-xs text-neutral-400 font-mono">Representative Environment · 22 CIS &amp; NCA Controls</span>
               </div>
               <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-                How We Uncovered 17 Critical M365 Security Gaps in 30 Minutes
+                Demonstration: 17 Common M365 Security Gaps in a Representative Environment
               </h2>
               <p className="text-neutral-400 text-sm leading-relaxed">
-                Empirical walkthrough of an automated read-only audit: Global Admin sprawl, unmonitored OAuth permissions, and exposed legacy authentication protocols—remediated to 81% posture score in 72 hours.
+                A technical walkthrough illustrating how automated read-only audit checks evaluate identity sprawl, OAuth application consents, and legacy authentication protocols against CIS &amp; NCA benchmarks.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row md:flex-col gap-3 justify-end">
@@ -239,7 +239,7 @@ export default function Home() {
                 href="/resources/case-study-1"
                 className="bg-teal-500 hover:bg-teal-400 text-black font-bold py-3 px-5 text-center text-xs uppercase tracking-wider angular-cut transition-all"
               >
-                Read Case Study →
+                Explore Demonstration →
               </Link>
               <a
                 href="/sample-report.html"

@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 const RESOURCES = [
   {
     href: "/resources/case-study-1",
-    tag: "Case Study",
-    title: "How We Uncovered 17 Critical M365 Security Gaps in 30 Minutes",
-    desc: "An empirical walkthrough of an automated read-only baseline assessment for a 180-employee fintech, remediated in 72 hours.",
+    tag: "Demonstration",
+    title: "Demonstration Assessment: 17 Common M365 Security Gaps",
+    desc: "A walkthrough based on a representative M365 tenant illustrating automated baseline checks, findings triage, and remediation priorities.",
     readTime: "4 min",
     date: "Aug 2026",
     icon: (

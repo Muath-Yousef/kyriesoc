@@ -230,6 +230,57 @@ export default function M365Hardening() {
                 Microsoft Graph API scopes. Governed by formal bilateral Rules of Engagement (RoE) &amp; Mutual NDA. Zero writes, zero agent installation, zero credential retention.
               </div>
 
+              {/* Detailed Service Scope & Boundaries Matrix */}
+              <div className="md:col-span-2 border border-white/10 bg-black/40 p-6 space-y-4 angular-cut">
+                <h3 className="text-base font-bold text-white flex items-center gap-2">
+                  <span>📋</span> Service Scope &amp; Technical Boundaries Matrix
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left text-xs border-collapse">
+                    <thead>
+                      <tr className="border-b border-white/10 text-neutral-400 font-mono">
+                        <th className="py-2.5 pr-4 w-44">Dimension</th>
+                        <th className="py-2.5 pr-4">Specification &amp; Client Safeguards</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5 text-neutral-300">
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-teal-400">Supported Products</td>
+                        <td className="py-2.5 pr-4">Microsoft Entra ID (Azure AD), Exchange Online, SharePoint/OneDrive, Intune</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-teal-400">Required Tenant Licenses</td>
+                        <td className="py-2.5 pr-4">Microsoft 365 Business Premium, E3, E5, or standalone Entra ID P1/P2</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-teal-400">Access Method &amp; Scopes</td>
+                        <td className="py-2.5 pr-4">Temporary client-owned App Registration restricted to read-only scopes: <code className="text-neutral-300">Policy.Read.All</code>, <code className="text-neutral-300">Directory.Read.All</code>, <code className="text-neutral-300">Reports.Read.All</code>, <code className="text-neutral-300">AuditLog.Read.All</code></td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-emerald-400">Collected Data</td>
+                        <td className="py-2.5 pr-4">Tenant configuration metadata, security policies, and administrative role assignments only</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-red-400">Strictly Excluded Data</td>
+                        <td className="py-2.5 pr-4">Mailbox body/attachment content, OneDrive/SharePoint files, and Teams chat messages are <b>100% excluded and uncollected</b></td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-teal-400">Service Boundaries</td>
+                        <td className="py-2.5 pr-4">Point-in-time configuration baseline assessment. <b>Not an intrusive penetration test; not an ongoing 24/7 managed SOC</b></td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-teal-400">Retention &amp; Offboarding</td>
+                        <td className="py-2.5 pr-4">Technical evidence purged 30 days post-delivery. Client receives step-by-step runbook to delete the temporary App Registration immediately after extraction</td>
+                      </tr>
+                      <tr>
+                        <td className="py-2.5 pr-4 font-semibold text-teal-400">Complimentary Retest</td>
+                        <td className="py-2.5 pr-4">One free delta re-test within 30 days to verify that remediated controls have successfully transitioned to PASS</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
               {/* Dual-Rail Commercial Actions */}
               <div className="md:col-span-2 grid sm:grid-cols-2 gap-4 mt-2">
                 <button
