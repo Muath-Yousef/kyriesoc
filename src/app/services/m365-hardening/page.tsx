@@ -176,16 +176,29 @@ export default function M365Hardening() {
 
             <div className="text-sm text-neutral-500 mt-4 flex flex-wrap items-center gap-4">
               <a
-                href="/sample-report.pdf"
+                href="/sample-report.html"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-teal-400 hover:underline font-semibold"
               >
-                View Sample Assessment PDF →
+                View Interactive Demo Report ↗
               </a>
               <span>·</span>
-              <Link href="/methodology" className="text-teal-400 hover:underline font-semibold">
-                Assessment Methodology →
+              <a
+                href="/sample-report.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-neutral-400 hover:text-white hover:underline"
+              >
+                Sample Report PDF ↓
+              </a>
+              <span>·</span>
+              <Link href="/resources/case-study-1" className="text-amber-400 hover:underline font-semibold">
+                Case Study: 17 Gaps in 30 Min →
+              </Link>
+              <span>·</span>
+              <Link href="/methodology" className="text-neutral-400 hover:text-white hover:underline">
+                Methodology →
               </Link>
             </div>
           </motion.div>

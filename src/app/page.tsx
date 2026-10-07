@@ -153,16 +153,24 @@ export default function Home() {
               >
                 <Link
                   href="/services/m365-hardening"
-                  className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 transition-all text-sm uppercase tracking-wider angular-cut flex items-center gap-2"
+                  className="bg-teal-500 hover:bg-teal-400 text-black font-bold px-8 py-4 transition-all text-sm uppercase tracking-wider angular-cut flex items-center gap-2 shadow-[0_0_20px_rgba(16,185,129,0.25)]"
                 >
-                  <span>M365 Baseline Audit ($500)</span>
+                  <span>Book Assessment — $500 Flat (SAR 1,875)</span>
                   <span>→</span>
                 </Link>
-                <Link
-                  href="/services"
-                  className="border border-white/10 hover:border-teal-500/40 text-neutral-300 hover:text-white font-medium px-8 py-4 rounded-none angular-cut transition-all text-sm"
+                <a
+                  href="/sample-report.html"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-teal-500/30 hover:border-teal-500/60 bg-teal-500/5 text-teal-300 font-semibold px-6 py-4 rounded-none angular-cut transition-all text-sm flex items-center gap-1.5"
                 >
-                  Explore Capabilities
+                  <span>View Demo Report ↗</span>
+                </a>
+                <Link
+                  href="/resources/case-study-1"
+                  className="border border-white/10 hover:border-white/30 text-neutral-300 hover:text-white font-medium px-6 py-4 rounded-none angular-cut transition-all text-sm"
+                >
+                  Case Study (17 Gaps) →
                 </Link>
               </motion.div>
 
@@ -204,6 +212,44 @@ export default function Home() {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Real-World Case Study Banner */}
+      <section className="relative py-12 border-y border-teal-500/20 bg-teal-500/[0.04]">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="md:col-span-2 space-y-3">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] font-mono text-teal-300 border border-teal-500/30 bg-teal-500/10 px-2 py-0.5 uppercase tracking-widest font-bold">
+                  Featured Case Study
+                </span>
+                <span className="text-xs text-neutral-400 font-mono">Fintech Sector · 180 Seats · M365 Baseline</span>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+                How We Uncovered 17 Critical M365 Security Gaps in 30 Minutes
+              </h2>
+              <p className="text-neutral-400 text-sm leading-relaxed">
+                Empirical walkthrough of an automated read-only audit: Global Admin sprawl, unmonitored OAuth permissions, and exposed legacy authentication protocols—remediated to 81% posture score in 72 hours.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row md:flex-col gap-3 justify-end">
+              <Link
+                href="/resources/case-study-1"
+                className="bg-teal-500 hover:bg-teal-400 text-black font-bold py-3 px-5 text-center text-xs uppercase tracking-wider angular-cut transition-all"
+              >
+                Read Case Study →
+              </Link>
+              <a
+                href="/sample-report.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-white/20 hover:border-teal-500/40 text-neutral-200 text-center py-3 px-5 text-xs font-semibold angular-cut transition-all"
+              >
+                View Sample Report (Interactive) ↗
+              </a>
+            </div>
           </div>
         </div>
       </section>

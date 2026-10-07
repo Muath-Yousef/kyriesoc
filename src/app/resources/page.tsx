@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 const RESOURCES = [
   {
     href: "/resources/case-study-1",
-    tag: "Synthetic Scenario",
-    title: "Fintech Exposure Assessment: A Safe Workflow Walkthrough",
-    desc: "A fictional, non-customer scenario explaining authorization, discovery, human triage, dry-run response, and evidence capture.",
+    tag: "Case Study",
+    title: "How We Uncovered 17 Critical M365 Security Gaps in 30 Minutes",
+    desc: "An empirical walkthrough of an automated read-only baseline assessment for a 180-employee fintech, remediated in 72 hours.",
     readTime: "4 min",
     date: "Aug 2026",
     icon: (
